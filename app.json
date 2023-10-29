@@ -1,30 +1,48 @@
 {
-  "expo": {
-    "name": "unas",
-    "slug": "unas",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "expo": {
+        "name": "Ideas y diseño de uñas bonitas",
+        "slug": "nails-designs",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/logo-unas.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/splash-unas.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "scheme": "nails-designs",
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "versionCode": 2,
+            "package": "com.paulaymanu113.nailsdesigns"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "546c7b97-fc98-4f86-84af-4c2234c44547"
+            }
+        },
+        "plugins": [
+            [
+                "expo-media-library",
+                {
+                    "photosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
+                    "savePhotosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
+                    "isAccessMediaLocationEnabled": true
+                }
+            ]
+        ]
     }
-  }
 }
