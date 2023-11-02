@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
         position: "relative",
         justifyContent: "center",
         marginTop: StatusBar.currentHeight,
-        backgroundColor: "red",
     },
     wrapper: {
         flex: 1,
