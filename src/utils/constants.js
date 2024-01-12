@@ -1,2 +1,2 @@
-export const bannerId = "ca-app-pub-3963345159052388/1420611079";
-export const intersitialId = "ca-app-pub-3963345159052388/6690121764"
+export const bannerId = "ca-app-pub-3738413299329691/9492904106";
+export const intersitialId = "ca-app-pub-3738413299329691/4108144669"
