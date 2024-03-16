@@ -32,7 +32,7 @@ export default function List() {
                             renderItem={({ item, i }) => {
                                 return (
                                     <Animated.View key={i} style={styles.itemWrapper}>
-                                        <Link asChild href={{ pathname: "/gallery", params: { name: item.name, qty: item.qty } }}>
+                                        <Link asChild href={{ pathname: "/gallery", params: { name: item.name } }}>
                                             <Pressable onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                                                 <View style={styles.item}>
                                                     <Image transition={1000} style={styles.image} source={item.image} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} />

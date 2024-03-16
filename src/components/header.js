@@ -3,7 +3,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Favorite from "./favorite";
 import { ui } from "../utils/styles";
 
-export default function Header({ imageRef, title  }) {
+export default function Header({ image, title  }) {
 
     const router = useRouter();
 
@@ -13,7 +13,7 @@ export default function Header({ imageRef, title  }) {
                 <Image style={styles.img} source={require("../../assets/back.png")} />
             </Pressable>
             { title && <Text style={[ui.text, {color: "#fff"}]}>{title}</Text> }
-            { imageRef && <Favorite image={imageRef} /> }
+            { image && <Favorite image={image} /> }
         </View>
     )
 }

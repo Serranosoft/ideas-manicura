@@ -13,8 +13,8 @@ export default function ImageWrapper() {
 
     const params = useLocalSearchParams();
     const { image } = params;
-    const imageRef = image.substring(image.lastIndexOf("/") + 1, image.lastIndexOf("."));
-    
+    const imageName = image.substring(image.lastIndexOf("/") + 1, image.length);
+
     async function requestPermissions() {
         try {
             const { status } = await MediaLibrary.requestPermissionsAsync();
@@ -34,10 +34,10 @@ export default function ImageWrapper() {
         }
     }
     async function downloadImage() {
-        const url = `https://mollydigital.manu-scholz.com/wp-content/uploads/2023/10/${imageRef}.jpg`;
 
         try {
-            const { uri } = await FileSystem.downloadAsync(url, FileSystem.documentDirectory + `${imageRef}.jpg`);
+            const { uri } = await FileSystem.downloadAsync(image, FileSystem.documentDirectory + `${imageName}.jpg`);
+
             // Agregar la imagen al álbum
             const asset = await MediaLibrary.createAssetAsync(uri);
 
@@ -65,7 +65,7 @@ export default function ImageWrapper() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header imageRef={imageRef} withFavorite={true} /> }} />
+            <Stack.Screen options={{ header: () => <Header image={image} withFavorite={true} /> }} />
             <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             <Image
                 style={styles.image}

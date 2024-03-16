@@ -23,7 +23,7 @@
                 "foregroundImage": "./assets/logo-unas.png",
                 "backgroundColor": "#E5BBD3"
             },
-            "versionCode": 5,
+            "versionCode": 6,
             "package": "com.paulaymanu113.nailsdesigns"
         },
         "web": {

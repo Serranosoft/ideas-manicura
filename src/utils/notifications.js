@@ -56,8 +56,8 @@ export async function scheduleWeeklyNotification() {
         const notificacion = {
             identifier: 'notificacion-semanal',
             content: {
-                title: '¿Estás pensando en hacerte las uñas?',
-                body: 'Entra y mira todas las ideas y diseños de uñas que tenemos para ti',
+                title: '¡Nuevos diseños de uñas!',
+                body: 'Tenemos un montón de ideas nuevas ¿Te las vas a perder?',
             },
             trigger: {
                 seconds: getLeftTimeToNextMonday(),

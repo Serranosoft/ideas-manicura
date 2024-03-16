@@ -2,11 +2,10 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { Link, Stack, useLocalSearchParams } from "expo-router";
 import LottieView from 'lottie-react-native';
 import { useContext, useEffect, useState } from "react";
-import { fetchImages } from "../src/utils/data";
 import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Header from "../src/components/header";
-import { getNotificationInfo, scheduleWeeklyNotification } from "../src/utils/notifications";
+import { scheduleWeeklyNotification } from "../src/utils/notifications";
 import { DataContext } from "../src/DataContext";
 import { bannerId } from "../src/utils/constants";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
@@ -14,20 +13,26 @@ import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 export default function gallery() {
 
     const params = useLocalSearchParams();
-    const { name, qty } = params;
+    const { name } = params;
     const [images, setImages] = useState([]);
     const { setAdTrigger } = useContext(DataContext);
 
     useEffect(() => {
-        if (images.length < 1) {
-            fetchImages(name, qty).then((result) => setImages(result));
-        }
+        getImages();
+        scheduleWeeklyNotification();
     }, [])
 
-    useEffect(() => {
-        scheduleWeeklyNotification();
-        getNotificationInfo();
-    }, [])
+    async function getImages() {
+        const response = await fetch(`https://res.cloudinary.com/drzx6gruz/image/list/${name.toLowerCase().split(' ').join("-")}.json`)
+            .then((response) => response.json())
+            .then(data => data);
+
+        let images = [];
+        response.resources.forEach((image) => {
+            images.push("https://res.cloudinary.com/drzx6gruz/image/upload/" + image["public_id"]);
+        })
+        setImages(images);
+    }
 
     return (
         <View style={styles.container}>

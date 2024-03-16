@@ -11,23 +11,7 @@ export default function Favorites() {
     const { favorites } = useContext(DataContext);
     const [favoriteImages, setFavoriteImages] = useState([])
 
-    useEffect(() => {
-        buildRoutes();
-    }, [])
-
-    function buildRoutes() {
-        const urlSegment = "https://mollydigital.manu-scholz.com/wp-content/uploads/2023/10/";
-        const extension = ".jpg";
-
-        let url = "";
-        let arr = [];
-        favorites.forEach(segment => {
-            url = urlSegment + segment + extension;
-            arr.push(url);
-        })
-
-        setFavoriteImages(arr);
-    }
+    useEffect(() => setFavoriteImages([...favorites]), [])
 
     return (
         <View style={styles.container}>

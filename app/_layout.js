@@ -34,6 +34,16 @@ export default function Layout() {
                 setFavorites(JSON.parse(value));
             }
         }
+        // Borrar favoritos si es la primera vez que inicializa la app
+        async function isFirstTime() {
+            const value = await AsyncStorage.getItem("FIRST_LAUNCH_APP");
+            if (!value) {
+                AsyncStorage.setItem("favorites", JSON.stringify([]));
+                AsyncStorage.setItem("FIRST_LAUNCH_APP", "has launched");
+            }
+        }
+
+        isFirstTime();
         getFavorites();
     }, [])
 
