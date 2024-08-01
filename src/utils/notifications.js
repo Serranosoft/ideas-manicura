@@ -2,7 +2,7 @@ import * as Notifications from "expo-notifications";
 
 // Función para programar una notificación que se lance en los siguientes 10 segundos
 export async function testNotification() {
-    try {
+    /* try {
         // Obtener la lista de notificaciones programadas
         const notificacionesProgramadas = await Notifications.getAllScheduledNotificationsAsync();
 
@@ -33,11 +33,15 @@ export async function testNotification() {
         console.log('Notificación programada para dentro de 5 segundos.');
     } catch (error) {
         console.error('Error al programar la notificación:', error);
-    }
+    } */
 };
 
 export async function scheduleWeeklyNotification() {
-    try {
+/*     try {
+
+        await Notifications.setNotificationChannelAsync('new-emails', {
+            name: 'notifications',
+          });
 
         // Obtener la lista de notificaciones programadas
         const notificacionesProgramadas = await Notifications.getAllScheduledNotificationsAsync();
@@ -60,8 +64,8 @@ export async function scheduleWeeklyNotification() {
                 body: 'Tenemos un montón de ideas nuevas ¿Te las vas a perder?',
             },
             trigger: {
-                seconds: getLeftTimeToNextMonday(),
-                repeats: 'week',
+                channelId: "new-emails",
+                seconds: 2,
             },
         };
 
@@ -71,7 +75,7 @@ export async function scheduleWeeklyNotification() {
         console.log('Notificación programada para el próximo lunes a las 18:00');
     } catch (error) {
         console.error('Error al programar la notificación:', error);
-    }
+    } */
 };
 
 export function getLeftTimeToNextMonday() {
@@ -94,9 +98,9 @@ export function getLeftTimeToNextMonday() {
 
 
 export async function getNotificationInfo() {
-    const info = await Notifications.getAllScheduledNotificationsAsync();
+    // const info = await Notifications.getAllScheduledNotificationsAsync();
 }
 
 export async function removeAllNotifications() {
-    await Notifications.cancelAllScheduledNotificationsAsync();
+    // await Notifications.cancelAllScheduledNotificationsAsync();
 }

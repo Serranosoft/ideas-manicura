@@ -19,7 +19,7 @@ export default function gallery() {
 
     useEffect(() => {
         getImages();
-        scheduleWeeklyNotification();
+        // scheduleWeeklyNotification();
     }, [])
 
     async function getImages() {

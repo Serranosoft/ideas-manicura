@@ -1,15 +1,14 @@
 import { SplashScreen, Stack, router } from "expo-router";
 import { View, StatusBar, StyleSheet, Image, Pressable } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext } from "../src/DataContext";
 import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Notifications from 'expo-notifications';
 import AdsHandler from "../src/components/AdsHandler";
 
 SplashScreen.preventAutoHideAsync();
+
 export default function Layout() {
 
     // Carga de fuentes.
@@ -48,7 +47,7 @@ export default function Layout() {
     }, [])
 
     // Gestión de notificaciones
-    useEffect(() => {
+   /*  useEffect(() => {
         Notifications.setNotificationHandler({
             handleNotification: async () => ({
                 shouldShowAlert: true,
@@ -56,7 +55,7 @@ export default function Layout() {
                 shouldSetBadge: false,
             }),
         });
-    }, [])
+    }, []) */
 
     // Gestión de anuncios
     const [adTrigger, setAdTrigger] = useState(0);

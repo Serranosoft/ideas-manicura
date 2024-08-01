@@ -42,11 +42,15 @@
                     "savePhotosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
                     "isAccessMediaLocationEnabled": true
                 }
-            ]
+            ],
+            [
+                "react-native-google-mobile-ads",
+                {
+                    "androidAppId": "ca-app-pub-3738413299329691~3139248746",
+                    "iosAppId": "ca-app-pub-3738413299329691~3139248746"
+                }
+            ],
+            "expo-font"
         ]
-    },
-    "react-native-google-mobile-ads": {
-        "android_app_id": "ca-app-pub-3738413299329691~3139248746",
-        "ios_app_id": "ca-app-pub-3738413299329691~3139248746"
     }
 }
