@@ -1,3 +1,8 @@
+import { PixelRatio } from "react-native";
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 export const ui = {
     img: {
         aspectRatio: 1,
@@ -6,23 +11,23 @@ export const ui = {
     text: {
         fontFamily: "Regular",
         color: "black",
-        fontSize: 16.5,
+        fontSize: getFontSize(16.5),
     },
     h1: {
-        fontSize: 60,
+        fontSize: getFontSize(60),
         fontFamily: "Semibold",
         lineHeight: 65,
     },
     h2: {
         fontFamily: "Semibold",
         color: "black",
-        fontSize: 32,
+        fontSize: getFontSize(32),
         textAlign: "center"
     },
     h3: {
         fontFamily: "Regular",
         color: "black",
-        fontSize: 25,
+        fontSize: getFontSize(25),
     },
     button: {
         paddingVertical: 12,

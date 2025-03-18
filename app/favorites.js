@@ -1,9 +1,12 @@
 import { Link, Stack } from "expo-router"
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native"
+import { FlatList, PixelRatio, Pressable, StyleSheet, Text, View } from "react-native"
 import Header from "../src/components/header"
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../src/DataContext"
 import { Image } from "expo-image";
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
 
 export default function Favorites() {
 
@@ -38,7 +41,7 @@ export default function Favorites() {
                         />
                     </View>
                     :
-                    <Text style={{ fontSize: 27, textAlign: "center" }}>No tienes ningún diseño guardado en favoritos</Text>
+                    <Text style={{ fontSize: getFontSize(27), textAlign: "center" }}>No tienes ningún diseño guardado en favoritos</Text>
 
             }
         </View>
