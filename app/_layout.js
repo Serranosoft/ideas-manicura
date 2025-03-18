@@ -6,6 +6,7 @@ import { DataContext } from "../src/DataContext";
 import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
+import Constants from "expo-constants";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
         flex: 1,
         position: "relative",
         justifyContent: "center",
-        marginTop: StatusBar.currentHeight,
+        paddingTop: Constants.statusBarHeight,
     },
     wrapper: {
         flex: 1,

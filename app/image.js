@@ -21,13 +21,17 @@ export default function ImageWrapper() {
             if (status === "granted") {
                 downloadImage();
             } else {
-                ToastAndroid.showWithGravityAndOffset(
-                    "No tengo permisos para acceder a la galería de su dispositivo",
-                    ToastAndroid.LONG,
-                    ToastAndroid.BOTTOM,
-                    25,
-                    50,
-                );
+                if (Platform.OS === "android") {
+                    ToastAndroid.showWithGravityAndOffset(
+                        "No tengo permisos para acceder a la galería de su dispositivo",
+                        ToastAndroid.LONG,
+                        ToastAndroid.BOTTOM,
+                        25,
+                        50,
+                    );
+                } else {
+                    Alert.alert("No tengo permisos para acceder a la galería de su dispositivo");
+                }
             }
         } catch (error) {
             console.log(error);
@@ -48,14 +52,19 @@ export default function ImageWrapper() {
             } else {
                 await MediaLibrary.addAssetsToAlbumAsync([asset], album, true);
             }
-
-            ToastAndroid.showWithGravityAndOffset(
-                "Imagen guardada en tu galería en el albúm «Diseños de uñas»",
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                50,
-            );
+            
+            if (Platform.OS === "android") {
+                ToastAndroid.showWithGravityAndOffset(
+                    "Imagen guardada en tu galería en el albúm «Diseños de uñas»",
+                    ToastAndroid.LONG,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50,
+                );
+            } else {
+                Alert.alert("Imagen guardada en tu galería en el albúm «Diseños de uñas»");
+            }
+            
 
 
         } catch (error) {
