@@ -4,10 +4,9 @@ import Header from "../src/components/header";
 import { ui } from "../src/utils/styles";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
-import Image from 'react-native-image-progress';
-import * as Progress from 'react-native-progress';
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
+import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 
 export default function ImageWrapper() {
 
@@ -52,7 +51,7 @@ export default function ImageWrapper() {
             } else {
                 await MediaLibrary.addAssetsToAlbumAsync([asset], album, true);
             }
-            
+
             if (Platform.OS === "android") {
                 ToastAndroid.showWithGravityAndOffset(
                     "Imagen guardada en tu galería en el albúm «Diseños de uñas»",
@@ -64,7 +63,7 @@ export default function ImageWrapper() {
             } else {
                 Alert.alert("Imagen guardada en tu galería en el albúm «Diseños de uñas»");
             }
-            
+
 
 
         } catch (error) {
@@ -76,20 +75,15 @@ export default function ImageWrapper() {
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header image={image} withFavorite={true} /> }} />
             <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
-            <Image
-                style={styles.image}
-                source={{ uri: image }}
-                resizeMode="contain"
-                indicator={Progress.Bar}
-                indicatorProps={{
-                    size: 150,
-                    height: 35,
-                    width: 275,
-                    borderWidth: 0,
-                    color: 'rgba(91, 26, 35, 1)',
-                    unfilledColor: 'rgba(91, 26, 35, 0.2)'
-                }}
+
+            <ImageZoom
+                onResetAnimationEnd={false}
+                minScale={1}
+                maxScale={3}
+                uri={ image }
+                isDoubleTapEnabled
             />
+
             <Pressable onPress={requestPermissions} style={[ui.floatingWrapper, { left: 15 }]}>
                 <ReactNativeImage style={[ui.floatingImg, { marginBottom: 6, marginLeft: 1 }]} source={require("../assets/download.png")} />
             </Pressable>

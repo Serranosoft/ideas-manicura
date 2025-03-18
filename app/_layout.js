@@ -7,6 +7,7 @@ import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
 import Constants from "expo-constants";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -48,15 +49,15 @@ export default function Layout() {
     }, [])
 
     // Gestión de notificaciones
-   /*  useEffect(() => {
-        Notifications.setNotificationHandler({
-            handleNotification: async () => ({
-                shouldShowAlert: true,
-                shouldPlaySound: false,
-                shouldSetBadge: false,
-            }),
-        });
-    }, []) */
+    /*  useEffect(() => {
+         Notifications.setNotificationHandler({
+             handleNotification: async () => ({
+                 shouldShowAlert: true,
+                 shouldPlaySound: false,
+                 shouldSetBadge: false,
+             }),
+         });
+     }, []) */
 
     // Gestión de anuncios
     const [adTrigger, setAdTrigger] = useState(0);
@@ -78,7 +79,9 @@ export default function Layout() {
         <View style={styles.container}>
             <AdsHandler ref={adsHandlerRef} adType={[0]} />
             <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
-                <Stack />
+                <GestureHandlerRootView style={styles.wrapper}>
+                    <Stack />
+                </GestureHandlerRootView>
                 <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
                     <Image style={ui.floatingImg} source={require("../assets/favorites.png")} />
                 </Pressable>
