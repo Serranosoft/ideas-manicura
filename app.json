@@ -16,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
+      "buildNumber": "2",
       "bundleIdentifier": "com.paulaymanu113.nailsdesigns",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
