@@ -36,7 +36,7 @@ export default function gallery() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header title={`Diseño de uñas de ${name}`} /> }} />
+            <Stack.Screen options={{ header: () => <Header title={name} /> }} />
             <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             {
                 images.length > 0 ?

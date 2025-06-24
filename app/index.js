@@ -1,9 +1,9 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, useFocusEffect } from "expo-router";
 import { ui } from "../src/utils/styles";
 import LottieView from 'lottie-react-native';
-import { useContext, useMemo, useState } from "react";
-import { categories_raw } from "../src/utils/data";
+import { useCallback, useContext, useMemo, useState } from "react";
+import { categories_raw, fetchDesigns } from "../src/utils/data";
 import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Animated from "react-native-reanimated";
@@ -12,8 +12,15 @@ import { DataContext } from "../src/DataContext";
 export default function List() {
 
     const [categories, setCategories] = useState([])
-    useMemo(() => setCategories(categories_raw), [categories]);
     const { setAdTrigger } = useContext(DataContext);
+    const language = "es";
+
+    useFocusEffect(
+        useCallback(() => {
+            const aux_categories = fetchDesigns(language);
+            setCategories(aux_categories);
+        }, [language])
+    );
 
     return (
         <View style={styles.container} sharedTransitionTag="first">
