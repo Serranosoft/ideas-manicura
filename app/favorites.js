@@ -4,9 +4,12 @@ import Header from "../src/components/header"
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../src/DataContext"
 import { Image } from "expo-image";
+import { useLanguage } from "../../src/utils/LanguageContext";
+
 
 const fontScale = PixelRatio.getFontScale();
 const getFontSize = size => size / fontScale;
+const { language } = useLanguage();
 
 export default function Favorites() {
 
@@ -18,7 +21,7 @@ export default function Favorites() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header title={"Mis diseños favoritos"} /> }} />
+            <Stack.Screen options={{ header: () => <Header title={language.t("_myFavorites")} /> }} />
             {
                 favoriteImages.length > 0 ?
                     <View style={styles.list}>
@@ -41,7 +44,7 @@ export default function Favorites() {
                         />
                     </View>
                     :
-                    <Text style={{ fontSize: getFontSize(27), textAlign: "center" }}>No tienes ningún diseño guardado en favoritos</Text>
+                    <Text style={{ fontSize: getFontSize(27), textAlign: "center" }}>{language.t("_noFavorites")}</Text>
 
             }
         </View>

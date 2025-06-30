@@ -7,12 +7,15 @@ import * as MediaLibrary from 'expo-media-library';
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
+import { useLanguage } from "../../src/utils/LanguageContext";
+
 
 export default function ImageWrapper() {
 
     const params = useLocalSearchParams();
     const { image } = params;
     const imageName = image.substring(image.lastIndexOf("/") + 1, image.length);
+    const { language } = useLanguage();
 
     async function requestPermissions() {
         try {
@@ -45,23 +48,23 @@ export default function ImageWrapper() {
             const asset = await MediaLibrary.createAssetAsync(uri);
 
             // Obtener el álbum existente o crearlo
-            let album = await MediaLibrary.getAlbumAsync("Diseños de uñas");
+            let album = await MediaLibrary.getAlbumAsync(language.t("_nailDesigns"));
             if (!album) {
-                album = await MediaLibrary.createAlbumAsync("Diseños de uñas", asset, true);
+                album = await MediaLibrary.createAlbumAsync(language.t("_nailDesigns"), asset, true);
             } else {
                 await MediaLibrary.addAssetsToAlbumAsync([asset], album, true);
             }
 
             if (Platform.OS === "android") {
                 ToastAndroid.showWithGravityAndOffset(
-                    "Imagen guardada en tu galería en el albúm «Diseños de uñas»",
+                    language.t("_toastImageSaved"),
                     ToastAndroid.LONG,
                     ToastAndroid.BOTTOM,
                     25,
                     50,
                 );
             } else {
-                Alert.alert("Imagen guardada en tu galería en el albúm «Diseños de uñas»");
+                Alert.alert(language.t("_toastImageSaved"));
             }
 
 

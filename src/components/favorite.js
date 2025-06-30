@@ -10,6 +10,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
 import { ui } from "../utils/styles";
+import { useLanguage } from "../../src/utils/LanguageContext";
+
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 export default function Favorite({ image }) {
@@ -20,6 +22,7 @@ export default function Favorite({ image }) {
     const colorChange = useAnimatedStyle(() => ({
         color: interpolateColor(progress.value, [0, 1], ['transparent', 'white']),
     }));
+    const { language } = useLanguage();
 
     // Al entrar, comprobar si es favorito o no.
     useEffect(() => {
@@ -61,7 +64,7 @@ export default function Favorite({ image }) {
         <Pressable onPressIn={handleFavorite}>
             <View style={styles.favoriteWrapper}>
                 
-                <Text style={[ ui.text, { color: "#fff" } ]}>{isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"}</Text>
+                <Text style={[ ui.text, { color: "#fff" } ]}>{isFavorite ? language.t("_removeFavorites") : language.t("_addFavorites")}</Text>
                 <AnimatedSvg viewBox="0 0 299.66333 300.23361" xmlns="http://www.w3.org/2000/svg" style={[styles.svg, colorChange]}>
                     <Path
                         d="M147.06 35.49l2.772 3.368 2.77-3.367c35.49-43.128 94.182-38.059 124.296 10.734 26.727 43.307 20.326 104.58-14.458 138.397L149.832 294.097 37.224 184.622C2.439 150.804-3.962 89.532 22.766 46.225 52.879-2.568 111.572-7.637 147.06 35.491z"

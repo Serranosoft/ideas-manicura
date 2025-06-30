@@ -8,12 +8,16 @@ import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Animated from "react-native-reanimated";
 import { DataContext } from "../src/DataContext";
+import { useLanguage } from "../../src/utils/LanguageContext";
+
 
 export default function List() {
 
     const [categories, setCategories] = useState([])
     const { setAdTrigger } = useContext(DataContext);
     const language = "es";
+    //const { language } = useLanguage();
+
 
     useFocusEffect(
         useCallback(() => {
@@ -26,7 +30,7 @@ export default function List() {
         <View style={styles.container} sharedTransitionTag="first">
             <Stack.Screen options={{ headerShown: false }} />
             <View style={styles.title}>
-                <Text style={ui.h2}>Diseños para todas las temporadas</Text>
+                <Text style={ui.h2}>{language.t("_homeTitle")}</Text>
             </View>
             {
                 categories.length > 0 ?
