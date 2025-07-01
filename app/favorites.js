@@ -9,10 +9,12 @@ import { useLanguage } from "../../src/utils/LanguageContext";
 
 const fontScale = PixelRatio.getFontScale();
 const getFontSize = size => size / fontScale;
-const { language } = useLanguage();
+
 
 export default function Favorites() {
 
+    const { language } = useLanguage();
+    
     // Debo obtener todos los favoritos
     const { favorites } = useContext(DataContext);
     const [favoriteImages, setFavoriteImages] = useState([])
