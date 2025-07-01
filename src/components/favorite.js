@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
 import { ui } from "../utils/styles";
-import { useLanguage } from "../../src/utils/LanguageContext";
+import { useLanguage } from "../utils/LanguageContext.js";
 
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
