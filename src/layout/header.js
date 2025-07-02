@@ -41,6 +41,16 @@ export default function Header({ title, back, settings = true }) {
                             <Text style={ui.text}>Ajustes</Text>
                         </View>
                     </MenuItem>
+                    <MenuItem onPress={() => {
+                        router.push("favorites");
+                        hideMenu();
+                    }}>
+                        <View style={styles.row}>
+                            <Image style={styles.icon} source={require("../../assets/heart-unfilled.png")} />
+                            {/* WIP TRANSLATIONS */}
+                            <Text style={ui.text}>Mis favoritos</Text>
+                        </View>
+                    </MenuItem>
                 </Menu>
             }
         </View>

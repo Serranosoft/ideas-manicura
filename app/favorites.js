@@ -23,7 +23,7 @@ export default function Favorites() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header title={language.t("_myFavorites")} /> }} />
+            <Stack.Screen options={{ header: () => <Header back={true} settings={false} title={language.t("_myFavorites")} /> }} />
             {
                 favoriteImages.length > 0 ?
                     <View style={styles.list}>
