@@ -60,7 +60,8 @@
           "iosAppId": "ca-app-pub-3738413299329691~3139248746"
         }
       ],
-      "expo-font"
+      "expo-font",
+      "expo-localization"
     ]
   }
 }
