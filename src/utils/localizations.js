@@ -27,7 +27,7 @@ export const translations = {
 
         // Imágenes
         _nailDesigns: "Diseños de uñas",
-        _toastImageSaved: `Imagen guardada en tu galería en el albúm «${_nailDesigns}»`,
+        _toastImageSaved: `Imagen guardada en tu galería en el albúm «Diseños de uñas»`,
 
         // Home
         _homeTitle: "Diseños para todas las temporadas"
@@ -60,7 +60,7 @@ export const translations = {
 
         // Images
         _nailDesigns: "Nail designs",
-        _toastImageSaved: "Image saved to your gallery in the album «${_nailDesigns}»",
+        _toastImageSaved: "Image saved to your gallery in the album «Nail designs»",
 
         // Home
         _homeTitle: "Designs for all seasons"
@@ -93,7 +93,7 @@ export const translations = {
 
         // Imágenes
         _nailDesigns: "Designs d'ongles",
-        _toastImageSaved: "Image enregistrée dans votre galerie dans l'album «${_nailDesigns}»",
+        _toastImageSaved: "Image enregistrée dans votre galerie dans l'album «Designs d'ongles»",
 
         // Home
         _homeTitle: "Designs pour toutes les saisons"
@@ -126,7 +126,7 @@ export const translations = {
 
         // चित्र
         _nailDesigns: "नाखून डिज़ाइन",
-        _toastImageSaved: "छवि आपकी गैलरी में «${_nailDesigns}» एल्बम में सहेजी गई",
+        _toastImageSaved: "छवि आपकी गैलरी में «नाखून डिज़ाइन» एल्बम में सहेजी गई",
 
         // होम
         _homeTitle: "सभी सीजन के लिए डिज़ाइन"
@@ -160,7 +160,7 @@ export const translations = {
 
         // الصور
         _nailDesigns: "تصاميم الأظافر",
-        _toastImageSaved: "تم حفظ الصورة في معرضك في الألبوم «${_nailDesigns}»",
+        _toastImageSaved: "تم حفظ الصورة في معرضك في الألبوم تصاميم الأظافر",
 
         // الرئيسية
         _homeTitle: "تصاميم لجميع الفصول"
@@ -193,7 +193,7 @@ export const translations = {
 
         // Bilder
         _nailDesigns: "Nageldesigns",
-        _toastImageSaved: "Bild in Ihrer Galerie im Album «${_nailDesigns}» gespeichert",
+        _toastImageSaved: "Bild in Ihrer Galerie im Album «Nageldesigns» gespeichert",
 
         // Home
         _homeTitle: "Designs für alle Jahreszeiten"
@@ -226,7 +226,7 @@ export const translations = {
 
         // Gambar
         _nailDesigns: "Desain kuku",
-        _toastImageSaved: "Gambar disimpan di galeri Anda di album «${_nailDesigns}»",
+        _toastImageSaved: "Gambar disimpan di galeri Anda di album «Desain kuku»",
 
         // Beranda
         _homeTitle: "Desain untuk semua musim"
@@ -259,7 +259,7 @@ export const translations = {
 
         // Imagens
         _nailDesigns: "Designs de unhas",
-        _toastImageSaved: "Imagem salva na sua galeria no álbum «${_nailDesigns}»",
+        _toastImageSaved: "Imagem salva na sua galeria no álbum «Designs de unhas»",
 
         // Início
         _homeTitle: "Designs para todas as temporadas"
@@ -292,7 +292,7 @@ export const translations = {
 
         // Изображения
         _nailDesigns: "Дизайны ногтей",
-        _toastImageSaved: "Изображение сохранено в вашей галерее в альбоме «${_nailDesigns}»",
+        _toastImageSaved: "Изображение сохранено в вашей галерее в альбоме «Дизайны ногтей»",
 
         // Главная
         _homeTitle: "Дизайны на все сезоны"
@@ -325,7 +325,7 @@ export const translations = {
 
         // Obrazy
         _nailDesigns: "Projekty paznokci",
-        _toastImageSaved: "Obraz zapisany w twojej galerii w albumie «${_nailDesigns}»",
+        _toastImageSaved: "Obraz zapisany w twojej galerii w albumie «Projekty paznokci»",
 
         // Strona główna
         _homeTitle: "Projekty na wszystkie sezony"
@@ -358,7 +358,7 @@ export const translations = {
 
         // Hình ảnh
         _nailDesigns: "Mẫu móng tay",
-        _toastImageSaved: "Hình ảnh đã lưu vào thư viện của bạn trong album «${_nailDesigns}»",
+        _toastImageSaved: "Hình ảnh đã lưu vào thư viện của bạn trong album «Mẫu móng tay»",
 
         // Trang chủ
         _homeTitle: "Thiết kế cho tất cả các mùa"
@@ -391,7 +391,7 @@ export const translations = {
 
         // Görseller
         _nailDesigns: "Tırnak Tasarımları",
-        _toastImageSaved: "Resim, galerinize «${_nailDesigns}» albümüne kaydedildi",
+        _toastImageSaved: "Resim, galerinize «Tırnak Tasarımları» albümüne kaydedildi",
 
         // Anasayfa
         _homeTitle: "Tüm sezonlar için tasarımlar"
