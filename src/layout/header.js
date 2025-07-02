@@ -3,12 +3,14 @@ import { colors, ui } from "../utils/styles";
 import { router } from "expo-router";
 import { Menu, MenuItem } from "react-native-material-menu";
 import { useState } from "react";
+import { useLanguage } from "../utils/LanguageContext";
 
 export default function Header({ title, back, settings = true }) {
 
     const [visible, setVisible] = useState(false);
     const hideMenu = () => setVisible(false);
     const showMenu = () => setVisible(true);
+    const { language, setLanguage } = useLanguage();
 
     return (
         <View style={styles.header}>
@@ -37,8 +39,7 @@ export default function Header({ title, back, settings = true }) {
                     }}>
                         <View style={styles.row}>
                             <Image style={styles.icon} source={require("../../assets/settings.png")} />
-                            {/* WIP TRANSLATIONS */}
-                            <Text style={ui.text}>Ajustes</Text>
+                            <Text style={ui.text}>{language.t("_settingsLabel")}</Text>
                         </View>
                     </MenuItem>
                     <MenuItem onPress={() => {
@@ -47,8 +48,7 @@ export default function Header({ title, back, settings = true }) {
                     }}>
                         <View style={styles.row}>
                             <Image style={styles.icon} source={require("../../assets/heart-unfilled.png")} />
-                            {/* WIP TRANSLATIONS */}
-                            <Text style={ui.text}>Mis favoritos</Text>
+                            <Text style={ui.text}>{language.t("_myFavorites")}</Text>
                         </View>
                     </MenuItem>
                 </Menu>

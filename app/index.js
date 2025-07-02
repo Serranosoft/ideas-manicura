@@ -28,8 +28,7 @@ export default function List() {
 
     return (
         <View style={styles.container} sharedTransitionTag="first">
-            {/* TRANSLATION WIP */}
-            <Stack.Screen options={{ header: () => <Header title={"Ideas y diseño de uñas"} /> }} /> 
+            <Stack.Screen options={{ header: () => <Header title={language.t("_homeTitle")} /> }} /> 
             {
                 categories.length > 0 ?
                     <View style={styles.list}>

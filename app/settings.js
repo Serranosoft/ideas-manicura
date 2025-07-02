@@ -14,7 +14,6 @@ export default function Settings() {
 
     const [selected, setSelected] = useState(language._locale);
 
-    // WIP TRANSLATIONS
     const languages = [
         { title: language.t("_langListSpanish"), acronym: "es" },
         { title: language.t("_langListEnglish"), acronym: "en" },
@@ -22,7 +21,14 @@ export default function Settings() {
         { title: language.t("_langListGerman"), acronym: "de" },
         { title: language.t("_langListFrench"), acronym: "fr" },
         { title: language.t("_langListHindi"), acronym: "hi" },
+        { title: language.t("_langListIndonesian"), acronym: "id" },
+        { title: language.t("_langListPortuguese"), acronym: "pt" },
+        { title: language.t("_langListRussian"), acronym: "ru" },
+        { title: language.t("_langListPolish"), acronym: "pl" },
+        { title: language.t("_langListVietnamese"), acronym: "vi" },
+        { title: language.t("_langListTurkish"), acronym: "tr" },
     ]
+
 
     async function updateLanguage(acronym) {
         setLanguage(acronym);
@@ -39,16 +45,16 @@ export default function Settings() {
             <Stack.Screen options={{ header: () => <Header back={true} settings={false} /> }} />
             <View style={styles.container}>
                 <View style={styles.box}>
-                    {/* WIP TRANSLATIONS */}
-                    <Text style={[ui.h2]}>Ajustes de la aplicación</Text>
-                    <Text style={[ui.h4]}>Idioma de la aplicación</Text>
+
+                    <Text style={[ui.h2]}>{language.t("_settingsApp")}</Text>
+                    <Text style={[ui.h4]}>{language.t("_settingsLang")}</Text>
                     <View style={styles.scrollContainer}>
                         <ScrollView style={styles.scroll}>
                             {
                                 languages.map((language, index) => {
                                     return (
                                         <TouchableOpacity key={index} onPress={() => handlePress(language.acronym)} style={[styles.option, selected === language.acronym && styles.selected]}>
-                                            <Text style={[ui.text, { color: selected === language.acronym ? "#fff" : "#000"}]}>{language.title}</Text>
+                                            <Text style={[ui.text, { color: selected === language.acronym ? "#fff" : "#000" }]}>{language.title}</Text>
                                         </TouchableOpacity>
                                     )
                                 })
