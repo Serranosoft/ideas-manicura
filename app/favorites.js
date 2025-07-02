@@ -1,10 +1,10 @@
 import { Link, Stack } from "expo-router"
 import { FlatList, PixelRatio, Pressable, StyleSheet, Text, View } from "react-native"
-import Header from "../src/components/header"
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../src/DataContext"
 import { Image } from "expo-image";
 import { useLanguage } from "../src/utils/LanguageContext"
+import Header from "../src/layout/header";
 
 
 const fontScale = PixelRatio.getFontScale();

@@ -8,35 +8,33 @@ import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Animated from "react-native-reanimated";
 import { DataContext } from "../src/DataContext";
-import { useLanguage } from "../../src/utils/LanguageContext";
+import { useLanguage } from "../src/utils/LanguageContext";
+import Header from "../src/layout/header";
 
 
 export default function List() {
 
     const [categories, setCategories] = useState([])
     const { setAdTrigger } = useContext(DataContext);
-    const language = "es";
-    //const { language } = useLanguage();
+    const { language } = useLanguage();
 
 
     useFocusEffect(
         useCallback(() => {
-            const aux_categories = fetchDesigns(language);
+            const aux_categories = fetchDesigns(language._locale);
             setCategories(aux_categories);
         }, [language])
     );
 
     return (
         <View style={styles.container} sharedTransitionTag="first">
-            <Stack.Screen options={{ headerShown: false }} />
-            <View style={styles.title}>
-                <Text style={ui.h2}>{language.t("_homeTitle")}</Text>
-            </View>
+            {/* TRANSLATION WIP */}
+            <Stack.Screen options={{ header: () => <Header title={"Ideas y diseño de uñas"} /> }} /> 
             {
                 categories.length > 0 ?
                     <View style={styles.list}>
                         <FlatList
-                            contentContainerStyle={{ paddingBottom: 16}}
+                            contentContainerStyle={{ padding: 12 }}
                             data={categories}
                             numColumns={2}
                             initialNumToRender={6}
@@ -70,7 +68,7 @@ const styles = StyleSheet.create({
         flex: 1,
         gap: 24,
         alignItems: "center",
-        paddingTop: 48,
+        paddingTop: 16,
         backgroundColor: "#fff",
     },
 
@@ -92,8 +90,8 @@ const styles = StyleSheet.create({
 
     itemWrapper: {
         flex: 1,
-        height: 250,
-        margin: 3,
+        height: 200,
+        margin: 6,
     },
 
     item: {
@@ -105,15 +103,18 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center", 
         width: "100%",
-        height: 85,
         position: "absolute",
         bottom: 0,
         left: 0,
+        padding: 8,
         backgroundColor: "rgba(0,0,0,0.6)",
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8
     },
 
     image: {
         width: "100%",
         height: "100%",
+        borderRadius: 8
     }
 })

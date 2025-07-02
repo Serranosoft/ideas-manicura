@@ -3,7 +3,7 @@ import { View, StatusBar, StyleSheet, Image, Pressable } from "react-native";
 import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext } from "../src/DataContext";
-import { ui } from "../src/utils/styles";
+import { colors, ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
 import Constants from "expo-constants";
@@ -84,12 +84,12 @@ export default function Layout() {
                     <GestureHandlerRootView style={styles.wrapper}>
                         <Stack />
                     </GestureHandlerRootView>
-                    <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
+                    {/* <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
                         <Image style={ui.floatingImg} source={require("../assets/favorites.png")} />
-                    </Pressable>
+                    </Pressable> */}
                 </DataContext.Provider>
             </LanguageProvider>
-            <StatusBar style="light" />
+            <StatusBar style="light" backgroundColor={colors.primary} />
         </View>
     )
 }

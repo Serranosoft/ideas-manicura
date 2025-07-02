@@ -1,6 +1,5 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { Image as ReactNativeImage, Pressable, StyleSheet, ToastAndroid, View } from "react-native";
-import Header from "../src/components/header";
 import { ui } from "../src/utils/styles";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
@@ -8,6 +7,7 @@ import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 import { useLanguage } from "../src/utils/LanguageContext";
+import Header from "../src/layout/header";
 
 
 export default function ImageWrapper() {

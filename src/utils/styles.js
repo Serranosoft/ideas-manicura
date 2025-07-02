@@ -3,6 +3,12 @@ import { PixelRatio } from "react-native";
 const fontScale = PixelRatio.getFontScale();
 const getFontSize = size => size / fontScale;
 
+
+export const colors = {
+    primary: "#f3e8d6",
+    accent: "#c38312"
+}
+
 export const ui = {
     img: {
         aspectRatio: 1,
@@ -17,12 +23,16 @@ export const ui = {
         fontFamily: "Semibold",
         color: "black",
         fontSize: getFontSize(28),
-        textAlign: "center"
     },
     h3: {
         fontFamily: "Regular",
         color: "black",
         fontSize: getFontSize(25),
+    },
+    h4: {
+        fontFamily: "Regular",
+        color: "black",
+        fontSize: getFontSize(21),
     },
     button: {
         paddingVertical: 12,

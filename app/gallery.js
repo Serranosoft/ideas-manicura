@@ -4,11 +4,11 @@ import LottieView from 'lottie-react-native';
 import { useContext, useEffect, useState } from "react";
 import { Pressable } from "react-native";
 import { Image } from "expo-image";
-import Header from "../src/components/header";
 import { scheduleWeeklyNotification } from "../src/utils/notifications";
 import { DataContext } from "../src/DataContext";
 import { bannerId } from "../src/utils/constants";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import Header from "../src/layout/header";
 
 export default function gallery() {
 
@@ -36,7 +36,7 @@ export default function gallery() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header title={name} /> }} />
+            <Stack.Screen options={{ header: () => <Header back={true} title={name} /> }} />
             <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             {
                 images.length > 0 ?
