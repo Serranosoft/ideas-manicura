@@ -81,6 +81,11 @@ export function fetchDesigns(acronym) {
             title: translations[acronym]["_matteTitle"],
             name: "Tono mate",
             image: "https://res.cloudinary.com/drzx6gruz/image/upload/tono-mate/cru9jhqxselnrbnlaqkv"
+        },
+        {
+            title: "Efecto espejo",
+            name: "Efecto espejo",
+            image: "https://res.cloudinary.com/drzx6gruz/image/upload/tono-mate/cru9jhqxselnrbnlaqkv"
         }
     ]
 }
