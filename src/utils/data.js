@@ -1,3 +1,5 @@
+import { translations } from "./localizations";
+
 export function fetchDesigns(acronym) {
     return [
         {

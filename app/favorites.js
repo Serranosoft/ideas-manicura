@@ -4,7 +4,7 @@ import Header from "../src/components/header"
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../src/DataContext"
 import { Image } from "expo-image";
-import { useLanguage } from "../../src/utils/LanguageContext";
+import { useLanguage } from "../src/utils/LanguageContext"
 
 
 const fontScale = PixelRatio.getFontScale();

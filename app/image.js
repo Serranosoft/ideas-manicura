@@ -7,7 +7,7 @@ import * as MediaLibrary from 'expo-media-library';
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
-import { useLanguage } from "../../src/utils/LanguageContext";
+import { useLanguage } from "../src/utils/LanguageContext";
 
 
 export default function ImageWrapper() {
