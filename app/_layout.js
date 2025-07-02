@@ -10,6 +10,7 @@ import Constants from "expo-constants";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { LanguageProvider } from "../src/utils/LanguageContext";
 import UpdatesModal from "../src/layout/updates-modal";
+import * as StoreReview from 'expo-store-review';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -55,11 +56,19 @@ export default function Layout() {
     const adsHandlerRef = createRef();
 
     useEffect(() => {
-        if (adTrigger > 5) {
-            // adsHandlerRef.current.showIntersitialAd();
-            // setAdTrigger(0);
+        if (adTrigger > 2) {
+            askForReview();
+        } else if (adTrigger > 4) {
+            adsHandlerRef.current.showIntersitialAd();
+            setAdTrigger(0);
         }
     }, [adTrigger])
+
+    async function askForReview() {
+        if (await StoreReview.hasAction()) {
+            StoreReview.requestReview()
+        }
+    }
 
     // Esperar hasta que las fuentes se carguen
     if (!fontsLoaded) {
