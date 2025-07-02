@@ -1,6 +1,6 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Image as ReactNativeImage, Pressable, StyleSheet, ToastAndroid, View } from "react-native";
-import { ui } from "../src/utils/styles";
+import { Image as ReactNativeImage, Pressable, StyleSheet, ToastAndroid, View, TouchableOpacity, Image, Text, Platform } from "react-native";
+import { colors, ui } from "../src/utils/styles";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
@@ -8,6 +8,8 @@ import { bannerId } from "../src/utils/constants";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 import { useLanguage } from "../src/utils/LanguageContext";
 import Header from "../src/layout/header";
+import { useContext, useState } from "react";
+import { DataContext } from "../src/DataContext";
 
 
 export default function ImageWrapper() {
@@ -16,6 +18,22 @@ export default function ImageWrapper() {
     const { image } = params;
     const imageName = image.substring(image.lastIndexOf("/") + 1, image.length);
     const { language } = useLanguage();
+
+    const { favorites, setFavorites } = useContext(DataContext)
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    // Agrega o elimina favoritos del estado
+        async function handleFavorite() {
+            if (!favorites.includes(image)) {
+                setFavorites(favorites.concat(image))
+                setIsFavorite(true);
+            } else {
+                let favoritesAux = [...favorites];
+                favoritesAux.splice(favoritesAux.indexOf(image), 1)
+                setFavorites(favoritesAux);
+                setIsFavorite(false);
+            }
+        }
 
     async function requestPermissions() {
         try {
@@ -76,20 +94,39 @@ export default function ImageWrapper() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header image={image} withFavorite={true} /> }} />
+            <Stack.Screen options={{ header: () => <Header back={true} /> }} />
             <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
 
             <ImageZoom
                 onResetAnimationEnd={false}
                 minScale={1}
                 maxScale={3}
-                uri={ image }
+                uri={image}
                 isDoubleTapEnabled
             />
 
-            <Pressable onPress={requestPermissions} style={[ui.floatingWrapper, { left: 15 }]}>
-                <ReactNativeImage style={[ui.floatingImg, { marginBottom: 6, marginLeft: 1 }]} source={require("../assets/download.png")} />
-            </Pressable>
+           
+            <View style={styles.actions}>
+                <View style={[styles.action]}>
+                    <TouchableOpacity onPress={() => handleFavorite()} style={styles.button}>
+                        {
+                            isFavorite ?
+                            <Image style={styles.icon} source={require("../assets/heart-filled.png")} />
+                            :
+                            <Image style={styles.icon} source={require("../assets/heart-unfilled.png")} />
+                        }
+                        {/* <Favorite {...{ isFavorite, setIsFavorite, image }} /> */}
+                    </TouchableOpacity>
+                    <Text style={ui.h5}>{isFavorite ? language.t("_removeFavorites") : language.t("_addFavorites")} </Text>
+                </View>
+                <View style={[styles.action, { marginLeft: "auto"}]}>
+                    <TouchableOpacity onPress={() => requestPermissions()} style={styles.button}>
+                        <Image style={styles.icon} source={require("../assets/download-dark.png")} />
+                    </TouchableOpacity>
+                    <Text style={ui.h5}>Descargar</Text>
+                </View>
+            </View>
+
         </View>
     )
 }
@@ -98,10 +135,36 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: "relative",
+        backgroundColor: "#fff"
     },
 
     image: {
         width: "100%",
         height: "100%",
-    }
+    },
+
+    actions: {
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        flexDirection: "row",
+        // justifyContent: "center",
+        gap: 20,
+        borderTopWidth: 2,
+        borderColor: colors.accent,
+    },
+
+    action: {
+        alignItems: "center",
+        gap: 4,
+    },
+
+    button: {
+        padding: 8,
+        borderRadius: 100,
+        backgroundColor: colors.primary,
+    },
+    icon: {
+        width: 35,
+        height: 35,
+    },
 })
