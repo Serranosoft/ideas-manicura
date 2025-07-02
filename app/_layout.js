@@ -8,6 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
 import Constants from "expo-constants";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { LanguageProvider } from "../src/utils/LanguageContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,10 +16,10 @@ export default function Layout() {
 
     // Carga de fuentes.
     const [fontsLoaded] = useFonts({
-        "Regular": require("../assets/fonts/OpenRunde-Regular.otf"),
-        "Medium": require("../assets/fonts/OpenRunde-Medium.otf"),
-        "Semibold": require("../assets/fonts/OpenRunde-Semibold.otf"),
-        "Bold": require("../assets/fonts/OpenRunde-Bold.otf"),
+        "Regular": require("../assets/fonts/AncizarSans-Regular.ttf"),
+        "Medium": require("../assets/fonts/AncizarSans-Medium.ttf"),
+        "Semibold": require("../assets/fonts/AncizarSans-Bold.ttf"),
+        "Bold": require("../assets/fonts/AncizarSans-ExtraBold.ttf")
     });
 
     useEffect(() => {
@@ -78,14 +79,16 @@ export default function Layout() {
     return (
         <View style={styles.container}>
             <AdsHandler ref={adsHandlerRef} adType={[0]} />
-            <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
-                <GestureHandlerRootView style={styles.wrapper}>
-                    <Stack />
-                </GestureHandlerRootView>
-                <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
-                    <Image style={ui.floatingImg} source={require("../assets/favorites.png")} />
-                </Pressable>
-            </DataContext.Provider>
+            <LanguageProvider>
+                <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
+                    <GestureHandlerRootView style={styles.wrapper}>
+                        <Stack />
+                    </GestureHandlerRootView>
+                    <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
+                        <Image style={ui.floatingImg} source={require("../assets/favorites.png")} />
+                    </Pressable>
+                </DataContext.Provider>
+            </LanguageProvider>
             <StatusBar style="light" />
         </View>
     )
