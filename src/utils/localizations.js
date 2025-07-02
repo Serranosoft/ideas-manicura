@@ -30,7 +30,15 @@ export const translations = {
         _toastImageSaved: `Imagen guardada en tu galería en el albúm «Diseños de uñas»`,
 
         // Home
-        _homeTitle: "Diseños para todas las temporadas"
+        _homeTitle: "Diseños para todas las temporadas",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Novedades",
+        _updateList1: "• ¡Nuevos diseños disponibles en todas las colecciones! 💅",
+        _updateList2: "• Descubre la nueva colección: ¡Uñas Espejo! ✨",
+        _updateList3: "• Ahora puedes usar la app en tu idioma favorito 🌍",
+        _updateButton: "Cerrar",
+
     },
     en: {
 
@@ -63,7 +71,15 @@ export const translations = {
         _toastImageSaved: "Image saved to your gallery in the album «Nail designs»",
 
         // Home
-        _homeTitle: "Designs for all seasons"
+        _homeTitle: "Designs for all seasons",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 News",
+        _updateList1: "• New designs available in all collections! 💅",
+        _updateList2: "• Discover the new collection: Mirror Nails! ✨",
+        _updateList3: "• Now you can use the app in your favorite language 🌍",
+        _updateButton: "Close",
+
     },
     fr: {
 
@@ -96,7 +112,15 @@ export const translations = {
         _toastImageSaved: "Image enregistrée dans votre galerie dans l'album «Designs d'ongles»",
 
         // Home
-        _homeTitle: "Designs pour toutes les saisons"
+        _homeTitle: "Designs pour toutes les saisons",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Nouveautés",
+        _updateList1: "• Nouveaux designs disponibles dans toutes les collections! 💅",
+        _updateList2: "• Découvrez la nouvelle collection : Ongles Miroir ! ✨",
+        _updateList3: "• Maintenant, vous pouvez utiliser l'application dans votre langue préférée 🌍",
+        _updateButton: "Fermer",
+
     },
     hi: {
 
@@ -129,7 +153,15 @@ export const translations = {
         _toastImageSaved: "छवि आपकी गैलरी में «नाखून डिज़ाइन» एल्बम में सहेजी गई",
 
         // होम
-        _homeTitle: "सभी सीजन के लिए डिज़ाइन"
+        _homeTitle: "सभी सीजन के लिए डिज़ाइन",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 नवीनताएँ",
+        _updateList1: "• सभी संग्रहों में नए डिज़ाइन उपलब्ध हैं! 💅",
+        _updateList2: "• नई संग्रह की खोज करें: मिरर नेल्स! ✨",
+        _updateList3: "• अब आप ऐप को अपनी पसंदीदा भाषा में उपयोग कर सकते हैं 🌍",
+        _updateButton: "बंद करें",
+
     },
     ar:
     {
@@ -163,7 +195,15 @@ export const translations = {
         _toastImageSaved: "تم حفظ الصورة في معرضك في الألبوم تصاميم الأظافر",
 
         // الرئيسية
-        _homeTitle: "تصاميم لجميع الفصول"
+        _homeTitle: "تصاميم لجميع الفصول",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 التحديثات",
+        _updateList1: "• تصاميم جديدة متاحة في جميع المجموعات! 💅",
+        _updateList2: "• اكتشف المجموعة الجديدة: أظافر مرآة! ✨",
+        _updateList3: "• الآن يمكنك استخدام التطبيق بلغتك المفضلة 🌍",
+        _updateButton: "إغلاق",
+
     },
     de: {
 
@@ -196,7 +236,15 @@ export const translations = {
         _toastImageSaved: "Bild in Ihrer Galerie im Album «Nageldesigns» gespeichert",
 
         // Home
-        _homeTitle: "Designs für alle Jahreszeiten"
+        _homeTitle: "Designs für alle Jahreszeiten",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Neuigkeiten",
+        _updateList1: "• Neue Designs in allen Kollektionen verfügbar! 💅",
+        _updateList2: "• Entdecken Sie die neue Kollektion: Spiegelnägel! ✨",
+        _updateList3: "• Jetzt können Sie die App in Ihrer bevorzugten Sprache verwenden 🌍",
+        _updateButton: "Schließen",
+
     },
     id: {
 
@@ -229,7 +277,15 @@ export const translations = {
         _toastImageSaved: "Gambar disimpan di galeri Anda di album «Desain kuku»",
 
         // Beranda
-        _homeTitle: "Desain untuk semua musim"
+        _homeTitle: "Desain untuk semua musim",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Pembaruan",
+        _updateList1: "• Desain baru tersedia di semua koleksi! 💅",
+        _updateList2: "• Temukan koleksi baru: Kuku Cermin! ✨",
+        _updateList3: "• Sekarang Anda dapat menggunakan aplikasi dalam bahasa favorit Anda 🌍",
+        _updateButton: "Tutup",
+
     },
     pt: {
 
@@ -262,7 +318,15 @@ export const translations = {
         _toastImageSaved: "Imagem salva na sua galeria no álbum «Designs de unhas»",
 
         // Início
-        _homeTitle: "Designs para todas as temporadas"
+        _homeTitle: "Designs para todas as temporadas",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Novidades",
+        _updateList1: "• Novos designs disponíveis em todas as coleções! 💅",
+        _updateList2: "• Descubra a nova coleção: Unhas Espelhadas! ✨",
+        _updateList3: "• Agora você pode usar o aplicativo no seu idioma favorito 🌍",
+        _updateButton: "Fechar",
+
     },
     ru: {
 
@@ -295,7 +359,15 @@ export const translations = {
         _toastImageSaved: "Изображение сохранено в вашей галерее в альбоме «Дизайны ногтей»",
 
         // Главная
-        _homeTitle: "Дизайны на все сезоны"
+        _homeTitle: "Дизайны на все сезоны",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Обновления",
+        _updateList1: "• Новые дизайны доступны во всех коллекциях! 💅",
+        _updateList2: "• Откройте для себя новую коллекцию: Зеркальные ногти! ✨",
+        _updateList3: "• Теперь вы можете использовать приложение на любимом языке 🌍",
+        _updateButton: "Закрыть",
+
     },
     pl: {
 
@@ -328,7 +400,15 @@ export const translations = {
         _toastImageSaved: "Obraz zapisany w twojej galerii w albumie «Projekty paznokci»",
 
         // Strona główna
-        _homeTitle: "Projekty na wszystkie sezony"
+        _homeTitle: "Projekty na wszystkie sezony",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Nowości",
+        _updateList1: "• Nowe wzory dostępne we wszystkich kolekcjach! 💅",
+        _updateList2: "• Odkryj nową kolekcję: Lustrzane paznokcie! ✨",
+        _updateList3: "• Teraz możesz używać aplikacji w swoim ulubionym języku 🌍",
+        _updateButton: "Zamknij",
+
     },
     vn:
     {
@@ -361,7 +441,15 @@ export const translations = {
         _toastImageSaved: "Hình ảnh đã lưu vào thư viện của bạn trong album «Mẫu móng tay»",
 
         // Trang chủ
-        _homeTitle: "Thiết kế cho tất cả các mùa"
+        _homeTitle: "Thiết kế cho tất cả các mùa",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Cập nhật",
+        _updateList1: "• Thiết kế mới có sẵn trong tất cả các bộ sưu tập! 💅",
+        _updateList2: "• Khám phá bộ sưu tập mới: Móng Gương! ✨",
+        _updateList3: "• Bây giờ bạn có thể sử dụng ứng dụng bằng ngôn ngữ yêu thích của mình 🌍",
+        _updateButton: "Đóng",
+
     },
     tr:
     {
@@ -394,6 +482,14 @@ export const translations = {
         _toastImageSaved: "Resim, galerinize «Tırnak Tasarımları» albümüne kaydedildi",
 
         // Anasayfa
-        _homeTitle: "Tüm sezonlar için tasarımlar"
+        _homeTitle: "Tüm sezonlar için tasarımlar",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Yenilikler",
+        _updateList1: "• Tüm koleksiyonlarda yeni tasarımlar mevcut! 💅",
+        _updateList2: "• Yeni koleksiyonu keşfedin: Ayna Tırnakları! ✨",
+        _updateList3: "• Artık uygulamayı favori dilinizde kullanabilirsiniz 🌍",
+        _updateButton: "Kapat"
+
     }
 }
