@@ -49,25 +49,14 @@ export default function Layout() {
         getFavorites();
     }, [])
 
-    // Gestión de notificaciones
-    /*  useEffect(() => {
-         Notifications.setNotificationHandler({
-             handleNotification: async () => ({
-                 shouldShowAlert: true,
-                 shouldPlaySound: false,
-                 shouldSetBadge: false,
-             }),
-         });
-     }, []) */
-
     // Gestión de anuncios
     const [adTrigger, setAdTrigger] = useState(0);
     const adsHandlerRef = createRef();
 
     useEffect(() => {
         if (adTrigger > 5) {
-            adsHandlerRef.current.showIntersitialAd();
-            setAdTrigger(0);
+            // adsHandlerRef.current.showIntersitialAd();
+            // setAdTrigger(0);
         }
     }, [adTrigger])
 
