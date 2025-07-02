@@ -11,17 +11,12 @@ export const ui = {
     text: {
         fontFamily: "Regular",
         color: "black",
-        fontSize: getFontSize(16.5),
-    },
-    h1: {
-        fontSize: getFontSize(60),
-        fontFamily: "Semibold",
-        lineHeight: 65,
+        fontSize: getFontSize(17.5),
     },
     h2: {
         fontFamily: "Semibold",
         color: "black",
-        fontSize: getFontSize(32),
+        fontSize: getFontSize(28),
         textAlign: "center"
     },
     h3: {
