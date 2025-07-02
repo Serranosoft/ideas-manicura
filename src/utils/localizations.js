@@ -44,6 +44,7 @@ export const translations = {
         // Imágenes
         _nailDesigns: "Diseños de uñas",
         _toastImageSaved: `Imagen guardada en tu galería en el albúm «Diseños de uñas»`,
+        _download: "Descargar",
 
         // Home
         _homeTitle: "Ideas y diseño de uñas",
@@ -106,6 +107,7 @@ export const translations = {
         // Images
         _nailDesigns: "Nail designs",
         _toastImageSaved: "Image saved to your gallery in the album «Nail designs»",
+        _download: "Download",
 
         // Home
         _homeTitle: "Nail ideas and design",
@@ -167,6 +169,7 @@ export const translations = {
         // Imágenes
         _nailDesigns: "Designs d'ongles",
         _toastImageSaved: "Image enregistrée dans votre galerie dans l'album «Designs d'ongles»",
+        _download: "Télécharger",
 
         // Home
         _homeTitle: "Idées et design d'ongles",
@@ -228,6 +231,7 @@ export const translations = {
         // चित्र
         _nailDesigns: "नाखून डिज़ाइन",
         _toastImageSaved: "छवि आपकी गैलरी में «नाखून डिज़ाइन» एल्बम में सहेजी गई",
+        _download: "डाउनलोड करना",
 
         // होम
         _homeTitle: "नाखून विचार और डिजाइन",
@@ -290,6 +294,7 @@ export const translations = {
         // الصور
         _nailDesigns: "تصاميم الأظافر",
         _toastImageSaved: "تم حفظ الصورة في معرضك في الألبوم تصاميم الأظافر",
+        _download: "تحميل",
 
         // الرئيسية
         _homeTitle: "أفكار وتصميم الأظافر",
@@ -351,6 +356,7 @@ export const translations = {
         // Bilder
         _nailDesigns: "Nageldesigns",
         _toastImageSaved: "Bild in Ihrer Galerie im Album «Nageldesigns» gespeichert",
+        _download: "Herunterladen",
 
         // Home
         _homeTitle: "Nagelideen und -design",
@@ -412,6 +418,7 @@ export const translations = {
         // Gambar
         _nailDesigns: "Desain kuku",
         _toastImageSaved: "Gambar disimpan di galeri Anda di album «Desain kuku»",
+        _download: "Unduh",
 
         // Beranda
         _homeTitle: "Ide dan desain kuku",
@@ -473,6 +480,7 @@ export const translations = {
         // Imagens
         _nailDesigns: "Designs de unhas",
         _toastImageSaved: "Imagem salva na sua galeria no álbum «Designs de unhas»",
+        _download: "Transferir",
 
         // Início
         _homeTitle: "Ideias e design de unhas",
@@ -534,6 +542,7 @@ export const translations = {
         // Изображения
         _nailDesigns: "Дизайны ногтей",
         _toastImageSaved: "Изображение сохранено в вашей галерее в альбоме «Дизайны ногтей»",
+        _download: "Скачать",
 
         // Главная
         _homeTitle: "Идеи и дизайн ногтей",
@@ -595,6 +604,7 @@ export const translations = {
         // Obrazy
         _nailDesigns: "Projekty paznokci",
         _toastImageSaved: "Obraz zapisany w twojej galerii w albumie «Projekty paznokci»",
+        _download: "Pobierać",
 
         // Strona główna
         _homeTitle: "Pomysły i projektowanie paznokci",
@@ -656,6 +666,7 @@ export const translations = {
         // Hình ảnh
         _nailDesigns: "Mẫu móng tay",
         _toastImageSaved: "Hình ảnh đã lưu vào thư viện của bạn trong album «Mẫu móng tay»",
+        _download: "Tải về",
 
         // Trang chủ
         _homeTitle: "Ý tưởng và thiết kế móng",
@@ -717,6 +728,7 @@ export const translations = {
         // Görseller
         _nailDesigns: "Tırnak Tasarımları",
         _toastImageSaved: "Resim, galerinize «Tırnak Tasarımları» albümüne kaydedildi",
+        _download: "İndirmek",
 
         // Anasayfa
         _homeTitle: "Oje fikirleri ve tasarımı",

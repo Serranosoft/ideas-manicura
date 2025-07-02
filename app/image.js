@@ -123,7 +123,7 @@ export default function ImageWrapper() {
                     <TouchableOpacity onPress={() => requestPermissions()} style={styles.button}>
                         <Image style={styles.icon} source={require("../assets/download-dark.png")} />
                     </TouchableOpacity>
-                    <Text style={ui.h5}>Descargar</Text>
+                    <Text style={ui.h5}>{language.t("_download")}</Text>
                 </View>
             </View>
 
