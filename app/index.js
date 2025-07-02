@@ -45,7 +45,7 @@ export default function List() {
                                                 <View style={styles.item}>
                                                     <Image transition={1000} style={styles.image} source={item.image} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} />
                                                     <View style={styles.info}>
-                                                        <Text style={[ui.h3, ui.bold, { color: "#fff" }]}>{item.name}</Text>
+                                                        <Text style={[ui.h3, ui.bold, { color: "#fff" }]}>{item.title}</Text>
                                                     </View>
                                                 </View>
                                             </Pressable>

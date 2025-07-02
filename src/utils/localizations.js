@@ -32,6 +32,7 @@ export const translations = {
         _valentinesdayTitle: "San Valentin",
         _3dTitle: "3D",
         _matteTitle: "Tono mate",
+        _mirrorTitle: "Efecto espejo",
 
         // Favoritos
         _addFavorites: "Añadir a favoritos",
@@ -58,8 +59,6 @@ export const translations = {
         _settingsApp: "Ajustes de la aplicación",
         _settingsLang: "Idioma de la aplicación",
         _settingsLabel: "Ajustes",
-
-
 
     },
     en: {
@@ -95,6 +94,7 @@ export const translations = {
         _valentinesdayTitle: "Valentine's Day",
         _3dTitle: "3D",
         _matteTitle: "Matte",
+        _mirrorTitle: "Mirror effect",
 
         // Favorites
         _addFavorites: "Add to favorites",
@@ -155,6 +155,7 @@ export const translations = {
         _valentinesdayTitle: "Saint Valentin",
         _3dTitle: "3D",
         _matteTitle: "Mat",
+        _mirrorTitle: "Effet miroir",
 
         // Favoritos
         _addFavorites: "Ajouter aux favoris",
@@ -215,6 +216,7 @@ export const translations = {
         _valentinesdayTitle: "वेलेंटाइन डे",
         _3dTitle: "3डी",
         _matteTitle: "मैट",
+        _mirrorTitle: "आईने का प्रभाव",
 
         // पसंदीदा
         _addFavorites: "पसंदीदा में जोड़ें",
@@ -276,6 +278,7 @@ export const translations = {
         _valentinesdayTitle: "عيد الحب",
         _3dTitle: "ثلاثي الأبعاد",
         _matteTitle: "غير لامع",
+        _mirrorTitle: "تأثير المرآة",
 
         // المفضلات
         _addFavorites: "أضف إلى المفضلة",
@@ -336,6 +339,7 @@ export const translations = {
         _valentinesdayTitle: "Valentinstag",
         _3dTitle: "3D",
         _matteTitle: "Matt",
+        _mirrorTitle: "Spiegeleffekt",
 
         // Favoriten
         _addFavorites: "Zu Favoriten hinzufügen",
@@ -396,6 +400,7 @@ export const translations = {
         _valentinesdayTitle: "Hari Valentine",
         _3dTitle: "3D",
         _matteTitle: "Matte",
+        _mirrorTitle: "Efek cermin",
 
         // Favorit
         _addFavorites: "Tambahkan ke favorit",
@@ -456,6 +461,7 @@ export const translations = {
         _valentinesdayTitle: "Dia dos Namorados",
         _3dTitle: "3D",
         _matteTitle: "Fosco",
+        _mirrorTitle: "Efeito espelho",
 
         // Favoritos
         _addFavorites: "Adicionar aos favoritos",
@@ -516,6 +522,7 @@ export const translations = {
         _valentinesdayTitle: "День святого Валентина",
         _3dTitle: "3D",
         _matteTitle: "Матовый",
+        _mirrorTitle: "Эффект зеркала",
 
         // Избранное
         _addFavorites: "Добавить в избранное",
@@ -576,6 +583,7 @@ export const translations = {
         _valentinesdayTitle: "Walentynki",
         _3dTitle: "3D",
         _matteTitle: "Matowy",
+        _mirrorTitle: "Efekt lustra",
 
         // Ulubione
         _addFavorites: "Dodaj do ulubionych",
@@ -636,6 +644,7 @@ export const translations = {
         _valentinesdayTitle: "Ngày lễ tình nhân",
         _3dTitle: "3D",
         _matteTitle: "Mờ",
+        _mirrorTitle: "Hiệu ứng gương",
 
         // Yêu thích
         _addFavorites: "Thêm vào yêu thích",
@@ -696,6 +705,7 @@ export const translations = {
         _valentinesdayTitle: "Sevgililer Günü",
         _3dTitle: "3D",
         _matteTitle: "Mat",
+        _mirrorTitle: "Ayna efekti",
 
         // Favoriler
         _addFavorites: "Favorilere Ekle",

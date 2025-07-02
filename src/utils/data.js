@@ -3,6 +3,11 @@ import { translations } from "./localizations";
 export function fetchDesigns(acronym) {
     return [
         {
+            title: translations[acronym]["_mirrorTitle"],
+            name: "Efecto espejo",
+            image: "https://res.cloudinary.com/drzx6gruz/image/upload/tono-mate/cru9jhqxselnrbnlaqkv",
+        },
+        {
             title: translations[acronym]["_summerTitle"],
             name: "Verano",
             image: "https://res.cloudinary.com/drzx6gruz/image/upload/verano/vuph0mjdjpqrcwv1cw9f",
@@ -80,11 +85,6 @@ export function fetchDesigns(acronym) {
         {
             title: translations[acronym]["_matteTitle"],
             name: "Tono mate",
-            image: "https://res.cloudinary.com/drzx6gruz/image/upload/tono-mate/cru9jhqxselnrbnlaqkv"
-        },
-        {
-            title: "Efecto espejo",
-            name: "Efecto espejo",
             image: "https://res.cloudinary.com/drzx6gruz/image/upload/tono-mate/cru9jhqxselnrbnlaqkv"
         }
     ]
