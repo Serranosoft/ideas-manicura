@@ -10,7 +10,7 @@ export default function Header({ title, back, settings = true }) {
     const [visible, setVisible] = useState(false);
     const hideMenu = () => setVisible(false);
     const showMenu = () => setVisible(true);
-    const { language, setLanguage } = useLanguage();
+    const { language } = useLanguage();
 
     return (
         <View style={styles.header}>
