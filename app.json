@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Ideas y diseño de uñas bonitas",
+    "name": "Ideas y diseño de uñas",
     "slug": "nails-designs",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash-unas.png",
       "resizeMode": "contain",
-      "backgroundColor": "#E5BBD3"
+      "backgroundColor": "#FFF"
     },
     "scheme": "nails-designs",
     "assetBundlePatterns": [
@@ -39,9 +39,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo-unas.png",
-        "backgroundColor": "#E5BBD3"
+        "backgroundColor": "#f3e8d6"
       },
-      "versionCode": 9,
+      "versionCode": 10,
       "package": "com.paulaymanu113.nailsdesigns",
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",

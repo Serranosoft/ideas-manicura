@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Image as StyleSheet, ToastAndroid, View, TouchableOpacity, Image, Text, Platform } from "react-native";
+import { StyleSheet, ToastAndroid, View, TouchableOpacity, Image, Text, Platform } from "react-native";
 import { colors, ui } from "../src/utils/styles";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 20,
         flexDirection: "row",
-        // justifyContent: "center",
         gap: 20,
         borderTopWidth: 2,
         borderColor: colors.accent,
