@@ -23,6 +23,19 @@
         "ITSAppUsesNonExemptEncryption": false
       }
     },
+    "locales": {
+        "en": "./languages/english.json",
+        "ar": "./languages/arab.json",
+        "de": "./languages/deutsch.json",
+        "hi": "./languages/hindi.json",
+        "fr": "./languages/french.json",
+        "id": "./languages/indonesian.json",
+        "pt": "./languages/portuguese.json",
+        "ru": "./languages/russian.json",
+        "pl": "./languages/polish.json",
+        "vi": "./languages/vietnamese.json",
+        "tr": "./languages/turkish.json"
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo-unas.png",
