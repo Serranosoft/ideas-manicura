@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Image as ReactNativeImage, Pressable, StyleSheet, ToastAndroid, View, TouchableOpacity, Image, Text, Platform } from "react-native";
+import { Image as StyleSheet, ToastAndroid, View, TouchableOpacity, Image, Text, Platform } from "react-native";
 import { colors, ui } from "../src/utils/styles";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';

@@ -1,9 +1,9 @@
-import { SplashScreen, Stack, router } from "expo-router";
-import { View, StatusBar, StyleSheet, Image, Pressable } from "react-native";
+import { SplashScreen, Stack } from "expo-router";
+import { View, StatusBar, StyleSheet } from "react-native";
 import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext } from "../src/DataContext";
-import { colors, ui } from "../src/utils/styles";
+import { colors } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
 import Constants from "expo-constants";
