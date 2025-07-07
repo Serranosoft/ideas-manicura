@@ -44,7 +44,7 @@ export function fetchDesigns(acronym) {
         },
         {
             title: translations[acronym]["_marbledTitle"],
-            name: "Marmoleadas",
+            name: "Marmoladas",
             image: "https://res.cloudinary.com/drzx6gruz/image/upload/v1715888600/marmoladas/dtzfb8p5zpdv8zibo2he.jpg"
         },
         {
