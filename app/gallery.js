@@ -21,14 +21,12 @@ export default function gallery() {
     }, [])
 
     async function getImages() {
-        const response = await fetch(`https://res.cloudinary.com/drzx6gruz/image/list/${name.toLowerCase().split(' ').join("-")}.json`)
-            .then((response) => response.json())
-            .then(data => data);
-
         let images = [];
-        response.resources.forEach((image) => {
-            images.push("https://res.cloudinary.com/drzx6gruz/image/upload/" + image["public_id"]);
-        })
+        const response = await fetch(`https://mollydigital.manu-scholz.com/wp-json/custom/v1/media-filtered?app=diseno-de-unas&categoria=${name.toLowerCase().split(" ").join("-")}`);
+        const json = await response.json();
+        for (let image of json) {
+            images.push(image.url)
+        }
         setImages(images);
     }
 

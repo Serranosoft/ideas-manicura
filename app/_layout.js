@@ -38,12 +38,12 @@ export default function Layout() {
                 setFavorites(JSON.parse(value));
             }
         }
-        // Borrar favoritos si es la primera vez que inicializa la app
+        // 1.2 Borrar favoritos si es la primera vez que inicializa la app (debido a migracion del hosting)
         async function isFirstTime() {
-            const value = await AsyncStorage.getItem("FIRST_LAUNCH_APP");
+            const value = await AsyncStorage.getItem("FIRST_LAUNCH_APP_2");
             if (!value) {
                 AsyncStorage.setItem("favorites", JSON.stringify([]));
-                AsyncStorage.setItem("FIRST_LAUNCH_APP", "has launched");
+                AsyncStorage.setItem("FIRST_LAUNCH_APP_2", "has launched");
             }
         }
 
@@ -58,7 +58,9 @@ export default function Layout() {
     useEffect(() => {
         if (adTrigger > 2) {
             askForReview();
-        } else if (adTrigger > 4) {
+        }
+        
+        if (adTrigger > 4) {
             adsHandlerRef.current.showIntersitialAd();
             setAdTrigger(0);
         }
