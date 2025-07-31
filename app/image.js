@@ -8,8 +8,9 @@ import { bannerId } from "../src/utils/constants";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 import { useLanguage } from "../src/utils/LanguageContext";
 import Header from "../src/layout/header";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../src/DataContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function ImageWrapper() {
@@ -23,17 +24,27 @@ export default function ImageWrapper() {
     const [isFavorite, setIsFavorite] = useState(false);
 
     // Agrega o elimina favoritos del estado
-        async function handleFavorite() {
-            if (!favorites.includes(image)) {
-                setFavorites(favorites.concat(image))
-                setIsFavorite(true);
-            } else {
-                let favoritesAux = [...favorites];
-                favoritesAux.splice(favoritesAux.indexOf(image), 1)
-                setFavorites(favoritesAux);
-                setIsFavorite(false);
-            }
+    async function handleFavorite() {
+        if (!favorites.includes(image)) {
+            setFavorites(favorites.concat(image))
+            setIsFavorite(true);
+        } else {
+            let favoritesAux = [...favorites];
+            favoritesAux.splice(favoritesAux.indexOf(image), 1)
+            setFavorites(favoritesAux);
+            setIsFavorite(false);
         }
+    }
+
+    // Cada vez que el estado se actualiza, llama a saveFavorite
+    useEffect(() => {
+        saveFavorite();
+    }, [favorites])
+
+    // Reemplaza el contenido de favoritos del storage con el nuevo array
+    async function saveFavorite() {
+        await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+    }
 
     async function requestPermissions() {
         try {
@@ -105,21 +116,21 @@ export default function ImageWrapper() {
                 isDoubleTapEnabled
             />
 
-           
+
             <View style={styles.actions}>
                 <View style={[styles.action]}>
                     <TouchableOpacity onPress={() => handleFavorite()} style={styles.button}>
                         {
                             isFavorite ?
-                            <Image style={styles.icon} source={require("../assets/heart-filled.png")} />
-                            :
-                            <Image style={styles.icon} source={require("../assets/heart-unfilled.png")} />
+                                <Image style={styles.icon} source={require("../assets/heart-filled.png")} />
+                                :
+                                <Image style={styles.icon} source={require("../assets/heart-unfilled.png")} />
                         }
                         {/* <Favorite {...{ isFavorite, setIsFavorite, image }} /> */}
                     </TouchableOpacity>
                     <Text style={ui.h5}>{isFavorite ? language.t("_removeFavorites") : language.t("_addFavorites")} </Text>
                 </View>
-                <View style={[styles.action, { marginLeft: "auto"}]}>
+                <View style={[styles.action, { marginLeft: "auto" }]}>
                     <TouchableOpacity onPress={() => requestPermissions()} style={styles.button}>
                         <Image style={styles.icon} source={require("../assets/download-dark.png")} />
                     </TouchableOpacity>
