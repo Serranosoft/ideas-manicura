@@ -7,7 +7,7 @@ import { fetchDesigns } from "../src/utils/data";
 import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Animated from "react-native-reanimated";
-import { DataContext } from "../src/DataContext";
+import { AdsContext } from "../src/DataContext";
 import { useLanguage } from "../src/utils/LanguageContext";
 import Header from "../src/layout/header";
 
@@ -15,7 +15,7 @@ import Header from "../src/layout/header";
 export default function List() {
 
     const [categories, setCategories] = useState([])
-    const { setAdTrigger } = useContext(DataContext);
+    const { setAdTrigger } = useContext(AdsContext);
     const { language } = useLanguage();
 
 

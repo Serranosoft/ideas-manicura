@@ -1,6 +1,7 @@
-import React, { forwardRef, useEffect, useImperativeHandle } from "react"
-import { useInterstitialAd } from "react-native-google-mobile-ads";
+import { forwardRef, useEffect, useImperativeHandle } from "react"
+import MobileAds, { AdEventType, AdsConsent, AppOpenAd, useInterstitialAd } from "react-native-google-mobile-ads";
 import { intersitialId } from "../utils/constants";
+import { AppState } from "react-native";
 
 const AdsHandler = forwardRef((props, ref) => {
 
@@ -10,9 +11,32 @@ const AdsHandler = forwardRef((props, ref) => {
         load: loadIntersitial,
         show: showIntersitial } = useInterstitialAd(intersitialId);
 
+    /* CONSENT */
+    const isMobileAdsStartCalledRef = useRef(false);
     useEffect(() => {
-        loadIntersitial();
-    }, [loadIntersitial])
+        const prepare = async () => {
+            const consentInfo = await AdsConsent.requestInfoUpdate();
+            AdsConsent.loadAndShowConsentFormIfRequired()
+                .then(startGoogleMobileAdsSDK)
+                .catch((error) => console.error('Consent gathering failed:', error));
+            startGoogleMobileAdsSDK();
+        }
+
+        prepare();
+    }, []);
+
+    async function startGoogleMobileAdsSDK() {
+        const { canRequestAds } = await AdsConsent.getConsentInfo();
+        if (!canRequestAds || isMobileAdsStartCalledRef.current) {
+            return;
+        }
+
+        isMobileAdsStartCalledRef.current = true;
+        await MobileAds().initialize();
+        props.setAdsLoaded(true);
+        loadIntersitial(); // Cargar intersitial ads
+        loadOpenAppAd(); // Cargar open ads
+    }
 
     useImperativeHandle(ref, () => ({
         loadIntersitialAd() {
@@ -47,6 +71,43 @@ const AdsHandler = forwardRef((props, ref) => {
         } else {
             loadIntersitial();
         }
+    }
+
+    /** APP OPEN ADS (BACKGROUND -> FOREGROUND -> SHOW ADD) */
+    const openAdRef = useRef(null);
+    const openAdLoadedRef = useRef(false);
+    const [appStateChanged, setAppStateChanged] = useState(AppState.currentState);
+
+    useEffect(() => {
+        props.adsLoaded && appStateChanged == "active" && handleOpenAd();
+    }, [appStateChanged])
+
+    function handleOpenAd() {
+        // Cuando adtrigger es 0 significa que acaba de hacer un posible trigger de un intersitialAd
+        if (props.showOpenAd) {
+            openAdRef.current && openAdLoadedRef.current && openAdRef.current.show();
+        } else {
+            props.setShowOpenAd(true);
+        }
+    }
+
+    function loadOpenAppAd() {
+        const appOpenAd = AppOpenAd.createForAdRequest(loadId);
+        appOpenAd.load();
+
+        appOpenAd.addAdEventListener(AdEventType.LOADED, () => {
+            openAdRef.current = appOpenAd;
+            openAdLoadedRef.current = true;
+        });
+        appOpenAd.addAdEventListener(AdEventType.CLOSED, () => {
+            openAdRef.current.load();
+            openAdLoadedRef.current = false;
+        });
+        appOpenAd.addAdEventListener(AdEventType.ERROR, () => {
+        });
+        AppState.addEventListener("change", nextAppState => {
+            setAppStateChanged(nextAppState);
+        })
     }
 
     return <></>

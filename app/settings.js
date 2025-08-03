@@ -1,16 +1,18 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Stack } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { bannerId } from "../src/utils/constants";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { colors, ui } from "../src/utils/styles";
 import Header from "../src/layout/header";
 import { useLanguage } from "../src/utils/LanguageContext";
+import { AdsContext } from "../src/DataContext";
 
 export default function Settings() {
 
     const { language, setLanguage } = useLanguage();
+    const { adsLoaded } = useContext(AdsContext);
 
     const [selected, setSelected] = useState(language._locale);
 
@@ -63,7 +65,7 @@ export default function Settings() {
                     </View>
                 </View>
 
-                <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
+                { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
             </View>
         </>
     )

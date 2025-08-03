@@ -4,7 +4,7 @@ import LottieView from 'lottie-react-native';
 import { useContext, useEffect, useState } from "react";
 import { Pressable } from "react-native";
 import { Image } from "expo-image";
-import { DataContext } from "../src/DataContext";
+import { AdsContext } from "../src/DataContext";
 import { bannerId } from "../src/utils/constants";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import Header from "../src/layout/header";
@@ -14,7 +14,7 @@ export default function gallery() {
     const params = useLocalSearchParams();
     const { name, title } = params;
     const [images, setImages] = useState([]);
-    const { setAdTrigger } = useContext(DataContext);
+    const { setAdTrigger, adsLoaded } = useContext(AdsContext);
 
     useEffect(() => {
         getImages();
@@ -33,7 +33,7 @@ export default function gallery() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header back={true} title={title} /> }} />
-            <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
+            { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
             {
                 images.length > 0 ?
                     <View style={styles.list}>

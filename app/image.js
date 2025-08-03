@@ -9,7 +9,7 @@ import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 import { useLanguage } from "../src/utils/LanguageContext";
 import Header from "../src/layout/header";
 import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../src/DataContext";
+import { AdsContext, DataContext } from "../src/DataContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
@@ -21,6 +21,7 @@ export default function ImageWrapper() {
     const { language } = useLanguage();
 
     const { favorites, setFavorites } = useContext(DataContext)
+    const { adsLoaded } = useContext(AdsContext);
     const [isFavorite, setIsFavorite] = useState(false);
 
     // Agrega o elimina favoritos del estado
@@ -106,7 +107,7 @@ export default function ImageWrapper() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header back={true} /> }} />
-            <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
+            { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
 
             <ImageZoom
                 onResetAnimationEnd={false}

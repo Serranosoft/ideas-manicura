@@ -2,7 +2,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { View, StatusBar, StyleSheet } from "react-native";
 import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
-import { DataContext } from "../src/DataContext";
+import { AdsContext, DataContext } from "../src/DataContext";
 import { colors } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
@@ -52,15 +52,17 @@ export default function Layout() {
     }, [])
 
     // Gestión de anuncios
+    const [adsLoaded, setAdsLoaded] = useState(false);
     const [adTrigger, setAdTrigger] = useState(0);
+    const [showOpenAd, setShowOpenAd] = useState(true);
     const adsHandlerRef = createRef();
 
     useEffect(() => {
         if (adTrigger > 2) {
             askForReview();
         }
-        
-        if (adTrigger > 4) {
+
+        if (adTrigger > 3) {
             adsHandlerRef.current.showIntersitialAd();
             setAdTrigger(0);
         }
@@ -79,13 +81,15 @@ export default function Layout() {
 
     return (
         <View style={styles.container}>
-            <AdsHandler ref={adsHandlerRef} adType={[0]} />
+            <AdsHandler ref={adsHandlerRef} setAdsLoaded={setAdsLoaded} showOpenAd={showOpenAd} setShowOpenAd={setShowOpenAd} adsLoaded={adsLoaded} />
             <LanguageProvider>
-                <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
-                    <GestureHandlerRootView style={styles.wrapper}>
-                        <Stack />
-                    </GestureHandlerRootView>
-                    <UpdatesModal />
+                <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites }}>
+                    <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd, showOpenAd: showOpenAd, adsLoaded: adsLoaded }}>
+                        <GestureHandlerRootView style={styles.wrapper}>
+                            <Stack />
+                        </GestureHandlerRootView>
+                        <UpdatesModal />
+                    </AdsContext.Provider>
                 </DataContext.Provider>
             </LanguageProvider>
             <StatusBar style="light" backgroundColor={colors.primary} />

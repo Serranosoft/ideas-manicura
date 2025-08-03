@@ -3,13 +3,14 @@
     "name": "Ideas y diseño de uñas",
     "slug": "nails-designs",
     "version": "1.0.0",
+    "newArchEnabled": false,
     "orientation": "portrait",
     "icon": "./assets/logo-unas.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash-unas.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FFF"
+      "backgroundColor": "#ffffff"
     },
     "scheme": "nails-designs",
     "assetBundlePatterns": [
