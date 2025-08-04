@@ -17,7 +17,7 @@ export const ui = {
     text: {
         fontFamily: "Regular",
         color: "black",
-        fontSize: getFontSize(17.5),
+        fontSize: getFontSize(17),
     },
     h2: {
         fontFamily: "Semibold",
@@ -34,6 +34,11 @@ export const ui = {
         color: "black",
         fontSize: getFontSize(21),
     },
+    h5: {
+        fontFamily: "Regular",
+        color: "black",
+        fontSize: getFontSize(18.5),
+    },
     button: {
         paddingVertical: 12,
         paddingHorizontal: 32,
@@ -43,22 +48,6 @@ export const ui = {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 12,
-    },
-    floatingWrapper: {
-        backgroundColor: "#5B1A23", 
-        width: 65, 
-        height: 65, 
-        borderRadius: 100, 
-        position: "absolute", 
-        bottom: 15, 
-        right: 15, 
-        justifyContent: "center", 
-        alignItems: "center",
-    },
-    floatingImg: {
-        width: 40,
-        height: 40,
-        marginTop: 3,
     }
 
 }

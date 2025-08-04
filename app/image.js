@@ -21,7 +21,7 @@ export default function ImageWrapper() {
     const { language } = useLanguage();
 
     const { favorites, setFavorites } = useContext(DataContext)
-    const { adsLoaded } = useContext(AdsContext);
+    const { adsLoaded, setShowOpenAd } = useContext(AdsContext);
     const [isFavorite, setIsFavorite] = useState(false);
 
     // Agrega o elimina favoritos del estado
@@ -49,6 +49,7 @@ export default function ImageWrapper() {
 
     async function requestPermissions() {
         try {
+            setShowOpenAd(false);
             const { status } = await MediaLibrary.requestPermissionsAsync();
             if (status === "granted") {
                 downloadImage();

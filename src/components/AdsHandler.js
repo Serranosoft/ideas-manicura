@@ -1,6 +1,6 @@
-import { forwardRef, useEffect, useImperativeHandle } from "react"
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react"
 import MobileAds, { AdEventType, AdsConsent, AppOpenAd, useInterstitialAd } from "react-native-google-mobile-ads";
-import { intersitialId } from "../utils/constants";
+import { intersitialId, loadId } from "../utils/constants";
 import { AppState } from "react-native";
 
 const AdsHandler = forwardRef((props, ref) => {

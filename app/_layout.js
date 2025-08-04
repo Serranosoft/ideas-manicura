@@ -84,7 +84,7 @@ export default function Layout() {
             <AdsHandler ref={adsHandlerRef} setAdsLoaded={setAdsLoaded} showOpenAd={showOpenAd} setShowOpenAd={setShowOpenAd} adsLoaded={adsLoaded} />
             <LanguageProvider>
                 <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites }}>
-                    <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd, showOpenAd: showOpenAd, adsLoaded: adsLoaded }}>
+                    <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd, adsLoaded: adsLoaded }}>
                         <GestureHandlerRootView style={styles.wrapper}>
                             <Stack />
                         </GestureHandlerRootView>
@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
         flex: 1,
         position: "relative",
         justifyContent: "center",
-        paddingTop: Constants.statusBarHeight,
     },
     wrapper: {
         flex: 1,
