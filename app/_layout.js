@@ -62,9 +62,11 @@ export default function Layout() {
             askForReview();
         }
 
-        if (adTrigger > 3) {
-            adsHandlerRef.current.showIntersitialAd();
-            setAdTrigger(0);
+        if (adsLoaded) {
+            if (adTrigger > 3) {
+                adsHandlerRef.current.showIntersitialAd();
+                setAdTrigger(0);
+            }
         }
     }, [adTrigger])
 
