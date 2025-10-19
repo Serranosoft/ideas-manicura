@@ -16,7 +16,9 @@ export default function Header({ title, back, settings = true }) {
         <View style={styles.header}>
             {back &&
                 <TouchableOpacity onPress={() => router.back()}>
-                    <Image style={styles.img} source={require("../../assets/back-dark.png")} />
+                    <View style={styles.pressableWrapper}>
+                        <Image style={styles.img} source={require("../../assets/back-dark.png")} />
+                    </View>
                 </TouchableOpacity>
             }
             <View style={styles.logo}>
@@ -30,7 +32,10 @@ export default function Header({ title, back, settings = true }) {
                     onRequestClose={hideMenu}
                     anchor={(
                         <TouchableWithoutFeedback onPress={showMenu}>
-                            <Image source={require("../../assets/more.png")} style={styles.img} />
+                            <View style={styles.pressableWrapper}>
+                                <Image source={require("../../assets/more.png")} style={styles.img} />
+
+                            </View>
                         </TouchableWithoutFeedback>
                     )}>
                     <MenuItem onPress={() => {
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: "row",
         gap: 8,
-        padding: 16,
+        padding: 8,
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: colors.primary,
@@ -74,6 +79,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         gap: 4,
         color: colors.accent,
+        paddingLeft: 8,
     },
 
     row: {
@@ -91,4 +97,9 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     },
+    pressableWrapper: {
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        alignItems: "flex-end",
+    }
 })
