@@ -14,6 +14,8 @@ export const translations = {
         _langListPolish: "Polaco",
         _langListVietnamese: "Vietnamita",
         _langListTurkish: "Turco",
+        _langListItalian: "Italiano",
+        _langListFarsi: "Farsi",
 
         // Categorías
         _summerTitle: "Verano",
@@ -61,10 +63,14 @@ export const translations = {
         _settingsLang: "Idioma de la aplicación",
         _settingsLabel: "Ajustes",
 
+        // Notificaciones 
+        _notificationTitle: "¡Es el momento de hacer un cambio!",
+        _notificationBody: "No te olvides de buscar y guardar tu próximo diseño💅",
+
     },
     en: {
 
-        // Language list
+        // Lista de idiomas
         _langListSpanish: "Spanish",
         _langListEnglish: "English",
         _langListArabic: "Arabic",
@@ -77,8 +83,10 @@ export const translations = {
         _langListPolish: "Polish",
         _langListVietnamese: "Vietnamese",
         _langListTurkish: "Turkish",
+        _langListItalian: "Italian",
+        _langListFarsi: "Farsi",
 
-        // Categories
+        // Categorías
         _summerTitle: "Summer",
         _flowersTitle: "Flowers",
         _babyboomerTitle: "Baby Boomer",
@@ -92,41 +100,46 @@ export const translations = {
         _animalprintTitle: "Animal Print",
         _halloweenTitle: "Halloween",
         _christmasTitle: "Christmas",
-        _valentinesdayTitle: "Valentine's Day",
+        _valentinesdayTitle: "Valentine’s Day",
         _3dTitle: "3D",
-        _matteTitle: "Matte",
+        _matteTitle: "Matte tone",
         _mirrorTitle: "Mirror effect",
 
-        // Favorites
+        // Favoritos
         _addFavorites: "Add to favorites",
         _removeFavorites: "Remove from favorites",
         _favoritesTitle: "My favorite designs",
-        _noFavorites: "You have no saved favorite designs",
+        _noFavorites: "You don’t have any designs saved in favorites",
         _myFavorites: "My favorites",
 
-        // Images
+        // Imágenes
         _nailDesigns: "Nail designs",
-        _toastImageSaved: "Image saved to your gallery in the album «Nail designs»",
+        _toastImageSaved: `Image saved in your gallery in the album «Nail Designs»`,
         _download: "Download",
 
         // Home
-        _homeTitle: "Nail ideas and design",
+        _homeTitle: "Ideas and nail designs",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 News",
+        _updateTitle: "🆕 What’s New",
         _updateList1: "• New designs available in all collections! 💅",
         _updateList2: "• Discover the new collection: Mirror Nails! ✨",
-        _updateList3: "• Now you can use the app in your favorite language 🌍",
+        _updateList3: "• You can now use the app in your favorite language 🌍",
         _updateButton: "Close",
 
         // Ajustes
         _settingsApp: "App settings",
         _settingsLang: "App language",
         _settingsLabel: "Settings",
+
+        // Notificaciones 
+        _notificationTitle: "It’s time for a change!",
+        _notificationBody: "Don’t forget to find and save your next design💅",
+
     },
     fr: {
 
-        // Liste des langues
+        // Lista de idiomas
         _langListSpanish: "Espagnol",
         _langListEnglish: "Anglais",
         _langListArabic: "Arabe",
@@ -139,6 +152,8 @@ export const translations = {
         _langListPolish: "Polonais",
         _langListVietnamese: "Vietnamien",
         _langListTurkish: "Turc",
+        _langListItalian: "Italien",
+        _langListFarsi: "Farsi",
 
         // Categorías
         _summerTitle: "Été",
@@ -148,52 +163,55 @@ export const translations = {
         _springTitle: "Printemps",
         _frenchTitle: "Françaises",
         _simpleTitle: "Simple",
-        _marbledTitle: "Marbré",
+        _marbledTitle: "Marbrées",
         _aestheticTitle: "Esthétique",
-        _darkTitle: "Sombre",
-        _animalprintTitle: "Impression animale",
+        _darkTitle: "Sombres",
+        _animalprintTitle: "Imprimé animal",
         _halloweenTitle: "Halloween",
         _christmasTitle: "Noël",
-        _valentinesdayTitle: "Saint Valentin",
+        _valentinesdayTitle: "Saint-Valentin",
         _3dTitle: "3D",
-        _matteTitle: "Mat",
+        _matteTitle: "Tons mats",
         _mirrorTitle: "Effet miroir",
 
         // Favoritos
         _addFavorites: "Ajouter aux favoris",
         _removeFavorites: "Retirer des favoris",
-        _favoritesTitle: "Mes designs préférés",
-        _noFavorites: "Vous n'avez aucun design favori enregistré",
+        _favoritesTitle: "Mes designs favoris",
+        _noFavorites: "Vous n’avez aucun design enregistré dans les favoris",
         _myFavorites: "Mes favoris",
 
         // Imágenes
-        _nailDesigns: "Designs d'ongles",
-        _toastImageSaved: "Image enregistrée dans votre galerie dans l'album «Designs d'ongles»",
+        _nailDesigns: "Designs d’ongles",
+        _toastImageSaved: `Image enregistrée dans votre galerie dans l’album «Designs d’ongles»`,
         _download: "Télécharger",
 
         // Home
-        _homeTitle: "Idées et design d'ongles",
+        _homeTitle: "Idées et designs d’ongles",
 
         // Modal de actualizaciones
         _updateTitle: "🆕 Nouveautés",
-        _updateList1: "• Nouveaux designs disponibles dans toutes les collections! 💅",
+        _updateList1: "• Nouveaux designs disponibles dans toutes les collections ! 💅",
         _updateList2: "• Découvrez la nouvelle collection : Ongles Miroir ! ✨",
-        _updateList3: "• Maintenant, vous pouvez utiliser l'application dans votre langue préférée 🌍",
+        _updateList3: "• Vous pouvez maintenant utiliser l’application dans votre langue préférée 🌍",
         _updateButton: "Fermer",
 
         // Ajustes
-        _settingsApp: "Paramètres de l'application",
-        _settingsLang: "Langue de l'application",
+        _settingsApp: "Paramètres de l’application",
+        _settingsLang: "Langue de l’application",
         _settingsLabel: "Paramètres",
+
+        // Notificaciones 
+        _notificationTitle: "C’est le moment de changer !",
+        _notificationBody: "N’oubliez pas de chercher et d’enregistrer votre prochain design💅",
     },
     hi: {
-
-        // भाषा सूची
+        // Lista de idiomas
         _langListSpanish: "स्पेनिश",
-        _langListEnglish: "अंग्रेजी",
+        _langListEnglish: "अंग्रेज़ी",
         _langListArabic: "अरबी",
         _langListGerman: "जर्मन",
-        _langListFrench: "फ्रेंच",
+        _langListFrench: "फ़्रेंच",
         _langListHindi: "हिंदी",
         _langListIndonesian: "इंडोनेशियाई",
         _langListPortuguese: "पुर्तगाली",
@@ -201,119 +219,128 @@ export const translations = {
         _langListPolish: "पोलिश",
         _langListVietnamese: "वियतनामी",
         _langListTurkish: "तुर्की",
+        _langListItalian: "इतालवी",
+        _langListFarsi: "फ़ारसी",
 
-        // श्रेणियाँ
-        _summerTitle: "गर्मियाँ",
+        // Categorías
+        _summerTitle: "गर्मी",
         _flowersTitle: "फूल",
         _babyboomerTitle: "बेबी बूमर",
-        _coquetteTitle: "कोक्वेट",
+        _coquetteTitle: "कोकेट",
         _springTitle: "वसंत",
-        _frenchTitle: "फ्रेंच",
+        _frenchTitle: "फ़्रेंच",
         _simpleTitle: "सरल",
-        _marbledTitle: "संगमरमर",
-        _aestheticTitle: "एस्थेटिक",
-        _darkTitle: "अंधेरा",
+        _marbledTitle: "मार्बल डिज़ाइन",
+        _aestheticTitle: "सौंदर्यपूर्ण",
+        _darkTitle: "गहरे",
         _animalprintTitle: "एनिमल प्रिंट",
         _halloweenTitle: "हैलोवीन",
         _christmasTitle: "क्रिसमस",
-        _valentinesdayTitle: "वेलेंटाइन डे",
-        _3dTitle: "3डी",
-        _matteTitle: "मैट",
-        _mirrorTitle: "आईने का प्रभाव",
+        _valentinesdayTitle: "वैलेंटाइन्स डे",
+        _3dTitle: "3D",
+        _matteTitle: "मैट टोन",
+        _mirrorTitle: "मिरर इफेक्ट",
 
-        // पसंदीदा
+        // Favoritos
         _addFavorites: "पसंदीदा में जोड़ें",
         _removeFavorites: "पसंदीदा से हटाएं",
         _favoritesTitle: "मेरे पसंदीदा डिज़ाइन",
-        _noFavorites: "आपके पास कोई पसंदीदा डिज़ाइन नहीं है",
+        _noFavorites: "आपने कोई डिज़ाइन पसंदीदा में नहीं जोड़ा है",
         _myFavorites: "मेरे पसंदीदा",
 
-        // चित्र
-        _nailDesigns: "नाखून डिज़ाइन",
-        _toastImageSaved: "छवि आपकी गैलरी में «नाखून डिज़ाइन» एल्बम में सहेजी गई",
-        _download: "डाउनलोड करना",
+        // Imágenes
+        _nailDesigns: "नेल डिज़ाइन",
+        _toastImageSaved: `छवि आपकी गैलरी में «नेल डिज़ाइन» एल्बम में सहेजी गई है`,
+        _download: "डाउनलोड",
 
-        // होम
-        _homeTitle: "नाखून विचार और डिजाइन",
+        // Home
+        _homeTitle: "नेल आइडिया और डिज़ाइन",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 नवीनताएँ",
-        _updateList1: "• सभी संग्रहों में नए डिज़ाइन उपलब्ध हैं! 💅",
-        _updateList2: "• नई संग्रह की खोज करें: मिरर नेल्स! ✨",
+        _updateTitle: "🆕 नई अपडेट्स",
+        _updateList1: "• सभी कलेक्शंस में नए डिज़ाइन उपलब्ध हैं! 💅",
+        _updateList2: "• नई कलेक्शन खोजें: मिरर नेल्स! ✨",
         _updateList3: "• अब आप ऐप को अपनी पसंदीदा भाषा में उपयोग कर सकते हैं 🌍",
         _updateButton: "बंद करें",
 
         // Ajustes
-        _settingsApp: "एप्लिकेशन सेटिंग्स",
-        _settingsLang: "एप्लिकेशन की भाषा",
+        _settingsApp: "ऐप सेटिंग्स",
+        _settingsLang: "ऐप की भाषा",
         _settingsLabel: "सेटिंग्स",
+
+        // Notificaciones 
+        _notificationTitle: "परिवर्तन का समय आ गया है!",
+        _notificationBody: "अपने अगले डिज़ाइन को खोजना और सहेजना न भूलें 💅",
     },
-    ar:
-    {
+    ar: {
+        // Lista de idiomas
+        _langListSpanish: "الإسبانية",
+        _langListEnglish: "الإنجليزية",
+        _langListArabic: "العربية",
+        _langListGerman: "الألمانية",
+        _langListFrench: "الفرنسية",
+        _langListHindi: "الهندية",
+        _langListIndonesian: "الإندونيسية",
+        _langListPortuguese: "البرتغالية",
+        _langListRussian: "الروسية",
+        _langListPolish: "البولندية",
+        _langListVietnamese: "الفيتنامية",
+        _langListTurkish: "التركية",
+        _langListItalian: "الإيطالية",
+        _langListFarsi: "الفارسية",
 
-        // قائمة اللغات
-        _langListSpanish: "إسباني",
-        _langListEnglish: "إنجليزي",
-        _langListArabic: "عربي",
-        _langListGerman: "ألماني",
-        _langListFrench: "فرنسي",
-        _langListHindi: "هندي",
-        _langListIndonesian: "إندونيسي",
-        _langListPortuguese: "برتغالي",
-        _langListRussian: "روسي",
-        _langListPolish: "بولندي",
-        _langListVietnamese: "فيتنامي",
-        _langListTurkish: "تركي",
-
-        // الفئات
+        // Categorías
         _summerTitle: "الصيف",
         _flowersTitle: "الزهور",
         _babyboomerTitle: "بيبي بومر",
-        _coquetteTitle: "مغازلة",
+        _coquetteTitle: "كوكت",
         _springTitle: "الربيع",
-        _frenchTitle: "فرنسي",
+        _frenchTitle: "فرنسية",
         _simpleTitle: "بسيط",
         _marbledTitle: "رخامي",
         _aestheticTitle: "جمالي",
-        _darkTitle: "داكن",
-        _animalprintTitle: "طباعة حيوانية",
-        _halloweenTitle: "هالوين",
+        _darkTitle: "غامق",
+        _animalprintTitle: "نقشة الحيوانات",
+        _halloweenTitle: "الهالوين",
         _christmasTitle: "عيد الميلاد",
         _valentinesdayTitle: "عيد الحب",
         _3dTitle: "ثلاثي الأبعاد",
-        _matteTitle: "غير لامع",
+        _matteTitle: "مطفي اللون",
         _mirrorTitle: "تأثير المرآة",
 
-        // المفضلات
-        _addFavorites: "أضف إلى المفضلة",
+        // Favoritos
+        _addFavorites: "إضافة إلى المفضلة",
         _removeFavorites: "إزالة من المفضلة",
         _favoritesTitle: "تصاميمي المفضلة",
-        _noFavorites: "ليس لديك أي تصاميم مفضلة محفوظة",
-        _myFavorites: "المفضلات الخاصة بي",
+        _noFavorites: "ليس لديك أي تصميم محفوظ في المفضلة",
+        _myFavorites: "مفضلاتي",
 
-        // الصور
+        // Imágenes
         _nailDesigns: "تصاميم الأظافر",
-        _toastImageSaved: "تم حفظ الصورة في معرضك في الألبوم تصاميم الأظافر",
+        _toastImageSaved: `تم حفظ الصورة في ألبوم «تصاميم الأظافر» في معرضك`,
         _download: "تحميل",
 
-        // الرئيسية
-        _homeTitle: "أفكار وتصميم الأظافر",
+        // Home
+        _homeTitle: "أفكار وتصاميم الأظافر",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 التحديثات",
-        _updateList1: "• تصاميم جديدة متاحة في جميع المجموعات! 💅",
-        _updateList2: "• اكتشف المجموعة الجديدة: أظافر مرآة! ✨",
-        _updateList3: "• الآن يمكنك استخدام التطبيق بلغتك المفضلة 🌍",
+        _updateTitle: "🆕 التحديثات الجديدة",
+        _updateList1: "• تصاميم جديدة متوفرة في جميع المجموعات! 💅",
+        _updateList2: "• اكتشف المجموعة الجديدة: أظافر المرآة! ✨",
+        _updateList3: "• يمكنك الآن استخدام التطبيق بلغتك المفضلة 🌍",
         _updateButton: "إغلاق",
 
         // Ajustes
         _settingsApp: "إعدادات التطبيق",
         _settingsLang: "لغة التطبيق",
         _settingsLabel: "الإعدادات",
+
+        // Notificaciones 
+        _notificationTitle: "لقد حان وقت التغيير!",
+        _notificationBody: "لا تنسَ البحث وحفظ تصميمك القادم 💅",
     },
     de: {
-
-        // Sprachenliste
+        // Lista de idiomas
         _langListSpanish: "Spanisch",
         _langListEnglish: "Englisch",
         _langListArabic: "Arabisch",
@@ -326,55 +353,60 @@ export const translations = {
         _langListPolish: "Polnisch",
         _langListVietnamese: "Vietnamesisch",
         _langListTurkish: "Türkisch",
+        _langListItalian: "Italienisch",
+        _langListFarsi: "Farsi",
 
-        // Kategorien
+        // Categorías
         _summerTitle: "Sommer",
         _flowersTitle: "Blumen",
-        _babyboomerTitle: "Baby Boomer",
-        _coquetteTitle: "Kokette",
+        _babyboomerTitle: "Babyboomer",
+        _coquetteTitle: "Coquette",
         _springTitle: "Frühling",
         _frenchTitle: "Französisch",
         _simpleTitle: "Einfach",
         _marbledTitle: "Marmoriert",
         _aestheticTitle: "Ästhetisch",
         _darkTitle: "Dunkel",
-        _animalprintTitle: "Tierschuppen",
+        _animalprintTitle: "Animal Print",
         _halloweenTitle: "Halloween",
         _christmasTitle: "Weihnachten",
         _valentinesdayTitle: "Valentinstag",
         _3dTitle: "3D",
-        _matteTitle: "Matt",
+        _matteTitle: "Matte Farbe",
         _mirrorTitle: "Spiegeleffekt",
 
-        // Favoriten
+        // Favoritos
         _addFavorites: "Zu Favoriten hinzufügen",
         _removeFavorites: "Aus Favoriten entfernen",
         _favoritesTitle: "Meine Lieblingsdesigns",
-        _noFavorites: "Sie haben keine gespeicherten Favoriten-Designs",
+        _noFavorites: "Du hast keine Designs in deinen Favoriten gespeichert",
         _myFavorites: "Meine Favoriten",
 
-        // Bilder
+        // Imágenes
         _nailDesigns: "Nageldesigns",
-        _toastImageSaved: "Bild in Ihrer Galerie im Album «Nageldesigns» gespeichert",
+        _toastImageSaved: `Bild wurde in deiner Galerie im Album «Nageldesigns» gespeichert`,
         _download: "Herunterladen",
 
         // Home
-        _homeTitle: "Nagelideen und -design",
+        _homeTitle: "Nagelideen und Designs",
 
         // Modal de actualizaciones
         _updateTitle: "🆕 Neuigkeiten",
         _updateList1: "• Neue Designs in allen Kollektionen verfügbar! 💅",
-        _updateList2: "• Entdecken Sie die neue Kollektion: Spiegelnägel! ✨",
-        _updateList3: "• Jetzt können Sie die App in Ihrer bevorzugten Sprache verwenden 🌍",
+        _updateList2: "• Entdecke die neue Kollektion: Spiegelnägel! ✨",
+        _updateList3: "• Du kannst die App jetzt in deiner Lieblingssprache verwenden 🌍",
         _updateButton: "Schließen",
 
         // Ajustes
         _settingsApp: "App-Einstellungen",
         _settingsLang: "App-Sprache",
         _settingsLabel: "Einstellungen",
+
+        // Notificaciones 
+        _notificationTitle: "Es ist Zeit für eine Veränderung!",
+        _notificationBody: "Vergiss nicht, dein nächstes Design zu suchen und zu speichern 💅",
     },
     id: {
-
         // Lista de idiomas
         _langListSpanish: "Spanyol",
         _langListEnglish: "Inggris",
@@ -382,20 +414,22 @@ export const translations = {
         _langListGerman: "Jerman",
         _langListFrench: "Prancis",
         _langListHindi: "Hindi",
-        _langListIndonesian: "Bahasa Indonesia",
-        _langListPortuguese: "Bahasa Portugis",
-        _langListRussian: "Bahasa Rusia",
-        _langListPolish: "Bahasa Polandia",
-        _langListVietnamese: "Tiếng Việt",
-        _langListTurkish: "Türkçe",
+        _langListIndonesian: "Indonesia",
+        _langListPortuguese: "Portugis",
+        _langListRussian: "Rusia",
+        _langListPolish: "Polandia",
+        _langListVietnamese: "Vietnam",
+        _langListTurkish: "Turki",
+        _langListItalian: "Italia",
+        _langListFarsi: "Farsi",
 
-        // Kategori
+        // Categorías
         _summerTitle: "Musim Panas",
         _flowersTitle: "Bunga",
         _babyboomerTitle: "Baby Boomer",
         _coquetteTitle: "Coquette",
         _springTitle: "Musim Semi",
-        _frenchTitle: "Prancis",
+        _frenchTitle: "Gaya Prancis",
         _simpleTitle: "Sederhana",
         _marbledTitle: "Marmer",
         _aestheticTitle: "Estetika",
@@ -405,38 +439,41 @@ export const translations = {
         _christmasTitle: "Natal",
         _valentinesdayTitle: "Hari Valentine",
         _3dTitle: "3D",
-        _matteTitle: "Matte",
-        _mirrorTitle: "Efek cermin",
+        _matteTitle: "Warna Doff",
+        _mirrorTitle: "Efek Cermin",
 
-        // Favorit
-        _addFavorites: "Tambahkan ke favorit",
-        _removeFavorites: "Hapus dari favorit",
-        _favoritesTitle: "Desain favorit saya",
-        _noFavorites: "Anda tidak memiliki desain favorit yang disimpan",
-        _myFavorites: "Favorit saya",
+        // Favoritos
+        _addFavorites: "Tambahkan ke Favorit",
+        _removeFavorites: "Hapus dari Favorit",
+        _favoritesTitle: "Desain Favorit Saya",
+        _noFavorites: "Kamu belum memiliki desain favorit yang disimpan",
+        _myFavorites: "Favorit Saya",
 
-        // Gambar
-        _nailDesigns: "Desain kuku",
-        _toastImageSaved: "Gambar disimpan di galeri Anda di album «Desain kuku»",
+        // Imágenes
+        _nailDesigns: "Desain Kuku",
+        _toastImageSaved: `Gambar disimpan ke galeri kamu di album «Desain Kuku»`,
         _download: "Unduh",
 
-        // Beranda
-        _homeTitle: "Ide dan desain kuku",
+        // Home
+        _homeTitle: "Ide dan Desain Kuku",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Pembaruan",
+        _updateTitle: "🆕 Pembaruan Terbaru",
         _updateList1: "• Desain baru tersedia di semua koleksi! 💅",
         _updateList2: "• Temukan koleksi baru: Kuku Cermin! ✨",
-        _updateList3: "• Sekarang Anda dapat menggunakan aplikasi dalam bahasa favorit Anda 🌍",
+        _updateList3: "• Sekarang kamu dapat menggunakan aplikasi dalam bahasa pilihanmu 🌍",
         _updateButton: "Tutup",
 
         // Ajustes
-        _settingsApp: "Pengaturan aplikasi",
-        _settingsLang: "Bahasa aplikasi",
+        _settingsApp: "Pengaturan Aplikasi",
+        _settingsLang: "Bahasa Aplikasi",
         _settingsLabel: "Pengaturan",
+
+        // Notificaciones 
+        _notificationTitle: "Saatnya membuat perubahan!",
+        _notificationBody: "Jangan lupa mencari dan menyimpan desain berikutnya 💅",
     },
     pt: {
-
         // Lista de idiomas
         _langListSpanish: "Espanhol",
         _langListEnglish: "Inglês",
@@ -447,58 +484,63 @@ export const translations = {
         _langListIndonesian: "Indonésio",
         _langListPortuguese: "Português",
         _langListRussian: "Russo",
-        _langListPolish: "Polonês",
+        _langListPolish: "Polaco",
         _langListVietnamese: "Vietnamita",
         _langListTurkish: "Turco",
+        _langListItalian: "Italiano",
+        _langListFarsi: "Farsi",
 
-        // Categorias
+        // Categorías
         _summerTitle: "Verão",
         _flowersTitle: "Flores",
         _babyboomerTitle: "Baby Boomer",
-        _coquetteTitle: "Coquete",
+        _coquetteTitle: "Coquette",
         _springTitle: "Primavera",
-        _frenchTitle: "Francês",
+        _frenchTitle: "Francesa",
         _simpleTitle: "Simples",
-        _marbledTitle: "Marmorizado",
+        _marbledTitle: "Marmorizadas",
         _aestheticTitle: "Estético",
-        _darkTitle: "Escuro",
-        _animalprintTitle: "Estampa animal",
+        _darkTitle: "Escuras",
+        _animalprintTitle: "Animal Print",
         _halloweenTitle: "Halloween",
         _christmasTitle: "Natal",
         _valentinesdayTitle: "Dia dos Namorados",
         _3dTitle: "3D",
-        _matteTitle: "Fosco",
-        _mirrorTitle: "Efeito espelho",
+        _matteTitle: "Tom Fosco",
+        _mirrorTitle: "Efeito Espelho",
 
         // Favoritos
-        _addFavorites: "Adicionar aos favoritos",
-        _removeFavorites: "Remover dos favoritos",
-        _favoritesTitle: "Meus designs favoritos",
-        _noFavorites: "Você não tem designs favoritos salvos",
-        _myFavorites: "Meus favoritos",
+        _addFavorites: "Adicionar aos Favoritos",
+        _removeFavorites: "Remover dos Favoritos",
+        _favoritesTitle: "Meus Designs Favoritos",
+        _noFavorites: "Você ainda não tem nenhum design salvo nos favoritos",
+        _myFavorites: "Meus Favoritos",
 
-        // Imagens
-        _nailDesigns: "Designs de unhas",
-        _toastImageSaved: "Imagem salva na sua galeria no álbum «Designs de unhas»",
-        _download: "Transferir",
+        // Imágenes
+        _nailDesigns: "Designs de Unhas",
+        _toastImageSaved: `Imagem salva na sua galeria no álbum «Designs de Unhas»`,
+        _download: "Baixar",
 
-        // Início
-        _homeTitle: "Ideias e design de unhas",
+        // Home
+        _homeTitle: "Ideias e Designs de Unhas",
 
         // Modal de actualizaciones
         _updateTitle: "🆕 Novidades",
         _updateList1: "• Novos designs disponíveis em todas as coleções! 💅",
-        _updateList2: "• Descubra a nova coleção: Unhas Espelhadas! ✨",
-        _updateList3: "• Agora você pode usar o aplicativo no seu idioma favorito 🌍",
+        _updateList2: "• Descubra a nova coleção: Unhas Espelho! ✨",
+        _updateList3: "• Agora você pode usar o app no seu idioma favorito 🌍",
         _updateButton: "Fechar",
 
         // Ajustes
-        _settingsApp: "Configurações do aplicativo",
-        _settingsLang: "Idioma do aplicativo",
+        _settingsApp: "Configurações do Aplicativo",
+        _settingsLang: "Idioma do Aplicativo",
         _settingsLabel: "Configurações",
+
+        // Notificaciones 
+        _notificationTitle: "É hora de fazer uma mudança!",
+        _notificationBody: "Não se esqueça de procurar e salvar o seu próximo design 💅",
     },
     ru: {
-
         // Lista de idiomas
         _langListSpanish: "Испанский",
         _langListEnglish: "Английский",
@@ -512,45 +554,47 @@ export const translations = {
         _langListPolish: "Польский",
         _langListVietnamese: "Вьетнамский",
         _langListTurkish: "Турецкий",
+        _langListItalian: "Итальянский",
+        _langListFarsi: "Фарси",
 
-        // Категории
+        // Categorías
         _summerTitle: "Лето",
         _flowersTitle: "Цветы",
-        _babyboomerTitle: "Беби Бумер",
-        _coquetteTitle: "Кокетка",
+        _babyboomerTitle: "Бэби-бумер",
+        _coquetteTitle: "Кокетт",
         _springTitle: "Весна",
-        _frenchTitle: "Французский",
+        _frenchTitle: "Французский стиль",
         _simpleTitle: "Простой",
         _marbledTitle: "Мраморный",
-        _aestheticTitle: "Эстетика",
+        _aestheticTitle: "Эстетичный",
         _darkTitle: "Тёмный",
         _animalprintTitle: "Животный принт",
         _halloweenTitle: "Хэллоуин",
         _christmasTitle: "Рождество",
         _valentinesdayTitle: "День святого Валентина",
         _3dTitle: "3D",
-        _matteTitle: "Матовый",
-        _mirrorTitle: "Эффект зеркала",
+        _matteTitle: "Матовый оттенок",
+        _mirrorTitle: "Зеркальный эффект",
 
-        // Избранное
+        // Favoritos
         _addFavorites: "Добавить в избранное",
         _removeFavorites: "Удалить из избранного",
         _favoritesTitle: "Мои любимые дизайны",
-        _noFavorites: "У вас нет сохранённых любимых дизайнов",
+        _noFavorites: "У вас нет сохранённых дизайнов в избранном",
         _myFavorites: "Мои избранные",
 
-        // Изображения
+        // Imágenes
         _nailDesigns: "Дизайны ногтей",
-        _toastImageSaved: "Изображение сохранено в вашей галерее в альбоме «Дизайны ногтей»",
+        _toastImageSaved: `Изображение сохранено в альбоме «Дизайны ногтей» в вашей галерее`,
         _download: "Скачать",
 
-        // Главная
-        _homeTitle: "Идеи и дизайн ногтей",
+        // Home
+        _homeTitle: "Идеи и дизайны ногтей",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Обновления",
+        _updateTitle: "🆕 Новинки",
         _updateList1: "• Новые дизайны доступны во всех коллекциях! 💅",
-        _updateList2: "• Откройте для себя новую коллекцию: Зеркальные ногти! ✨",
+        _updateList2: "• Откройте новую коллекцию: Зеркальные ногти! ✨",
         _updateList3: "• Теперь вы можете использовать приложение на любимом языке 🌍",
         _updateButton: "Закрыть",
 
@@ -558,61 +602,66 @@ export const translations = {
         _settingsApp: "Настройки приложения",
         _settingsLang: "Язык приложения",
         _settingsLabel: "Настройки",
+
+        // Notificaciones 
+        _notificationTitle: "Пора что-то изменить!",
+        _notificationBody: "Не забудьте найти и сохранить свой следующий дизайн 💅",
     },
     pl: {
-
         // Lista de idiomas
         _langListSpanish: "Hiszpański",
         _langListEnglish: "Angielski",
         _langListArabic: "Arabski",
         _langListGerman: "Niemiecki",
         _langListFrench: "Francuski",
-        _langListHindi: "Hinduski",
+        _langListHindi: "Hindi",
         _langListIndonesian: "Indonezyjski",
         _langListPortuguese: "Portugalski",
         _langListRussian: "Rosyjski",
         _langListPolish: "Polski",
         _langListVietnamese: "Wietnamski",
         _langListTurkish: "Turecki",
+        _langListItalian: "Włoski",
+        _langListFarsi: "Farsi",
 
-        // Kategorie
+        // Categorías
         _summerTitle: "Lato",
         _flowersTitle: "Kwiaty",
-        _babyboomerTitle: "Baby Boomer",
+        _babyboomerTitle: "Baby boomer",
         _coquetteTitle: "Kokietka",
         _springTitle: "Wiosna",
-        _frenchTitle: "Francuski",
+        _frenchTitle: "Styl francuski",
         _simpleTitle: "Prosty",
-        _marbledTitle: "Marmurowy",
+        _marbledTitle: "Marmurkowy",
         _aestheticTitle: "Estetyczny",
         _darkTitle: "Ciemny",
-        _animalprintTitle: "Print zwierzęcy",
+        _animalprintTitle: "Wzór zwierzęcy",
         _halloweenTitle: "Halloween",
         _christmasTitle: "Boże Narodzenie",
         _valentinesdayTitle: "Walentynki",
         _3dTitle: "3D",
-        _matteTitle: "Matowy",
+        _matteTitle: "Matowy odcień",
         _mirrorTitle: "Efekt lustra",
 
-        // Ulubione
+        // Favoritos
         _addFavorites: "Dodaj do ulubionych",
         _removeFavorites: "Usuń z ulubionych",
         _favoritesTitle: "Moje ulubione projekty",
-        _noFavorites: "Nie masz zapisanych ulubionych projektów",
+        _noFavorites: "Nie masz zapisanych projektów w ulubionych",
         _myFavorites: "Moje ulubione",
 
-        // Obrazy
+        // Imágenes
         _nailDesigns: "Projekty paznokci",
-        _toastImageSaved: "Obraz zapisany w twojej galerii w albumie «Projekty paznokci»",
-        _download: "Pobierać",
+        _toastImageSaved: `Obraz zapisany w albumie „Projekty paznokci” w twojej galerii`,
+        _download: "Pobierz",
 
-        // Strona główna
-        _homeTitle: "Pomysły i projektowanie paznokci",
+        // Home
+        _homeTitle: "Pomysły i projekty paznokci",
 
         // Modal de actualizaciones
         _updateTitle: "🆕 Nowości",
-        _updateList1: "• Nowe wzory dostępne we wszystkich kolekcjach! 💅",
-        _updateList2: "• Odkryj nową kolekcję: Lustrzane paznokcie! ✨",
+        _updateList1: "• Nowe projekty dostępne we wszystkich kolekcjach! 💅",
+        _updateList2: "• Odkryj nową kolekcję: Paznokcie lustrzane! ✨",
         _updateList3: "• Teraz możesz używać aplikacji w swoim ulubionym języku 🌍",
         _updateButton: "Zamknij",
 
@@ -620,9 +669,12 @@ export const translations = {
         _settingsApp: "Ustawienia aplikacji",
         _settingsLang: "Język aplikacji",
         _settingsLabel: "Ustawienia",
+
+        // Notificaciones 
+        _notificationTitle: "Czas na zmianę!",
+        _notificationBody: "Nie zapomnij poszukać i zapisać swojego następnego projektu 💅",
     },
-    vn:
-    {
+    vi: {
         // Lista de idiomas
         _langListSpanish: "Tiếng Tây Ban Nha",
         _langListEnglish: "Tiếng Anh",
@@ -636,55 +688,60 @@ export const translations = {
         _langListPolish: "Tiếng Ba Lan",
         _langListVietnamese: "Tiếng Việt",
         _langListTurkish: "Tiếng Thổ Nhĩ Kỳ",
+        _langListItalian: "Tiếng Ý",
+        _langListFarsi: "Tiếng Ba Tư",
 
-        // Danh mục
+        // Categorías
         _summerTitle: "Mùa hè",
         _flowersTitle: "Hoa",
-        _babyboomerTitle: "Baby Boomer",
-        _coquetteTitle: "Coquette",
+        _babyboomerTitle: "Baby boomer",
+        _coquetteTitle: "Duyên dáng",
         _springTitle: "Mùa xuân",
-        _frenchTitle: "Pháp",
+        _frenchTitle: "Phong cách Pháp",
         _simpleTitle: "Đơn giản",
-        _marbledTitle: "Vân đá",
+        _marbledTitle: "Cẩm thạch",
         _aestheticTitle: "Thẩm mỹ",
         _darkTitle: "Tối",
-        _animalprintTitle: "In động vật",
+        _animalprintTitle: "Họa tiết động vật",
         _halloweenTitle: "Halloween",
         _christmasTitle: "Giáng sinh",
         _valentinesdayTitle: "Ngày lễ tình nhân",
         _3dTitle: "3D",
-        _matteTitle: "Mờ",
+        _matteTitle: "Màu mờ",
         _mirrorTitle: "Hiệu ứng gương",
 
-        // Yêu thích
+        // Favoritos
         _addFavorites: "Thêm vào yêu thích",
         _removeFavorites: "Xóa khỏi yêu thích",
-        _favoritesTitle: "Các thiết kế yêu thích của tôi",
-        _noFavorites: "Bạn không có thiết kế yêu thích nào đã lưu",
-        _myFavorites: "Sở thích của tôi",
+        _favoritesTitle: "Thiết kế yêu thích của tôi",
+        _noFavorites: "Bạn chưa lưu thiết kế nào trong danh sách yêu thích",
+        _myFavorites: "Yêu thích của tôi",
 
-        // Hình ảnh
-        _nailDesigns: "Mẫu móng tay",
-        _toastImageSaved: "Hình ảnh đã lưu vào thư viện của bạn trong album «Mẫu móng tay»",
-        _download: "Tải về",
+        // Imágenes
+        _nailDesigns: "Thiết kế móng tay",
+        _toastImageSaved: `Hình ảnh đã được lưu vào album «Thiết kế móng tay» trong thư viện của bạn`,
+        _download: "Tải xuống",
 
-        // Trang chủ
-        _homeTitle: "Ý tưởng và thiết kế móng",
+        // Home
+        _homeTitle: "Ý tưởng và thiết kế móng tay",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Cập nhật",
-        _updateList1: "• Thiết kế mới có sẵn trong tất cả các bộ sưu tập! 💅",
-        _updateList2: "• Khám phá bộ sưu tập mới: Móng Gương! ✨",
-        _updateList3: "• Bây giờ bạn có thể sử dụng ứng dụng bằng ngôn ngữ yêu thích của mình 🌍",
+        _updateTitle: "🆕 Cập nhật mới",
+        _updateList1: "• Các thiết kế mới có sẵn trong tất cả các bộ sưu tập! 💅",
+        _updateList2: "• Khám phá bộ sưu tập mới: Móng gương! ✨",
+        _updateList3: "• Giờ đây bạn có thể sử dụng ứng dụng bằng ngôn ngữ yêu thích 🌍",
         _updateButton: "Đóng",
 
         // Ajustes
         _settingsApp: "Cài đặt ứng dụng",
         _settingsLang: "Ngôn ngữ ứng dụng",
         _settingsLabel: "Cài đặt",
+
+        // Notificaciones 
+        _notificationTitle: "Đã đến lúc thay đổi rồi!",
+        _notificationBody: "Đừng quên tìm kiếm và lưu lại thiết kế tiếp theo của bạn 💅",
     },
-    tr:
-    {
+    tr: {
         // Lista de idiomas
         _langListSpanish: "İspanyolca",
         _langListEnglish: "İngilizce",
@@ -698,45 +755,47 @@ export const translations = {
         _langListPolish: "Lehçe",
         _langListVietnamese: "Vietnamca",
         _langListTurkish: "Türkçe",
+        _langListItalian: "İtalyanca",
+        _langListFarsi: "Farsça",
 
-        // Kategoriler
+        // Categorías
         _summerTitle: "Yaz",
         _flowersTitle: "Çiçekler",
-        _babyboomerTitle: "Baby Boomer",
-        _coquetteTitle: "Koquette",
-        _springTitle: "Bahar",
-        _frenchTitle: "Fransızca",
+        _babyboomerTitle: "Baby boomer",
+        _coquetteTitle: "Zarif",
+        _springTitle: "İlkbahar",
+        _frenchTitle: "Fransız stili",
         _simpleTitle: "Basit",
-        _marbledTitle: "Mermerli",
+        _marbledTitle: "Mermer desenli",
         _aestheticTitle: "Estetik",
-        _darkTitle: "Karanlık",
-        _animalprintTitle: "Hayvan Deseni",
+        _darkTitle: "Koyu",
+        _animalprintTitle: "Hayvan deseni",
         _halloweenTitle: "Cadılar Bayramı",
         _christmasTitle: "Noel",
         _valentinesdayTitle: "Sevgililer Günü",
         _3dTitle: "3D",
-        _matteTitle: "Mat",
+        _matteTitle: "Mat ton",
         _mirrorTitle: "Ayna efekti",
 
-        // Favoriler
-        _addFavorites: "Favorilere Ekle",
-        _removeFavorites: "Favorilerden Çıkar",
-        _favoritesTitle: "Favori Tasarımlarım",
-        _noFavorites: "Kaydedilmiş favori tasarımlarınız yok",
+        // Favoritos
+        _addFavorites: "Favorilere ekle",
+        _removeFavorites: "Favorilerden kaldır",
+        _favoritesTitle: "Favori tasarımlarım",
+        _noFavorites: "Favorilere kaydedilmiş tasarımınız yok",
         _myFavorites: "Favorilerim",
 
-        // Görseller
-        _nailDesigns: "Tırnak Tasarımları",
-        _toastImageSaved: "Resim, galerinize «Tırnak Tasarımları» albümüne kaydedildi",
-        _download: "İndirmek",
+        // Imágenes
+        _nailDesigns: "Tırnak tasarımları",
+        _toastImageSaved: `Görsel, galerinizdeki «Tırnak tasarımları» albümüne kaydedildi`,
+        _download: "İndir",
 
-        // Anasayfa
-        _homeTitle: "Oje fikirleri ve tasarımı",
+        // Home
+        _homeTitle: "Tırnak fikirleri ve tasarımları",
 
         // Modal de actualizaciones
         _updateTitle: "🆕 Yenilikler",
         _updateList1: "• Tüm koleksiyonlarda yeni tasarımlar mevcut! 💅",
-        _updateList2: "• Yeni koleksiyonu keşfedin: Ayna Tırnakları! ✨",
+        _updateList2: "• Yeni koleksiyonu keşfedin: Ayna tırnaklar! ✨",
         _updateList3: "• Artık uygulamayı favori dilinizde kullanabilirsiniz 🌍",
         _updateButton: "Kapat",
 
@@ -744,5 +803,143 @@ export const translations = {
         _settingsApp: "Uygulama ayarları",
         _settingsLang: "Uygulama dili",
         _settingsLabel: "Ayarlar",
-    }
+
+        // Notificaciones 
+        _notificationTitle: "Değişim zamanı geldi!",
+        _notificationBody: "Bir sonraki tasarımını aramayı ve kaydetmeyi unutma 💅",
+    },
+    it: {
+        // Lista de idiomas
+        _langListSpanish: "Spagnolo",
+        _langListEnglish: "Inglese",
+        _langListArabic: "Arabo",
+        _langListGerman: "Tedesco",
+        _langListFrench: "Francese",
+        _langListHindi: "Hindi",
+        _langListIndonesian: "Indonesiano",
+        _langListPortuguese: "Portoghese",
+        _langListRussian: "Russo",
+        _langListPolish: "Polacco",
+        _langListVietnamese: "Vietnamita",
+        _langListTurkish: "Turco",
+        _langListItalian: "Italiano",
+        _langListFarsi: "Farsi",
+
+        // Categorías
+        _summerTitle: "Estate",
+        _flowersTitle: "Fiori",
+        _babyboomerTitle: "Baby Boomer",
+        _coquetteTitle: "Civettuolo",
+        _springTitle: "Primavera",
+        _frenchTitle: "Francesi",
+        _simpleTitle: "Semplice",
+        _marbledTitle: "Marmorizzate",
+        _aestheticTitle: "Estetico",
+        _darkTitle: "Scure",
+        _animalprintTitle: "Stampa animale",
+        _halloweenTitle: "Halloween",
+        _christmasTitle: "Natale",
+        _valentinesdayTitle: "San Valentino",
+        _3dTitle: "3D",
+        _matteTitle: "Tono opaco",
+        _mirrorTitle: "Effetto specchio",
+
+        // Favoritos
+        _addFavorites: "Aggiungi ai preferiti",
+        _removeFavorites: "Rimuovi dai preferiti",
+        _favoritesTitle: "I miei design preferiti",
+        _noFavorites: "Non hai ancora salvato nessun design nei preferiti",
+        _myFavorites: "I miei preferiti",
+
+        // Imágenes
+        _nailDesigns: "Design per unghie",
+        _toastImageSaved: `Immagine salvata nella tua galleria nell’album «Design per unghie»`,
+        _download: "Scarica",
+
+        // Home
+        _homeTitle: "Idee e design per unghie",
+
+        // Modal de actualizaciones
+        _updateTitle: "🆕 Novità",
+        _updateList1: "• Nuovi design disponibili in tutte le collezioni! 💅",
+        _updateList2: "• Scopri la nuova collezione: Unghie Specchio! ✨",
+        _updateList3: "• Ora puoi usare l’app nella tua lingua preferita 🌍",
+        _updateButton: "Chiudi",
+
+        // Ajustes
+        _settingsApp: "Impostazioni dell’applicazione",
+        _settingsLang: "Lingua dell’applicazione",
+        _settingsLabel: "Impostazioni",
+
+        // Notificaciones 
+        _notificationTitle: "È il momento di cambiare!",
+        _notificationBody: "Non dimenticare di cercare e salvare il tuo prossimo design💅",
+    },
+    fa: {
+    // Lista de idiomas
+    _langListSpanish: "اسپانیایی",
+    _langListEnglish: "انگلیسی",
+    _langListArabic: "عربی",
+    _langListGerman: "آلمانی",
+    _langListFrench: "فرانسوی",
+    _langListHindi: "هندی",
+    _langListIndonesian: "اندونزیایی",
+    _langListPortuguese: "پرتغالی",
+    _langListRussian: "روسی",
+    _langListPolish: "لهستانی",
+    _langListVietnamese: "ویتنامی",
+    _langListTurkish: "ترکی",
+    _langListItalian: "ایتالیایی",
+    _langListFarsi: "فارسی",
+
+    // Categorías
+    _summerTitle: "تابستان",
+    _flowersTitle: "گل‌ها",
+    _babyboomerTitle: "بیبی بومر",
+    _coquetteTitle: "دلفریب",
+    _springTitle: "بهار",
+    _frenchTitle: "سبک فرانسوی",
+    _simpleTitle: "ساده",
+    _marbledTitle: "مرمری",
+    _aestheticTitle: "زیبایی‌شناسی",
+    _darkTitle: "تیره",
+    _animalprintTitle: "طرح حیوانی",
+    _halloweenTitle: "هالووین",
+    _christmasTitle: "کریسمس",
+    _valentinesdayTitle: "روز ولنتاین",
+    _3dTitle: "سه‌بعدی",
+    _matteTitle: "رنگ مات",
+    _mirrorTitle: "افکت آینه‌ای",
+
+    // Favoritos
+    _addFavorites: "افزودن به علاقه‌مندی‌ها",
+    _removeFavorites: "حذف از علاقه‌مندی‌ها",
+    _favoritesTitle: "طرح‌های مورد علاقه من",
+    _noFavorites: "هیچ طرحی در علاقه‌مندی‌ها ذخیره نکرده‌اید",
+    _myFavorites: "علاقه‌مندی‌های من",
+
+    // Imágenes
+    _nailDesigns: "طراحی‌های ناخن",
+    _toastImageSaved: `تصویر در آلبوم «طراحی‌های ناخن» در گالری شما ذخیره شد`,
+    _download: "دانلود",
+
+    // Home
+    _homeTitle: "ایده‌ها و طراحی‌های ناخن",
+
+    // Modal de actualizaciones
+    _updateTitle: "🆕 به‌روزرسانی‌ها",
+    _updateList1: "• طرح‌های جدید در تمام مجموعه‌ها در دسترس است! 💅",
+    _updateList2: "• مجموعه جدید را کشف کنید: ناخن‌های آینه‌ای! ✨",
+    _updateList3: "• اکنون می‌توانید برنامه را به زبان دلخواه خود استفاده کنید 🌍",
+    _updateButton: "بستن",
+
+    // Ajustes
+    _settingsApp: "تنظیمات برنامه",
+    _settingsLang: "زبان برنامه",
+    _settingsLabel: "تنظیمات",
+
+    // Notificaciones 
+    _notificationTitle: "زمان تغییر فرا رسیده است!", 
+    _notificationBody: "فراموش نکن طراحی بعدی خود را جستجو و ذخیره کنی 💅",
+}
 }

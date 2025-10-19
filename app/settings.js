@@ -25,6 +25,8 @@ export default function Settings() {
         { title: language.t("_langListPolish"), acronym: "pl" },
         { title: language.t("_langListVietnamese"), acronym: "vi" },
         { title: language.t("_langListTurkish"), acronym: "tr" },
+        { title: language.t("_langListItalian"), acronym: "it" },
+        { title: language.t("_langListFarsi"), acronym: "fa" }
     ]
 
 
