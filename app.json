@@ -2,7 +2,7 @@
     "expo": {
         "name": "Ideas y diseño de uñas",
         "slug": "nails-designs",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "newArchEnabled": false,
         "orientation": "portrait",
         "icon": "./assets/logo-unas.png",
@@ -42,7 +42,7 @@
                 "foregroundImage": "./assets/logo-unas.png",
                 "backgroundColor": "#f3e8d6"
             },
-            "versionCode": 14,
+            "versionCode": 15,
             "package": "com.paulaymanu113.nailsdesigns",
             "permissions": [
                 "android.permission.READ_EXTERNAL_STORAGE",
