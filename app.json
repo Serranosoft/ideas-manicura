@@ -1,81 +1,91 @@
 {
-  "expo": {
-    "name": "Ideas y diseño de uñas",
-    "slug": "nails-designs",
-    "version": "1.0.0",
-    "newArchEnabled": false,
-    "orientation": "portrait",
-    "icon": "./assets/logo-unas.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash-unas.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "scheme": "nails-designs",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": false,
-      "buildNumber": "2",
-      "bundleIdentifier": "com.paulaymanu113.nailsdesigns",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
-    },
-    "locales": {
-        "en": "./languages/english.json",
-        "ar": "./languages/arab.json",
-        "de": "./languages/deutsch.json",
-        "hi": "./languages/hindi.json",
-        "fr": "./languages/french.json",
-        "id": "./languages/indonesian.json",
-        "pt": "./languages/portuguese.json",
-        "ru": "./languages/russian.json",
-        "pl": "./languages/polish.json",
-        "vi": "./languages/vietnamese.json",
-        "tr": "./languages/turkish.json"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/logo-unas.png",
-        "backgroundColor": "#f3e8d6"
-      },
-      "versionCode": 14,
-      "package": "com.paulaymanu113.nailsdesigns",
-      "permissions": [
-        "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE",
-        "android.permission.ACCESS_MEDIA_LOCATION"
-      ]
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "546c7b97-fc98-4f86-84af-4c2234c44547"
-      }
-    },
-    "plugins": [
-      [
-        "expo-media-library",
-        {
-          "photosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
-          "savePhotosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
-          "isAccessMediaLocationEnabled": true
-        }
-      ],
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-3738413299329691~3139248746",
-          "iosAppId": "ca-app-pub-3738413299329691~3139248746"
-        }
-      ],
-      "expo-font",
-      "expo-localization"
-    ]
-  }
+    "expo": {
+        "name": "Ideas y diseño de uñas",
+        "slug": "nails-designs",
+        "version": "1.0.0",
+        "newArchEnabled": false,
+        "orientation": "portrait",
+        "icon": "./assets/logo-unas.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/splash-unas.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "scheme": "nails-designs",
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": false,
+            "buildNumber": "2",
+            "bundleIdentifier": "com.paulaymanu113.nailsdesigns",
+            "infoPlist": {
+                "ITSAppUsesNonExemptEncryption": false
+            }
+        },
+        "locales": {
+            "en": "./languages/english.json",
+            "ar": "./languages/arab.json",
+            "de": "./languages/deutsch.json",
+            "hi": "./languages/hindi.json",
+            "fr": "./languages/french.json",
+            "id": "./languages/indonesian.json",
+            "pt": "./languages/portuguese.json",
+            "ru": "./languages/russian.json",
+            "pl": "./languages/polish.json",
+            "vi": "./languages/vietnamese.json",
+            "tr": "./languages/turkish.json"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/logo-unas.png",
+                "backgroundColor": "#f3e8d6"
+            },
+            "versionCode": 14,
+            "package": "com.paulaymanu113.nailsdesigns",
+            "permissions": [
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE",
+                "android.permission.ACCESS_MEDIA_LOCATION"
+            ]
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "546c7b97-fc98-4f86-84af-4c2234c44547"
+            }
+        },
+        "plugins": [
+            [
+                "expo-media-library",
+                {
+                    "photosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
+                    "savePhotosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
+                    "isAccessMediaLocationEnabled": true
+                }
+            ],
+            [
+                "react-native-google-mobile-ads",
+                {
+                    "androidAppId": "ca-app-pub-3738413299329691~3139248746",
+                    "iosAppId": "ca-app-pub-3738413299329691~3139248746",
+                    "delayAppMeasurementInit": true,
+                    "userTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
+                }
+            ],
+            [
+                "expo-build-properties",
+                {
+                    "android": {
+                        "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }"
+                    }
+                }
+            ],
+            "expo-font",
+            "expo-localization"
+        ]
+    }
 }

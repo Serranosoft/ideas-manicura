@@ -6,11 +6,10 @@ import { AdsContext, DataContext } from "../src/DataContext";
 import { colors } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
-import Constants from "expo-constants";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { LanguageProvider } from "../src/utils/LanguageContext";
 import UpdatesModal from "../src/layout/updates-modal";
-import * as StoreReview from 'expo-store-review';
+import * as StoreReview from "expo-store-review";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,6 +46,7 @@ export default function Layout() {
             }
         }
 
+        configureNotifications();
         isFirstTime();
         getFavorites();
     }, [])
@@ -63,7 +63,7 @@ export default function Layout() {
         }
 
         if (adsLoaded) {
-            if (adTrigger > 3) {
+            if (adTrigger > 4) {
                 adsHandlerRef.current.showIntersitialAd();
                 setAdTrigger(0);
             }
@@ -74,6 +74,17 @@ export default function Layout() {
         if (await StoreReview.hasAction()) {
             StoreReview.requestReview()
         }
+    }
+
+    async function configureNotifications() {
+        Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldShowBanner: true,
+                shouldShowList: true,
+                shouldPlaySound: false,
+                shouldSetBadge: false,
+            }),
+        });
     }
 
     // Esperar hasta que las fuentes se carguen
