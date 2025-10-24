@@ -108,7 +108,9 @@ export default function ImageWrapper() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header back={true} /> }} />
-            { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
+            <View style={styles.bannerWrapper}>
+                { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
+            </View>
 
             <ImageZoom
                 onResetAnimationEnd={false}
@@ -117,7 +119,6 @@ export default function ImageWrapper() {
                 uri={image}
                 isDoubleTapEnabled
             />
-
 
             <View style={styles.actions}>
                 <View style={[styles.action]}>
@@ -128,7 +129,6 @@ export default function ImageWrapper() {
                                 :
                                 <Image style={styles.icon} source={require("../assets/heart-unfilled.png")} />
                         }
-                        {/* <Favorite {...{ isFavorite, setIsFavorite, image }} /> */}
                     </TouchableOpacity>
                     <Text style={ui.h5}>{isFavorite ? language.t("_removeFavorites") : language.t("_addFavorites")} </Text>
                 </View>
@@ -179,4 +179,9 @@ const styles = StyleSheet.create({
         width: 35,
         height: 35,
     },
+
+    bannerWrapper: {
+        position: "relative",
+        zIndex: 1
+    }
 })

@@ -33,7 +33,7 @@ export default function gallery() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header back={true} title={title} /> }} />
-            { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
+            {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
             {
                 images.length > 0 ?
                     <View style={styles.list}>
@@ -58,7 +58,7 @@ export default function gallery() {
                         />
                     </View>
                     :
-                    <LottieView source={require("../assets/lottie/loading-animation.json")} loop={true} autoPlay={true} />
+                    <LottieView style={styles.lottie} source={require("../assets/lottie/loading-animation.json")} loop={true} autoPlay={true} />
 
             }
         </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         gap: 24,
-        alignItems: "center",
+        // alignItems: "center",
     },
 
     title: {
@@ -94,6 +94,11 @@ const styles = StyleSheet.create({
     image: {
         width: "100%",
         height: "100%",
+    },
+    lottie: {
+        width: 150,
+        height: 150,
+        alignSelf: "center"
     }
 
 })
