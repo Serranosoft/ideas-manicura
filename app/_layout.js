@@ -63,7 +63,7 @@ export default function Layout() {
         }
 
         if (adsLoaded) {
-            if (adTrigger > 4) {
+            if (adTrigger > 5) {
                 adsHandlerRef.current.showIntersitialAd();
                 setAdTrigger(0);
             }

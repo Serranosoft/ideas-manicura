@@ -33,7 +33,7 @@ export default function gallery() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header back={true} title={title} /> }} />
-            {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
+            {/* {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />} */}
             {
                 images.length > 0 ?
                     <View style={styles.list}>
