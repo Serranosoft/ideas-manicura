@@ -1,7 +1,6 @@
-import { SplashScreen, Stack } from "expo-router";
-import { View, StatusBar, StyleSheet } from "react-native";
+import { Stack } from "expo-router";
+import { View, StatusBar, StyleSheet, AppState } from "react-native";
 import { createRef, useEffect, useState } from "react";
-import { useFonts } from "expo-font";
 import { AdsContext, DataContext } from "../src/DataContext";
 import { colors } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -10,26 +9,25 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { LanguageProvider } from "../src/utils/LanguageContext";
 import UpdatesModal from "../src/layout/updates-modal";
 import * as StoreReview from "expo-store-review";
-
-SplashScreen.preventAutoHideAsync();
+import { userPreferences } from "../src/utils/user-preferences";
+import * as Notifications from 'expo-notifications';
 
 export default function Layout() {
 
-    // Carga de fuentes.
-    const [fontsLoaded] = useFonts({
-        "Regular": require("../assets/fonts/AncizarSans-Regular.ttf"),
-        "Medium": require("../assets/fonts/AncizarSans-Medium.ttf"),
-        "Semibold": require("../assets/fonts/AncizarSans-Bold.ttf"),
-        "Bold": require("../assets/fonts/AncizarSans-ExtraBold.ttf")
-    });
+    // Gestión de anuncios
+    const [adsLoaded, setAdsLoaded] = useState(false);
+    const [adTrigger, setAdTrigger] = useState(0);
+    const [showOpenAd, setShowOpenAd] = useState(true);
+    const adsHandlerRef = createRef();
 
-    useEffect(() => {
-        if (fontsLoaded) {
-            SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded])
-
+    // Gestión de favoritos
     const [favorites, setFavorites] = useState([]);
+
+    // Cargar base de datos, preferencias de usuario y notificaciones
+    useEffect(() => {
+        configureNotifications();
+    }, [])
+
     useEffect(() => {
         async function getFavorites() {
             const value = await AsyncStorage.getItem("favorites");
@@ -51,11 +49,6 @@ export default function Layout() {
         getFavorites();
     }, [])
 
-    // Gestión de anuncios
-    const [adsLoaded, setAdsLoaded] = useState(false);
-    const [adTrigger, setAdTrigger] = useState(0);
-    const [showOpenAd, setShowOpenAd] = useState(true);
-    const adsHandlerRef = createRef();
 
     useEffect(() => {
         if (adTrigger > 2) {
@@ -71,25 +64,31 @@ export default function Layout() {
     }, [adTrigger])
 
     async function askForReview() {
-        if (await StoreReview.hasAction()) {
-            StoreReview.requestReview()
+        try {
+            if (AppState.currentState !== "active") return;
+            if (await StoreReview.hasAction()) {
+                StoreReview.requestReview()
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 
     async function configureNotifications() {
-        Notifications.setNotificationHandler({
-            handleNotification: async () => ({
-                shouldShowBanner: true,
-                shouldShowList: true,
-                shouldPlaySound: false,
-                shouldSetBadge: false,
-            }),
-        });
-    }
-
-    // Esperar hasta que las fuentes se carguen
-    if (!fontsLoaded) {
-        return null;
+        const { granted } = await Notifications.requestPermissionsAsync();
+        if (granted) {
+            await AsyncStorage.setItem(userPreferences.NOTIFICATION_PERMISSION, "true");
+            Notifications.setNotificationHandler({
+                handleNotification: async () => ({
+                    shouldShowBanner: true,
+                    shouldShowList: true,
+                    shouldPlaySound: false,
+                    shouldSetBadge: false,
+                }),
+            });
+        } else {
+            await AsyncStorage.setItem(userPreferences.NOTIFICATION_PERMISSION, "false");
+        }
     }
 
     return (

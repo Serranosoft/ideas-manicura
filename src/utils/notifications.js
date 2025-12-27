@@ -23,8 +23,10 @@ export async function scheduleWeeklyNotification(language) {
                 body: language.t("_notificationsBody"),
             },
             trigger: {
-                seconds: getLeftTimeToNextWednesday(),
-                repeats: true,
+                type: "weekly",
+                weekday: 4,
+                hour: 12,
+                minute: 0,
             },
         };
 
@@ -34,20 +36,3 @@ export async function scheduleWeeklyNotification(language) {
         console.error('Error al programar la notificación:', error);
     }
 };
-
-export function getLeftTimeToNextWednesday() {
-    const today = new Date();
-    const currentDay = today.getDay();
-
-    const daysUntilWednesday = 3 - currentDay;
-    const nextWednesday = new Date(today);
-    nextWednesday.setDate(today.getDate() + daysUntilWednesday);
-    nextWednesday.setHours(16, 0, 0, 0);
-    
-    if (today > nextWednesday) {
-        nextWednesday.setDate(nextWednesday.getDate() + 7);
-    }
-
-    const diff = Math.floor((nextWednesday - today) / 1000);
-    return diff;
-}

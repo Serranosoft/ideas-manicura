@@ -84,7 +84,58 @@
                     }
                 }
             ],
-            "expo-font",
+            [
+                "expo-notifications",
+                {
+                    "icon": "./assets/notification.png"
+                }
+            ],
+            [
+                "expo-font",
+                {
+                    "android": {
+                        "fonts": [
+                            {
+                                "fontFamily": "ancizar-regular",
+                                "fontDefinitions": [
+                                    {
+                                        "path": "./assets/fonts/AncizarSans-Regular.ttf",
+                                        "weight": "400",
+                                        "style": "normal"
+                                    }
+                                ]
+                            },
+                            {
+                                "fontFamily": "ancizar-medium",
+                                "fontDefinitions": [
+                                    {
+                                        "path": "./assets/fonts/AncizarSans-Medium.ttf",
+                                        "weight": "500",
+                                        "style": "normal"
+                                    }
+                                ]
+                            },
+                            {
+                                "fontFamily": "ancizar-bold",
+                                "fontDefinitions": [
+                                    {
+                                        "path": "./assets/fonts/AncizarSans-Bold.ttf",
+                                        "weight": "600",
+                                        "style": "normal"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "ios": {
+                        "fonts": [
+                            "./assets/fonts/AncizarSans-Regular.ttf",
+                            "./assets/fonts/AncizarSans-Medium.ttf",
+                            "./assets/fonts/AncizarSans-Bold.ttf"
+                        ]
+                    }
+                }
+            ],
             "expo-localization"
         ]
     }

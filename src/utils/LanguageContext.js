@@ -12,7 +12,8 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
 
     // Idioma
-    const [language, setLanguage] = useState(null);
+    const [langRdy, setLangRdy] = useState(false);
+    const [language, setLanguage] = useState(getLocales()[0].languageCode);
     const i18n = new I18n(translations);
     if (language) i18n.locale = language;
     i18n.enableFallback = true
@@ -32,6 +33,7 @@ export const LanguageProvider = ({ children }) => {
     async function getLanguage() {
         const language = await AsyncStorage.getItem(userPreferences.LANGUAGE);
         setLanguage(language || getLocales()[0].languageCode);
+        setLangRdy(true);
     }
 
     return (
