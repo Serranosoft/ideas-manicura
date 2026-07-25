@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { StyleSheet, ToastAndroid, View, TouchableOpacity, Image, Text, Platform } from "react-native";
+import { StyleSheet, ToastAndroid, View, TouchableOpacity, Image, Text, Platform, Alert } from "react-native";
 import { colors, ui } from "../src/utils/styles";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
@@ -50,7 +50,7 @@ export default function ImageWrapper() {
     async function requestPermissions() {
         try {
             setShowOpenAd(false);
-            const { status } = await MediaLibrary.requestPermissionsAsync();
+            const { status } = await MediaLibrary.requestPermissionsAsync(true);
             if (status === "granted") {
                 downloadImage();
             } else {
@@ -75,16 +75,8 @@ export default function ImageWrapper() {
         try {
             const { uri } = await FileSystem.downloadAsync(image, FileSystem.documentDirectory + `${imageName}.jpg`);
 
-            // Agregar la imagen al álbum
-            const asset = await MediaLibrary.createAssetAsync(uri);
-
-            // Obtener el álbum existente o crearlo
-            let album = await MediaLibrary.getAlbumAsync(language.t("_nailDesigns"));
-            if (!album) {
-                album = await MediaLibrary.createAlbumAsync(language.t("_nailDesigns"), asset, true);
-            } else {
-                await MediaLibrary.addAssetsToAlbumAsync([asset], album, true);
-            }
+            // Agregar la imagen a la galería de fotos
+            await MediaLibrary.createAssetAsync(uri);
 
             if (Platform.OS === "android") {
                 ToastAndroid.showWithGravityAndOffset(
@@ -97,8 +89,6 @@ export default function ImageWrapper() {
             } else {
                 Alert.alert(language.t("_toastImageSaved"));
             }
-
-
 
         } catch (error) {
             console.log(error);
