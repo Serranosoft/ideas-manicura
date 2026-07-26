@@ -1,84 +1,165 @@
-import { Link, Stack } from "expo-router"
-import { FlatList, PixelRatio, Pressable, StyleSheet, Text, View } from "react-native"
-import { useContext, useEffect, useState } from "react"
-import { DataContext } from "../src/DataContext"
+import React, { useContext, useEffect, useState } from "react";
+import { FlatList, Pressable, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Link, Stack } from "expo-router";
 import { Image } from "expo-image";
-import { useLanguage } from "../src/utils/LanguageContext"
+import Svg, { Path } from "react-native-svg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { DataContext } from "../src/DataContext";
+import { useLanguage } from "../src/utils/LanguageContext";
+import { colors, ui } from "../src/utils/styles";
 import Header from "../src/layout/header";
+import BottomNav from "../src/layout/BottomNav";
 
-
-const fontScale = PixelRatio.getFontScale();
-const getFontSize = size => size / fontScale;
-
+function HeartIconFilled({ size = 16 }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 24 24" fill="#E53935" stroke="#E53935" strokeWidth="2">
+            <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </Svg>
+    );
+}
 
 export default function Favorites() {
-
     const { language } = useLanguage();
-    
-    // Debo obtener todos los favoritos
-    const { favorites } = useContext(DataContext);
-    const [favoriteImages, setFavoriteImages] = useState([])
+    const { favorites, setFavorites } = useContext(DataContext);
+    const [favoriteImages, setFavoriteImages] = useState([]);
 
-    useEffect(() => setFavoriteImages([...favorites]), [])
+    useEffect(() => {
+        setFavoriteImages([...favorites]);
+    }, [favorites]);
+
+    async function removeFavorite(imageUrl) {
+        const newFavs = favorites.filter((item) => item !== imageUrl);
+        setFavorites(newFavs);
+        await AsyncStorage.setItem("favorites", JSON.stringify(newFavs));
+    }
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header back={true} settings={false} title={language.t("_favoritesTitle")} /> }} />
-            {
-                favoriteImages.length > 0 ?
-                    <View style={styles.list}>
-                        <FlatList
-                            contentContainerStyle={{ paddingBottom: 16 }}
-                            data={favoriteImages}
-                            numColumns={2}
-                            initialNumToRender={6}
-                            renderItem={({ item, i }) => {
-                                return (
-                                    <View key={i} style={styles.itemWrapper}>
-                                        <Link asChild href={{ pathname: "/image", params: { image: item } }}>
-                                            <Pressable style={styles.item}>
-                                                <Image transition={1000} style={styles.image} source={item} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} />
-                                            </Pressable>
-                                        </Link>
-                                    </View>
-                                )
-                            }}
-                        />
-                    </View>
-                    :
-                    <Text style={{ fontSize: getFontSize(27), textAlign: "center" }}>{language.t("_noFavorites")}</Text>
+            <Stack.Screen options={{ header: () => <Header title={language.t("_favoritesTitle")} /> }} />
 
-            }
+            <View style={styles.headerArea}>
+                <Text style={ui.badgeLabel}>{language.t("_myFavorites")}</Text>
+                <Text style={ui.h2}>{language.t("_favoritesTitle")}</Text>
+            </View>
+
+            {favoriteImages.length > 0 ? (
+                <View style={styles.listWrapper}>
+                    <FlatList
+                        contentContainerStyle={styles.listContent}
+                        data={favoriteImages}
+                        numColumns={2}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={(item, index) => `${item}-${index}`}
+                        renderItem={({ item }) => (
+                            <View style={styles.cardContainer}>
+                                <Link asChild href={{ pathname: "/image", params: { image: item } }}>
+                                    <Pressable style={styles.card}>
+                                        <Image
+                                            transition={500}
+                                            style={styles.image}
+                                            source={item}
+                                            placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"}
+                                        />
+                                        <TouchableOpacity
+                                            style={styles.favBadgeCircle}
+                                            activeOpacity={0.8}
+                                            onPress={(e) => {
+                                                e.stopPropagation();
+                                                removeFavorite(item);
+                                            }}
+                                        >
+                                            <HeartIconFilled size={15} />
+                                        </TouchableOpacity>
+                                    </Pressable>
+                                </Link>
+                            </View>
+                        )}
+                    />
+                </View>
+            ) : (
+                <View style={styles.emptyContainer}>
+                    <View style={styles.emptyIconCircle}>
+                        <HeartIconFilled size={32} />
+                    </View>
+                    <Text style={styles.emptyText}>{language.t("_noFavorites")}</Text>
+                </View>
+            )}
+
+            <BottomNav activeTab="favorites" />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        gap: 24,
-        alignItems: "center",
-        justifyContent: "center"
+        backgroundColor: colors.background,
     },
-
-    list: {
+    headerArea: {
+        paddingHorizontal: 20,
+        paddingTop: 12,
+        paddingBottom: 10,
+    },
+    listWrapper: {
         flex: 1,
-        width: "100%",
+        paddingHorizontal: 10,
     },
-
-    itemWrapper: {
+    listContent: {
+        paddingBottom: 24,
+    },
+    cardContainer: {
         flex: 1,
-        height: 200,
-        margin: 5,
+        aspectRatio: 1,
+        margin: 6,
     },
-
-    item: {
+    card: {
+        flex: 1,
+        borderRadius: 16,
+        overflow: "hidden",
+        backgroundColor: colors.cardBg,
         position: "relative",
-        height: "100%",
+        elevation: 2,
+        shadowColor: "#2C221E",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.08,
+        shadowRadius: 6,
     },
-
     image: {
         width: "100%",
         height: "100%",
-    }
-})
+    },
+    favBadgeCircle: {
+        position: "absolute",
+        top: 8,
+        right: 8,
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: "rgba(255, 255, 255, 0.95)",
+        alignItems: "center",
+        justifyContent: "center",
+        elevation: 2,
+    },
+    emptyContainer: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 40,
+    },
+    emptyIconCircle: {
+        width: 68,
+        height: 68,
+        borderRadius: 34,
+        backgroundColor: colors.badgeBg,
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 16,
+    },
+    emptyText: {
+        fontFamily: "ancizar-medium",
+        fontSize: 15,
+        color: colors.textMuted,
+        textAlign: "center",
+        lineHeight: 22,
+    },
+});
