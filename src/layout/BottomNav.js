@@ -36,6 +36,18 @@ function HeartIcon({ active }) {
     );
 }
 
+function CalendarIcon({ active }) {
+    const color = active ? colors.accent : "#9E9085";
+    return (
+        <Svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <Rect x="3" y="4" width="18" height="18" rx="2" ry="2" fill={active ? `${colors.accent}15` : "none"} />
+            <Path d="M16 2v4" />
+            <Path d="M8 2v4" />
+            <Path d="M3 10h18" />
+        </Svg>
+    );
+}
+
 export default function BottomNav({ activeTab }) {
     const { language } = useLanguage();
 
@@ -57,6 +69,12 @@ export default function BottomNav({ activeTab }) {
             label: language.t('_navFavorites'),
             icon: HeartIcon,
             pathname: '/favorites',
+        },
+        {
+            key: 'appointments',
+            label: language.t('_navAppointments'),
+            icon: CalendarIcon,
+            pathname: '/appointments',
         },
     ];
 

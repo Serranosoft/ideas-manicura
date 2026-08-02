@@ -13,10 +13,23 @@ import { useLanguage } from "../src/utils/LanguageContext";
 import Header from "../src/layout/header";
 import { AdsContext, DataContext } from "../src/DataContext";
 
+import AssignDesignModal from "../src/components/AssignDesignModal";
+
 function HeartIconAction({ isFav, size = 20 }) {
     return (
         <Svg width={size} height={size} viewBox="0 0 24 24" fill={isFav ? "#E53935" : "none"} stroke={isFav ? "#E53935" : colors.textDark} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
             <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </Svg>
+    );
+}
+
+function CalendarIconAction({ size = 20 }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={colors.textDark} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <Path d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" />
+            <Path d="M16 2v4" />
+            <Path d="M8 2v4" />
+            <Path d="M3 10h18" />
         </Svg>
     );
 }
@@ -40,6 +53,7 @@ export default function ImageWrapper() {
     const { favorites, setFavorites } = useContext(DataContext);
     const { adsLoaded, setShowOpenAd } = useContext(AdsContext);
     const [isFavorite, setIsFavorite] = useState(false);
+    const [assignModalVisible, setAssignModalVisible] = useState(false);
 
     useEffect(() => {
         if (image) {
@@ -136,9 +150,15 @@ export default function ImageWrapper() {
                         onPress={handleFavorite}
                     >
                         <HeartIconAction isFav={isFavorite} size={20} />
-                        <Text style={[styles.favBtnText, isFavorite && styles.favBtnTextActive]}>
-                            {isFavorite ? language.t("_removeFavorites") : language.t("_addFavorites")}
-                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.assignCitaBtn}
+                        activeOpacity={0.8}
+                        onPress={() => setAssignModalVisible(true)}
+                    >
+                        <CalendarIconAction size={18} />
+                        <Text style={styles.assignCitaBtnText}>{language.t("_navAppointments")}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -151,6 +171,12 @@ export default function ImageWrapper() {
                     </TouchableOpacity>
                 </View>
             </View>
+
+            <AssignDesignModal
+                visible={assignModalVisible}
+                onClose={() => setAssignModalVisible(false)}
+                image={image}
+            />
         </View>
     );
 }
@@ -198,24 +224,29 @@ const styles = StyleSheet.create({
         maxWidth: 380,
     },
     favBtn: {
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 10,
+        paddingHorizontal: 14,
+        borderRadius: 24,
+        backgroundColor: "#F4ECE6",
+    },
+    assignCitaBtn: {
         flexDirection: "row",
         alignItems: "center",
-        gap: 8,
+        gap: 6,
         paddingVertical: 10,
-        paddingHorizontal: 16,
+        paddingHorizontal: 14,
         borderRadius: 24,
         backgroundColor: "#F4ECE6",
         flex: 1,
-        marginRight: 8,
+        marginHorizontal: 8,
         justifyContent: "center",
     },
-    favBtnText: {
+    assignCitaBtnText: {
         fontFamily: "ancizar-bold",
-        fontSize: 13.5,
+        fontSize: 13,
         color: colors.textDark,
-    },
-    favBtnTextActive: {
-        color: "#E53935",
     },
     downloadBtn: {
         flexDirection: "row",

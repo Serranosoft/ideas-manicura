@@ -5,7 +5,7 @@ import { ui } from '../utils/styles';
 import Button from '../components/button';
 import { useLanguage } from '../utils/LanguageContext';
 
-const VERSION_MODAL = 'v1';
+const VERSION_MODAL = 'v2';
 
 export default function UpdatesModal() {
     const [visible, setVisible] = useState(false);
@@ -34,6 +34,7 @@ export default function UpdatesModal() {
                     <Text style={ui.text}>{language.t("_updateList1")}</Text>
                     <Text style={ui.text}>{language.t("_updateList2")}</Text>
                     <Text style={ui.text}>{language.t("_updateList3")}</Text>
+                    <Text style={ui.text}>{language.t("_updateList4")}</Text>
                     <Button text={language.t("_updateButton")} onClick={closeModal} />
                 </View>
             </View>

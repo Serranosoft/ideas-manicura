@@ -144,14 +144,6 @@ export default function NewDesigns() {
                                             </TouchableOpacity>
                                         </Pressable>
                                     </Link>
-                                    <View style={styles.cardInfoArea}>
-                                        <Text style={styles.designTitle} numberOfLines={1}>
-                                            {item.title}
-                                        </Text>
-                                        <Text style={styles.designAuthor} numberOfLines={1}>
-                                            {item.author}
-                                        </Text>
-                                    </View>
                                 </View>
                             );
                         }}

@@ -12,6 +12,8 @@ import * as StoreReview from "expo-store-review";
 import { userPreferences } from "../src/utils/user-preferences";
 import * as Notifications from 'expo-notifications';
 
+import { scheduleAppointmentNotification, cancelAppointmentNotification } from "../src/utils/appointmentNotifications";
+
 export default function Layout() {
 
     // Gestión de anuncios
@@ -22,6 +24,10 @@ export default function Layout() {
 
     // Gestión de favoritos
     const [favorites, setFavorites] = useState([]);
+
+    // Gestión de citas y salones guardados
+    const [appointments, setAppointments] = useState([]);
+    const [savedSalons, setSavedSalons] = useState([]);
 
     // Cargar base de datos, preferencias de usuario y notificaciones
     useEffect(() => {
@@ -35,6 +41,24 @@ export default function Layout() {
                 setFavorites(JSON.parse(value));
             }
         }
+
+        async function getAppointments() {
+            const value = await AsyncStorage.getItem("appointments");
+            if (value !== null) {
+                setAppointments(JSON.parse(value));
+            }
+        }
+
+        async function getSavedSalons() {
+            const value = await AsyncStorage.getItem("savedSalons");
+            if (value !== null) {
+                setSavedSalons(JSON.parse(value));
+            } else {
+                setSavedSalons([]);
+                await AsyncStorage.setItem("savedSalons", JSON.stringify([]));
+            }
+        }
+
         // 1.2 Borrar favoritos si es la primera vez que inicializa la app (debido a migracion del hosting)
         async function isFirstTime() {
             const value = await AsyncStorage.getItem("FIRST_LAUNCH_APP_2");
@@ -47,7 +71,78 @@ export default function Layout() {
         configureNotifications();
         isFirstTime();
         getFavorites();
+        getAppointments();
+        getSavedSalons();
     }, [])
+
+    async function addSavedSalon(name) {
+        if (!name || savedSalons.includes(name)) return;
+        const updated = [...savedSalons, name];
+        setSavedSalons(updated);
+        await AsyncStorage.setItem("savedSalons", JSON.stringify(updated));
+    }
+
+    async function deleteSavedSalon(name) {
+        const updated = savedSalons.filter((s) => s !== name);
+        setSavedSalons(updated);
+        await AsyncStorage.setItem("savedSalons", JSON.stringify(updated));
+    }
+
+    async function saveAppointments(newAppointments) {
+        setAppointments(newAppointments);
+        await AsyncStorage.setItem("appointments", JSON.stringify(newAppointments));
+    }
+
+    async function addAppointment(appointmentData) {
+        const id = Date.now().toString();
+        let newApp = {
+            id,
+            place: appointmentData.place || "",
+            date: appointmentData.date || "",
+            time: appointmentData.time || "12:00",
+            notes: appointmentData.notes || "",
+            image: appointmentData.image || null,
+            created: new Date().toISOString(),
+        };
+
+        const notificationId = await scheduleAppointmentNotification(newApp);
+        if (notificationId) {
+            newApp.notificationId = notificationId;
+        }
+
+        const updated = [...appointments, newApp];
+        await saveAppointments(updated);
+        return newApp;
+    }
+
+    async function updateAppointment(id, updatedData) {
+        const existing = appointments.find((a) => a.id === id);
+        if (!existing) return;
+
+        let merged = { ...existing, ...updatedData };
+        const notificationId = await scheduleAppointmentNotification(merged);
+        if (notificationId) {
+            merged.notificationId = notificationId;
+        }
+
+        const updated = appointments.map((a) => (a.id === id ? merged : a));
+        await saveAppointments(updated);
+    }
+
+    async function deleteAppointment(id) {
+        const target = appointments.find((a) => a.id === id);
+        if (target && target.notificationId) {
+            await cancelAppointmentNotification(target.notificationId);
+        }
+        const updated = appointments.filter((a) => a.id !== id);
+        await saveAppointments(updated);
+    }
+
+    async function assignImageToAppointment(appointmentId, imageUri) {
+        const target = appointments.find((a) => a.id === appointmentId);
+        if (!target) return;
+        await updateAppointment(appointmentId, { image: imageUri });
+    }
 
 
     useEffect(() => {
@@ -95,7 +190,19 @@ export default function Layout() {
         <View style={styles.container}>
             <AdsHandler ref={adsHandlerRef} setAdsLoaded={setAdsLoaded} showOpenAd={showOpenAd} setShowOpenAd={setShowOpenAd} adsLoaded={adsLoaded} />
             <LanguageProvider>
-                <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites }}>
+                <DataContext.Provider value={{
+                    favorites,
+                    setFavorites,
+                    appointments,
+                    setAppointments,
+                    addAppointment,
+                    updateAppointment,
+                    deleteAppointment,
+                    assignImageToAppointment,
+                    savedSalons,
+                    addSavedSalon,
+                    deleteSavedSalon,
+                }}>
                     <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd, adsLoaded: adsLoaded }}>
                         <GestureHandlerRootView style={styles.wrapper}>
                             <Stack />

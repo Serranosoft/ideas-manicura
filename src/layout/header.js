@@ -58,41 +58,13 @@ export default function Header({ title, back, settings = true }) {
 
             <View style={styles.rightContainer}>
                 {settings && (
-                    <Menu
-                        visible={visible}
-                        style={styles.menuBox}
-                        onRequestClose={hideMenu}
-                        anchor={
-                            <TouchableWithoutFeedback onPress={showMenu}>
-                                <View style={styles.settingsIconWrapper}>
-                                    <SettingsIcon />
-                                </View>
-                            </TouchableWithoutFeedback>
-                        }
+                    <TouchableOpacity
+                        style={styles.settingsIconWrapper}
+                        activeOpacity={0.7}
+                        onPress={() => router.push("/settings")}
                     >
-                        <MenuItem
-                            onPress={() => {
-                                router.push("settings");
-                                hideMenu();
-                            }}
-                        >
-                            <View style={styles.menuRow}>
-                                <SettingsIcon size={16} />
-                                <Text style={styles.menuText}>{language.t("_settingsLabel")}</Text>
-                            </View>
-                        </MenuItem>
-                        <MenuItem
-                            onPress={() => {
-                                router.push("favorites");
-                                hideMenu();
-                            }}
-                        >
-                            <View style={styles.menuRow}>
-                                <HeartMenuIcon size={16} />
-                                <Text style={styles.menuText}>{language.t("_myFavorites")}</Text>
-                            </View>
-                        </MenuItem>
-                    </Menu>
+                        <SettingsIcon />
+                    </TouchableOpacity>
                 )}
             </View>
         </View>

@@ -10,6 +10,8 @@ import { colors, ui } from "../src/utils/styles";
 import Header from "../src/layout/header";
 import BottomNav from "../src/layout/BottomNav";
 
+import AssignDesignModal from "../src/components/AssignDesignModal";
+
 function HeartIconFilled({ size = 16 }) {
     return (
         <Svg width={size} height={size} viewBox="0 0 24 24" fill="#E53935" stroke="#E53935" strokeWidth="2">
@@ -18,10 +20,22 @@ function HeartIconFilled({ size = 16 }) {
     );
 }
 
+function CalendarBadgeIcon({ size = 15 }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={colors.accent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <Path d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" />
+            <Path d="M16 2v4" />
+            <Path d="M8 2v4" />
+            <Path d="M3 10h18" />
+        </Svg>
+    );
+}
+
 export default function Favorites() {
     const { language } = useLanguage();
     const { favorites, setFavorites } = useContext(DataContext);
     const [favoriteImages, setFavoriteImages] = useState([]);
+    const [selectedImageForAssign, setSelectedImageForAssign] = useState(null);
 
     useEffect(() => {
         setFavoriteImages([...favorites]);
@@ -61,6 +75,16 @@ export default function Favorites() {
                                             placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"}
                                         />
                                         <TouchableOpacity
+                                            style={styles.assignBadgeCircle}
+                                            activeOpacity={0.8}
+                                            onPress={(e) => {
+                                                e.stopPropagation();
+                                                setSelectedImageForAssign(item);
+                                            }}
+                                        >
+                                            <CalendarBadgeIcon size={15} />
+                                        </TouchableOpacity>
+                                        <TouchableOpacity
                                             style={styles.favBadgeCircle}
                                             activeOpacity={0.8}
                                             onPress={(e) => {
@@ -84,6 +108,12 @@ export default function Favorites() {
                     <Text style={styles.emptyText}>{language.t("_noFavorites")}</Text>
                 </View>
             )}
+
+            <AssignDesignModal
+                visible={Boolean(selectedImageForAssign)}
+                onClose={() => setSelectedImageForAssign(null)}
+                image={selectedImageForAssign}
+            />
 
             <BottomNav activeTab="favorites" />
         </View>
@@ -127,6 +157,18 @@ const styles = StyleSheet.create({
     image: {
         width: "100%",
         height: "100%",
+    },
+    assignBadgeCircle: {
+        position: "absolute",
+        top: 8,
+        left: 8,
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: "rgba(255, 255, 255, 0.95)",
+        alignItems: "center",
+        justifyContent: "center",
+        elevation: 2,
     },
     favBadgeCircle: {
         position: "absolute",

@@ -74,35 +74,55 @@ export default function Home() {
     const trendingItems = [
         {
             id: "trend-1",
-            badge: language.t("_trendBadge1"),
-            title: language.t("_trendTitle1"),
-            categoryName: "Efecto espejo",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/unas-efecto-espejo-16_caury2.jpg",
+            badge: "AHORA MISMO",
+            title: "Tendencia Chic",
+            categoryName: "Aesthetic",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_34_551471730_17982613121880938_1782766545229619605_n.jpg",
         },
         {
             id: "trend-2",
-            badge: language.t("_trendBadge2"),
-            title: language.t("_trendTitle2"),
+            badge: "NUEVO ESTILO",
+            title: "Brillo & Elegancia",
             categoryName: "Francesas",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/kuhd2svxnqzdz2rnurqk.jpg",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_45_496826612_17967872528880938_3958946590144160765_n.jpg",
         },
         {
             id: "trend-3",
-            badge: language.t("_trendBadge3"),
-            title: language.t("_trendTitle3"),
-            categoryName: "3d",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/p9uqaktfgoydektkepth.jpg",
+            badge: "TOP DISEÑO",
+            title: "Detalles Etéreos",
+            categoryName: "Coquette",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_43_504174056_17970729461880938_5267083542416700930_n.jpg",
         },
         {
             id: "trend-4",
-            badge: language.t("_trendBadge4"),
-            title: language.t("_trendTitle4"),
-            categoryName: "Flores",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/unas-flores-27_zocavc.jpg",
+            badge: "TRENDING TOP",
+            title: "Glitter & Glamour",
+            categoryName: "3d",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_24_704592033_18085427648623807_6871529267577361798_n.jpg",
+        },
+        {
+            id: "trend-5",
+            badge: "DESTACADO TOP",
+            title: "Tendencia Exclusiva",
+            categoryName: "Efecto espejo",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_53_473626332_17954604791880938_2241174342439885299_n.jpg",
         },
     ];
 
-    const popularDesigns = rawMedia.map((item, idx) => {
+    // Priorizar diseños de Verano y 3D para la sección de Populares
+    const summerItems = rawMedia.filter((item) => item.categoria === "verano");
+    const d3Items = rawMedia.filter((item) => item.categoria === "3d");
+    const otherItems = rawMedia.filter((item) => item.categoria !== "verano" && item.categoria !== "3d");
+
+    const priorityItems = [];
+    const maxLen = Math.max(summerItems.length, d3Items.length);
+    for (let i = 0; i < maxLen; i++) {
+        if (i < summerItems.length) priorityItems.push(summerItems[i]);
+        if (i < d3Items.length) priorityItems.push(d3Items[i]);
+    }
+    const sortedMedia = [...priorityItems, ...otherItems];
+
+    const popularDesigns = sortedMedia.map((item, idx) => {
         const titleKey = `_designName${idx % 30}`;
         const localizedTitle = language.t(titleKey);
         const artist = ARTIST_NAMES[idx % ARTIST_NAMES.length];
@@ -173,9 +193,12 @@ export default function Home() {
                             <Link
                                 key={item.id}
                                 asChild
-                                href={{ pathname: "/gallery", params: { name: item.categoryName, title: item.title } }}
+                                href={{ pathname: "/image", params: { image: item.image } }}
                             >
-                                <Pressable style={styles.trendCard}>
+                                <Pressable
+                                    style={styles.trendCard}
+                                    onPress={() => setAdTrigger((prev) => prev + 1)}
+                                >
                                     <Image
                                         transition={500}
                                         style={styles.trendImage}
@@ -245,14 +268,6 @@ export default function Home() {
                                                 </TouchableOpacity>
                                             </Pressable>
                                         </Link>
-                                        <View style={styles.cardInfoArea}>
-                                            <Text style={styles.designTitle} numberOfLines={1}>
-                                                {item.title}
-                                            </Text>
-                                            <Text style={styles.designAuthor} numberOfLines={1}>
-                                                {item.author}
-                                            </Text>
-                                        </View>
                                     </View>
                                 );
                             })}
@@ -309,14 +324,6 @@ export default function Home() {
                                                 </TouchableOpacity>
                                             </Pressable>
                                         </Link>
-                                        <View style={styles.cardInfoArea}>
-                                            <Text style={styles.designTitle} numberOfLines={1}>
-                                                {item.title}
-                                            </Text>
-                                            <Text style={styles.designAuthor} numberOfLines={1}>
-                                                {item.author}
-                                            </Text>
-                                        </View>
                                     </View>
                                 );
                             })}

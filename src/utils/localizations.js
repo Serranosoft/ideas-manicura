@@ -35,6 +35,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Tono mate",
         _mirrorTitle: "Efecto espejo",
+        _auraTitle: "Efecto aura",
+        _feriaTitle: "Feria",
 
         // Favoritos
         _addFavorites: "Añadir a favoritos",
@@ -42,6 +44,37 @@ export const translations = {
         _favoritesTitle: "Mis diseños favoritos",
         _noFavorites: "No tienes ningún diseño guardado en favoritos",
         _myFavorites: "Mis favoritos",
+
+        // Citas
+        _navAppointments: "Citas",
+        _appointmentsTitle: "Mis Citas de Uñas",
+        _myAppointments: "Próximas Citas",
+        _addAppointment: "Nueva Cita",
+        _editAppointment: "Editar Cita",
+        _placeSalon: "Salón / Lugar",
+        _saveSalonOption: "Guardar este salón para futuras citas",
+        _deleteSalonTitle: "Eliminar salón guardado",
+        _deleteSalonConfirm: "¿Deseas eliminar este salón de tus salones guardados?",
+        _dateLabel: "Fecha",
+        _timeLabel: "Hora",
+        _notesLabel: "Notas adicionales",
+        _assignDesign: "Asignar a Cita",
+        _assignDesignBtn: "+ Asignar diseño",
+        _assignedDesign: "Diseño Asignado",
+        _changeDesign: "Cambiar diseño",
+        _removeDesign: "Quitar diseño",
+        _selectAppointment: "Selecciona una cita",
+        _createNewAppointmentWithDesign: "+ Crear nueva cita con este diseño",
+        _noAppointments: "No tienes ninguna cita agendada",
+        _noAppointmentsDesc: "Agrega tu próxima cita para recordar la fecha, hora, lugar y el diseño de uñas que te vas a hacer.",
+        _appointmentSaved: "Cita guardada correctamente",
+        _appointmentDeleted: "Cita eliminada",
+        _confirmDeleteAppointment: "¿Estás seguro de que deseas eliminar esta cita?",
+        _scheduleAppointment: "Agendar Cita",
+        _placePlaceholder: "Ej. Manicura Studio, Nails Bar...",
+        _notesPlaceholder: "Ej. Llevar referencia de color rosa pastel...",
+        _reminderNotificationTitle: "¡Recordatorio de tu cita de uñas!",
+        _reminderNotificationBody: "Hoy tienes cita en %place% a las %time%. ¡Muestra tu diseño!",
 
         // Imágenes
         _nailDesigns: "Diseños de uñas",
@@ -109,11 +142,12 @@ export const translations = {
         _designName29: "Menta Fresca",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Novedades",
-        _updateList1: "• ¡Nuevos diseños disponibles en todas las colecciones! 💅",
-        _updateList2: "• Descubre la nueva colección: ¡Uñas Espejo! ✨",
-        _updateList3: "• Ahora puedes usar la app en tu idioma favorito 🌍",
-        _updateButton: "Cerrar",
+        _updateTitle: "🎉 ¡Novedades de la actualización!",
+        _updateList1: "✨ Nuevo diseño moderno y renovado de la app",
+        _updateList2: "🖼️ +100 imágenes nuevas de inspiración",
+        _updateList3: "💅 2 nuevas categorías: Efecto Aura y Feria",
+        _updateList4: "📅 Agenda tu próxima cita y prepara tu diseño",
+        _updateButton: "¡Genial!",
 
         // Ajustes
         _settingsApp: "Ajustes de la aplicación",
@@ -161,6 +195,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Matte tone",
         _mirrorTitle: "Mirror effect",
+        _auraTitle: "Aura effect",
+        _feriaTitle: "Fair",
 
         // Favoritos
         _addFavorites: "Add to favorites",
@@ -168,6 +204,37 @@ export const translations = {
         _favoritesTitle: "My favorite designs",
         _noFavorites: "You don’t have any designs saved in favorites",
         _myFavorites: "My favorites",
+
+        // Citas
+        _navAppointments: "Appointments",
+        _appointmentsTitle: "My Nail Appointments",
+        _myAppointments: "Upcoming Appointments",
+        _addAppointment: "New Appointment",
+        _editAppointment: "Edit Appointment",
+        _placeSalon: "Salon / Place",
+        _saveSalonOption: "Save this salon for future appointments",
+        _deleteSalonTitle: "Delete saved salon",
+        _deleteSalonConfirm: "Do you want to delete this salon from your saved salons?",
+        _dateLabel: "Date",
+        _timeLabel: "Time",
+        _notesLabel: "Additional notes",
+        _assignDesign: "Assign to Appointment",
+        _assignDesignBtn: "+ Assign design",
+        _assignedDesign: "Assigned Design",
+        _changeDesign: "Change design",
+        _removeDesign: "Remove design",
+        _selectAppointment: "Select an appointment",
+        _createNewAppointmentWithDesign: "+ Create new appointment with this design",
+        _noAppointments: "You have no scheduled appointments",
+        _noAppointmentsDesc: "Add your next appointment to remember the date, time, salon, and nail design.",
+        _appointmentSaved: "Appointment saved successfully",
+        _appointmentDeleted: "Appointment deleted",
+        _confirmDeleteAppointment: "Are you sure you want to delete this appointment?",
+        _scheduleAppointment: "Book Appointment",
+        _placePlaceholder: "e.g. Nails Studio, Manicure Spa...",
+        _notesPlaceholder: "e.g. Bring pastel pink reference photo...",
+        _reminderNotificationTitle: "Nail Appointment Reminder!",
+        _reminderNotificationBody: "You have an appointment today at %place% at %time%. Don't forget your design!",
 
         // Imágenes
         _nailDesigns: "Nail designs",
@@ -235,11 +302,12 @@ export const translations = {
         _designName29: "Fresh Mint",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 What’s New",
-        _updateList1: "• New designs available in all collections! 💅",
-        _updateList2: "• Discover the new collection: Mirror Nails! ✨",
-        _updateList3: "• You can now use the app in your favorite language 🌍",
-        _updateButton: "Close",
+        _updateTitle: "🎉 What’s New!",
+        _updateList1: "✨ Fresh new app design",
+        _updateList2: "🖼️ +100 new inspiration images",
+        _updateList3: "💅 2 new categories: Aura Effect & Fair",
+        _updateList4: "📅 Book your next appointment & plan your design",
+        _updateButton: "Got it!",
 
         // Ajustes
         _settingsApp: "App settings",
@@ -287,6 +355,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Tons mats",
         _mirrorTitle: "Effet miroir",
+        _auraTitle: "Effet aura",
+        _feriaTitle: "Foire",
 
         // Favoritos
         _addFavorites: "Ajouter aux favoris",
@@ -304,11 +374,12 @@ export const translations = {
         _homeTitle: "Idées et designs d’ongles",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Nouveautés",
-        _updateList1: "• Nouveaux designs disponibles dans toutes les collections ! 💅",
-        _updateList2: "• Découvrez la nouvelle collection : Ongles Miroir ! ✨",
-        _updateList3: "• Vous pouvez maintenant utiliser l’application dans votre langue préférée 🌍",
-        _updateButton: "Fermer",
+        _updateTitle: "🎉 Quoi de neuf !",
+        _updateList1: "✨ Nouveau design moderne de l'application",
+        _updateList2: "🖼️ +100 nouvelles images d'inspiration",
+        _updateList3: "💅 2 nouvelles catégories : Effet Aura et Foire",
+        _updateList4: "📅 Prenez votre prochain rendez-vous et préparez votre modelo",
+        _updateButton: "Super !",
 
         // Ajustes
         _settingsApp: "Paramètres de l’application",
@@ -354,6 +425,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "मैट टोन",
         _mirrorTitle: "मिरर इफेक्ट",
+        _auraTitle: "ऑरा इफेक्ट",
+        _feriaTitle: "फेयर",
 
         // Favoritos
         _addFavorites: "पसंदीदा में जोड़ें",
@@ -371,11 +444,12 @@ export const translations = {
         _homeTitle: "नेल आइडिया और डिज़ाइन",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 नई अपडेट्स",
-        _updateList1: "• सभी कलेक्शंस में नए डिज़ाइन उपलब्ध हैं! 💅",
-        _updateList2: "• नई कलेक्शन खोजें: मिरर नेल्स! ✨",
-        _updateList3: "• अब आप ऐप को अपनी पसंदीदा भाषा में उपयोग कर सकते हैं 🌍",
-        _updateButton: "बंद करें",
+        _updateTitle: "🎉 नया क्या है!",
+        _updateList1: "✨ ऐप का नया और आधुनिक डिज़ाइन",
+        _updateList2: "🖼️ +100 नई प्रेरणादायक तस्वीरें",
+        _updateList3: "💅 2 नई श्रेणियां: ऑरा इफेक्ट और फेयर",
+        _updateList4: "📅 अपना अगला अपॉइंटमेंट बुक करें और डिज़ाइन चुनें",
+        _updateButton: "ठीक है!",
 
         // Ajustes
         _settingsApp: "ऐप सेटिंग्स",
@@ -421,6 +495,8 @@ export const translations = {
         _3dTitle: "ثلاثي الأبعاد",
         _matteTitle: "مطفي اللون",
         _mirrorTitle: "تأثير المرآة",
+        _auraTitle: "تأثير الهالة",
+        _feriaTitle: "معرض",
 
         // Favoritos
         _addFavorites: "إضافة إلى المفضلة",
@@ -438,11 +514,12 @@ export const translations = {
         _homeTitle: "أفكار وتصاميم الأظافر",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 التحديثات الجديدة",
-        _updateList1: "• تصاميم جديدة متوفرة في جميع المجموعات! 💅",
-        _updateList2: "• اكتشف المجموعة الجديدة: أظافر المرآة! ✨",
-        _updateList3: "• يمكنك الآن استخدام التطبيق بلغتك المفضلة 🌍",
-        _updateButton: "إغلاق",
+        _updateTitle: "🎉 ما الجديد!",
+        _updateList1: "✨ تصميم جديد وعصري للتطبيق",
+        _updateList2: "🖼️ +100 صورة إلهام جديدة",
+        _updateList3: "💅 فئتان جديدتان: تأثير الهالة والمعرض",
+        _updateList4: "📅 احجز موعدك القادم وخصّص تصميمك",
+        _updateButton: "حسناً!",
 
         // Ajustes
         _settingsApp: "إعدادات التطبيق",
@@ -488,6 +565,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Matte Farbe",
         _mirrorTitle: "Spiegeleffekt",
+        _auraTitle: "Aura-Effekt",
+        _feriaTitle: "Jahrmarkt",
 
         // Favoritos
         _addFavorites: "Zu Favoriten hinzufügen",
@@ -505,11 +584,12 @@ export const translations = {
         _homeTitle: "Nagelideen und Designs",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Neuigkeiten",
-        _updateList1: "• Neue Designs in allen Kollektionen verfügbar! 💅",
-        _updateList2: "• Entdecke die neue Kollektion: Spiegelnägel! ✨",
-        _updateList3: "• Du kannst die App jetzt in deiner Lieblingssprache verwenden 🌍",
-        _updateButton: "Schließen",
+        _updateTitle: "🎉 Was gibt's Neues!",
+        _updateList1: "✨ Neues, modernes App-Design",
+        _updateList2: "🖼️ +100 neue Inspirationsbilder",
+        _updateList3: "💅 2 neue Kategorien: Aura-Effekt & Jahrmarkt",
+        _updateList4: "📅 Buche deinen nächsten Termin & plane dein Design",
+        _updateButton: "Verstanden!",
 
         // Ajustes
         _settingsApp: "App-Einstellungen",
@@ -555,6 +635,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Warna Doff",
         _mirrorTitle: "Efek Cermin",
+        _auraTitle: "Efek Aura",
+        _feriaTitle: "Pekan Raya",
 
         // Favoritos
         _addFavorites: "Tambahkan ke Favorit",
@@ -572,11 +654,12 @@ export const translations = {
         _homeTitle: "Ide dan Desain Kuku",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Pembaruan Terbaru",
-        _updateList1: "• Desain baru tersedia di semua koleksi! 💅",
-        _updateList2: "• Temukan koleksi baru: Kuku Cermin! ✨",
-        _updateList3: "• Sekarang kamu dapat menggunakan aplikasi dalam bahasa pilihanmu 🌍",
-        _updateButton: "Tutup",
+        _updateTitle: "🎉 Yang Baru!",
+        _updateList1: "✨ Desain aplikasi baru yang lebih segar",
+        _updateList2: "🖼️ +100 foto inspirasi baru",
+        _updateList3: "💅 2 kategori baru: Efek Aura & Pekan Raya",
+        _updateList4: "📅 Jadwalkan janji temu berikutnya & siapkan desainmu",
+        _updateButton: "Siap!",
 
         // Ajustes
         _settingsApp: "Pengaturan Aplikasi",
@@ -622,6 +705,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Tom Fosco",
         _mirrorTitle: "Efeito Espelho",
+        _auraTitle: "Efeito Aura",
+        _feriaTitle: "Feira",
 
         // Favoritos
         _addFavorites: "Adicionar aos Favoritos",
@@ -639,11 +724,12 @@ export const translations = {
         _homeTitle: "Ideias e Designs de Unhas",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Novidades",
-        _updateList1: "• Novos designs disponíveis em todas as coleções! 💅",
-        _updateList2: "• Descubra a nova coleção: Unhas Espelho! ✨",
-        _updateList3: "• Agora você pode usar o app no seu idioma favorito 🌍",
-        _updateButton: "Fechar",
+        _updateTitle: "🎉 Novidades!",
+        _updateList1: "✨ Novo design renovado do aplicativo",
+        _updateList2: "🖼️ +100 novas imagens de inspiração",
+        _updateList3: "💅 2 novas categorias: Efeito Aura e Feira",
+        _updateList4: "📅 Agende sua próxima consulta e prepare seu design",
+        _updateButton: "Entendi!",
 
         // Ajustes
         _settingsApp: "Configurações do Aplicativo",
@@ -689,6 +775,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Матовый оттенок",
         _mirrorTitle: "Зеркальный эффект",
+        _auraTitle: "Эффект ауры",
+        _feriaTitle: "Ярмарка",
 
         // Favoritos
         _addFavorites: "Добавить в избранное",
@@ -706,11 +794,12 @@ export const translations = {
         _homeTitle: "Идеи и дизайны ногтей",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Новинки",
-        _updateList1: "• Новые дизайны доступны во всех коллекциях! 💅",
-        _updateList2: "• Откройте новую коллекцию: Зеркальные ногти! ✨",
-        _updateList3: "• Теперь вы можете использовать приложение на любимом языке 🌍",
-        _updateButton: "Закрыть",
+        _updateTitle: "🎉 Что нового!",
+        _updateList1: "✨ Новый современный дизайн приложения",
+        _updateList2: "🖼️ +100 новых фото для вдохновения",
+        _updateList3: "💅 2 новые категории: Эффект ауры и Ярмарка",
+        _updateList4: "📅 Запишитесь на прием и выберите дизайн",
+        _updateButton: "Отлично!",
 
         // Ajustes
         _settingsApp: "Настройки приложения",
@@ -756,6 +845,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Matowy odcień",
         _mirrorTitle: "Efekt lustra",
+        _auraTitle: "Efekt aury",
+        _feriaTitle: "Jarmark",
 
         // Favoritos
         _addFavorites: "Dodaj do ulubionych",
@@ -773,11 +864,12 @@ export const translations = {
         _homeTitle: "Pomysły i projekty paznokci",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Nowości",
-        _updateList1: "• Nowe projekty dostępne we wszystkich kolekcjach! 💅",
-        _updateList2: "• Odkryj nową kolekcję: Paznokcie lustrzane! ✨",
-        _updateList3: "• Teraz możesz używać aplikacji w swoim ulubionym języku 🌍",
-        _updateButton: "Zamknij",
+        _updateTitle: "🎉 Co nowego!",
+        _updateList1: "✨ Nowy, odświeżony wygląd aplikacji",
+        _updateList2: "🖼️ +100 nowych zdjęć inspiracji",
+        _updateList3: "💅 2 nowe kategorie: Efekt Aury i Jarmark",
+        _updateList4: "📅 Umów kolejną wizytę i przygotuj swój wzór",
+        _updateButton: "Zrozumiano!",
 
         // Ajustes
         _settingsApp: "Ustawienia aplikacji",
@@ -823,6 +915,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Màu mờ",
         _mirrorTitle: "Hiệu ứng gương",
+        _auraTitle: "Hiệu ứng Aura",
+        _feriaTitle: "Hội chợ",
 
         // Favoritos
         _addFavorites: "Thêm vào yêu thích",
@@ -840,11 +934,12 @@ export const translations = {
         _homeTitle: "Ý tưởng và thiết kế móng tay",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Cập nhật mới",
-        _updateList1: "• Các thiết kế mới có sẵn trong tất cả các bộ sưu tập! 💅",
-        _updateList2: "• Khám phá bộ sưu tập mới: Móng gương! ✨",
-        _updateList3: "• Giờ đây bạn có thể sử dụng ứng dụng bằng ngôn ngữ yêu thích 🌍",
-        _updateButton: "Đóng",
+        _updateTitle: "🎉 Có gì mới!",
+        _updateList1: "✨ Giao diện ứng dụng mới hiện đại",
+        _updateList2: "🖼️ +100 hình ảnh truyền cảm hứng mới",
+        _updateList3: "💅 2 danh mục mới: Hiệu ứng Aura & Hội chợ",
+        _updateList4: "📅 Đặt lịch hẹn tiếp theo & chuẩn bị mẫu móng",
+        _updateButton: "Đã hiểu!",
 
         // Ajustes
         _settingsApp: "Cài đặt ứng dụng",
@@ -890,6 +985,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Mat ton",
         _mirrorTitle: "Ayna efekti",
+        _auraTitle: "Aura efekti",
+        _feriaTitle: "Panayır",
 
         // Favoritos
         _addFavorites: "Favorilere ekle",
@@ -907,11 +1004,12 @@ export const translations = {
         _homeTitle: "Tırnak fikirleri ve tasarımları",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Yenilikler",
-        _updateList1: "• Tüm koleksiyonlarda yeni tasarımlar mevcut! 💅",
-        _updateList2: "• Yeni koleksiyonu keşfedin: Ayna tırnaklar! ✨",
-        _updateList3: "• Artık uygulamayı favori dilinizde kullanabilirsiniz 🌍",
-        _updateButton: "Kapat",
+        _updateTitle: "🎉 Yenilikler!",
+        _updateList1: "✨ Yepyeni ve modern uygulama tasarımı",
+        _updateList2: "🖼️ +100 yeni ilham görseli",
+        _updateList3: "💅 2 yeni kategori: Aura Efekti & Panayır",
+        _updateList4: "📅 Bir sonraki randevunu al ve tasarımını hazırla",
+        _updateButton: "Harika!",
 
         // Ajustes
         _settingsApp: "Uygulama ayarları",
@@ -957,6 +1055,8 @@ export const translations = {
         _3dTitle: "3D",
         _matteTitle: "Tono opaco",
         _mirrorTitle: "Effetto specchio",
+        _auraTitle: "Effetto aura",
+        _feriaTitle: "Fiera",
 
         // Favoritos
         _addFavorites: "Aggiungi ai preferiti",
@@ -974,11 +1074,12 @@ export const translations = {
         _homeTitle: "Idee e design per unghie",
 
         // Modal de actualizaciones
-        _updateTitle: "🆕 Novità",
-        _updateList1: "• Nuovi design disponibili in tutte le collezioni! 💅",
-        _updateList2: "• Scopri la nuova collezione: Unghie Specchio! ✨",
-        _updateList3: "• Ora puoi usare l’app nella tua lingua preferita 🌍",
-        _updateButton: "Chiudi",
+        _updateTitle: "🎉 Le Novità!",
+        _updateList1: "✨ Nuovo design dell'app moderno e rinnovato",
+        _updateList2: "🖼️ +100 nuove immagini di ispirazione",
+        _updateList3: "💅 2 nuove categorie: Effetto Aura e Fiera",
+        _updateList4: "📅 Prenota il tuo prossimo appuntamento e prepara il design",
+        _updateButton: "Perfetto!",
 
         // Ajustes
         _settingsApp: "Impostazioni dell’applicazione",
@@ -1023,6 +1124,8 @@ export const translations = {
     _valentinesdayTitle: "روز ولنتاین",
     _3dTitle: "سه‌بعدی",
     _matteTitle: "رنگ مات",
+    _auraTitle: "افکت هاله",
+    _feriaTitle: "نمایشگاه",
     _mirrorTitle: "افکت آینه‌ای",
 
     // Favoritos
@@ -1041,11 +1144,12 @@ export const translations = {
     _homeTitle: "ایده‌ها و طراحی‌های ناخن",
 
     // Modal de actualizaciones
-    _updateTitle: "🆕 به‌روزرسانی‌ها",
-    _updateList1: "• طرح‌های جدید در تمام مجموعه‌ها در دسترس است! 💅",
-    _updateList2: "• مجموعه جدید را کشف کنید: ناخن‌های آینه‌ای! ✨",
-    _updateList3: "• اکنون می‌توانید برنامه را به زبان دلخواه خود استفاده کنید 🌍",
-    _updateButton: "بستن",
+    _updateTitle: "🎉 تغییرات جدید!",
+    _updateList1: "✨ طراحی جدید و تازه برنامه",
+    _updateList2: "🖼️ بیش از ۱۰۰ تصویر الهام‌بخش جدید",
+    _updateList3: "💅 ۲ دسته‌بندی جدید: افکت هاله و نمایشگاه",
+    _updateList4: "📅 نوبت بعدی خود را رزرو کنید و طرحتان را آماده کنید",
+    _updateButton: "عالی!",
 
     // Ajustes
     _settingsApp: "تنظیمات برنامه",
