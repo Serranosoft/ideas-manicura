@@ -1,8 +1,7 @@
 import { Stack } from "expo-router";
-import { View, StatusBar, StyleSheet, AppState } from "react-native";
+import { View, StyleSheet, AppState } from "react-native";
 import { createRef, useEffect, useState } from "react";
 import { AdsContext, DataContext } from "../src/DataContext";
-import { colors } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -11,6 +10,8 @@ import UpdatesModal from "../src/layout/updates-modal";
 import * as StoreReview from "expo-store-review";
 import { userPreferences } from "../src/utils/user-preferences";
 import * as Notifications from 'expo-notifications';
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import { scheduleAppointmentNotification, cancelAppointmentNotification } from "../src/utils/appointmentNotifications";
 
@@ -30,10 +31,6 @@ export default function Layout() {
     const [savedSalons, setSavedSalons] = useState([]);
 
     // Cargar base de datos, preferencias de usuario y notificaciones
-    useEffect(() => {
-        configureNotifications();
-    }, [])
-
     useEffect(() => {
         async function getFavorites() {
             const value = await AsyncStorage.getItem("favorites");

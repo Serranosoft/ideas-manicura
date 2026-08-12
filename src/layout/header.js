@@ -5,6 +5,7 @@ import { router } from "expo-router";
 import { Menu, MenuItem } from "react-native-material-menu";
 import Svg, { Path, Circle } from "react-native-svg";
 import { useLanguage } from "../utils/LanguageContext";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function BackArrowIcon({ color = colors.textDark, size = 20 }) {
     return (
@@ -39,39 +40,46 @@ export default function Header({ title, back, settings = true }) {
     const { language } = useLanguage();
 
     return (
-        <View style={styles.header}>
-            <View style={styles.leftContainer}>
-                {back ? (
-                    <TouchableOpacity style={styles.backBtn} activeOpacity={0.7} onPress={() => router.back()}>
-                        <BackArrowIcon />
-                    </TouchableOpacity>
-                ) : (
-                    <View style={styles.placeholderBox} />
-                )}
-            </View>
+        <SafeAreaView edges={["top"]} style={styles.safeArea}>
 
-            <View style={styles.logoCenter}>
-                <Text style={styles.logoText} numberOfLines={1}>
-                    {title || language.t("_homeTitle")}
-                </Text>
-            </View>
+            <View style={styles.header}>
+                <View style={styles.leftContainer}>
+                    {back ? (
+                        <TouchableOpacity style={styles.backBtn} activeOpacity={0.7} onPress={() => router.back()}>
+                            <BackArrowIcon />
+                        </TouchableOpacity>
+                    ) : (
+                        <View style={styles.placeholderBox} />
+                    )}
+                </View>
 
-            <View style={styles.rightContainer}>
-                {settings && (
-                    <TouchableOpacity
-                        style={styles.settingsIconWrapper}
-                        activeOpacity={0.7}
-                        onPress={() => router.push("/settings")}
-                    >
-                        <SettingsIcon />
-                    </TouchableOpacity>
-                )}
+                <View style={styles.logoCenter}>
+                    <Text style={styles.logoText} numberOfLines={1}>
+                        {title || language.t("_homeTitle")}
+                    </Text>
+                </View>
+
+                <View style={styles.rightContainer}>
+                    {settings && (
+                        <TouchableOpacity
+                            style={styles.settingsIconWrapper}
+                            activeOpacity={0.7}
+                            onPress={() => router.push("/settings")}
+                        >
+                            <SettingsIcon />
+                        </TouchableOpacity>
+                    )}
+                </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    safeArea: {
+        backgroundColor: colors.primary,
+    },
+
     header: {
         flexDirection: "row",
         alignItems: "center",
