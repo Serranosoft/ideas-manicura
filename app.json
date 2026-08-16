@@ -42,7 +42,7 @@
                 "foregroundImage": "./assets/logo-unas.png",
                 "backgroundColor": "#f3e8d6"
             },
-            "versionCode": 19,
+            "versionCode": 20,
             "package": "com.paulaymanu113.nailsdesigns",
             "permissions": [
                 "android.permission.WRITE_EXTERNAL_STORAGE"
