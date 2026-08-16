@@ -1,9 +1,11 @@
 import * as Notifications from "expo-notifications";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { translations } from "./localizations";
 
 export async function scheduleAppointmentNotification(appointment) {
     if (!appointment || !appointment.date || !appointment.time) return null;
     try {
-        const [year, month, day] = appointment.date.split("-").map(Number);
+        const [day, month, year] = appointment.date.split("-").map(Number);
         const [hour, minute] = appointment.time.split(":").map(Number);
 
         const appointmentDate = new Date(year, month - 1, day, hour, minute);
@@ -29,11 +31,16 @@ export async function scheduleAppointmentNotification(appointment) {
                 }
             }
 
-            const placeName = appointment.place ? appointment.place : "tu salón";
+            const storedLocale = await AsyncStorage.getItem("language");
+            const copy = translations[storedLocale] || translations.es;
+            const placeName = appointment.place || copy._placeSalon;
+            const notificationBody = copy._reminderNotificationBody
+                .replace("%place%", placeName)
+                .replace("%time%", appointment.time);
             const notificationId = await Notifications.scheduleNotificationAsync({
                 content: {
-                    title: "¡Recordatorio de tu cita de uñas! 💅",
-                    body: `Tienes cita en ${placeName} a las ${appointment.time}. ¡No olvides llevar tu diseño!`,
+                    title: copy._reminderNotificationTitle,
+                    body: notificationBody,
                     data: { appointmentId: appointment.id },
                 },
                 trigger: { date: finalTrigger },

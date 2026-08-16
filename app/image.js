@@ -12,6 +12,7 @@ import { bannerId } from "../src/utils/constants";
 import { useLanguage } from "../src/utils/LanguageContext";
 import Header from "../src/layout/header";
 import { AdsContext, DataContext } from "../src/DataContext";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import AssignDesignModal from "../src/components/AssignDesignModal";
 
@@ -45,6 +46,7 @@ function DownloadIconAction({ size = 20 }) {
 }
 
 export default function ImageWrapper() {
+    const insets = useSafeAreaInsets();
     const params = useLocalSearchParams();
     const { image } = params;
     const imageName = image ? image.substring(image.lastIndexOf("/") + 1, image.length) : "imagen";
@@ -83,14 +85,14 @@ export default function ImageWrapper() {
             } else {
                 if (Platform.OS === "android") {
                     ToastAndroid.showWithGravityAndOffset(
-                        "No tengo permisos para acceder a la galería de su dispositivo",
+                        language.t("_imagePermissionDenied"),
                         ToastAndroid.LONG,
                         ToastAndroid.BOTTOM,
                         25,
                         50
                     );
                 } else {
-                    Alert.alert("No tengo permisos para acceder a la galería de su dispositivo");
+                    Alert.alert(language.t("_imagePermissionDenied"));
                 }
             }
         } catch (error) {
@@ -123,11 +125,13 @@ export default function ImageWrapper() {
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header back={true} title={language.t("_designDetail")} /> }} />
 
-            <View style={styles.bannerWrapper}>
-                {adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />}
-            </View>
+            {adsLoaded && (
+                <View style={styles.bannerWrapper}>
+                    <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
+                </View>
+            )}
 
-            <View style={styles.zoomContainer}>
+            <View style={[styles.zoomContainer, { paddingBottom: 90 + insets.bottom }]}>
                 {Boolean(image) && (
                     <ImageZoom
                         uri={image}
@@ -142,7 +146,7 @@ export default function ImageWrapper() {
             </View>
 
             {/* Floating Action Bar */}
-            <View style={styles.actionsFloatingContainer}>
+            <View style={[styles.actionsFloatingContainer, { bottom: insets.bottom + 16 }]}>
                 <View style={styles.actionsBar}>
                     <TouchableOpacity
                         style={styles.favBtn}
@@ -189,12 +193,15 @@ const styles = StyleSheet.create({
     bannerWrapper: {
         position: "relative",
         zIndex: 1,
+        minHeight: 60,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: colors.white,
     },
     zoomContainer: {
         flex: 1,
         width: "100%",
         height: "100%",
-        paddingBottom: 90,
     },
     imageZoom: {
         width: "100%",
@@ -202,7 +209,6 @@ const styles = StyleSheet.create({
     },
     actionsFloatingContainer: {
         position: "absolute",
-        bottom: 24,
         left: 20,
         right: 20,
         alignItems: "center",

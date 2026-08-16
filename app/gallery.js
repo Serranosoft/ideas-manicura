@@ -5,8 +5,10 @@ import { Image } from "expo-image";
 import { AdsContext } from "../src/DataContext";
 import { colors } from "../src/utils/styles";
 import Header from "../src/layout/header";
+import { useLanguage } from "../src/utils/LanguageContext";
 
 export default function Gallery() {
+    const { language } = useLanguage();
     const params = useLocalSearchParams();
     const { name, title } = params;
     const [images, setImages] = useState([]);
@@ -39,7 +41,7 @@ export default function Gallery() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header back={true} title={title || "Diseños"} /> }} />
+            <Stack.Screen options={{ header: () => <Header back={true} title={title || language.t("_nailDesigns")} /> }} />
             
             {loading ? (
                 <View style={styles.loaderBox}>

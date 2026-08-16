@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
 import Svg, { Path, Rect } from 'react-native-svg';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../utils/styles';
 import { useLanguage } from '../utils/LanguageContext';
 
@@ -79,7 +80,7 @@ export default function BottomNav({ activeTab }) {
     ];
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView edges={['bottom']} style={styles.container}>
             <View style={styles.content}>
                 {tabs.map((tab) => {
                     const isActive = activeTab === tab.key;
@@ -105,7 +106,7 @@ export default function BottomNav({ activeTab }) {
                     );
                 })}
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -114,7 +115,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderTopWidth: 1,
         borderTopColor: '#F0E8E1',
-        paddingBottom: Platform.OS === 'ios' ? 20 : 10,
         paddingTop: 8,
         elevation: 12,
         shadowColor: '#2C221E',

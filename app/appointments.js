@@ -149,12 +149,13 @@ export default function AppointmentsScreen() {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
 
-    const monthNames = [
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ];
-
-    const weekDays = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+    const calendarLocale = `${language.locale || language._locale || "es"}-u-ca-gregory`;
+    const monthNames = Array.from({ length: 12 }, (_, index) =>
+        new Intl.DateTimeFormat(calendarLocale, { month: "long" }).format(new Date(2024, index, 1))
+    );
+    const weekDays = Array.from({ length: 7 }, (_, index) =>
+        new Intl.DateTimeFormat(calendarLocale, { weekday: "short" }).format(new Date(2024, 0, index + 1))
+    );
 
     function getDaysInMonth(year, month) {
         return new Date(year, month + 1, 0).getDate();
@@ -212,8 +213,8 @@ export default function AppointmentsScreen() {
         setConfirmModalConfig({
             title: language.t("_deleteSalonTitle"),
             message: language.t("_deleteSalonConfirm"),
-            confirmText: "Eliminar",
-            cancelText: "Cancelar",
+            confirmText: language.t("_delete"),
+            cancelText: language.t("_cancel"),
             isDanger: true,
             type: "trash",
             onConfirm: async () => {
@@ -230,7 +231,7 @@ export default function AppointmentsScreen() {
             setConfirmModalConfig({
                 title: language.t("_placeSalon"),
                 message: language.t("_placePlaceholder"),
-                confirmText: "Entendido",
+                confirmText: language.t("_understood"),
                 cancelText: null,
                 isDanger: false,
                 type: "info",
@@ -272,8 +273,8 @@ export default function AppointmentsScreen() {
         setConfirmModalConfig({
             title: language.t("_appointmentsTitle"),
             message: language.t("_confirmDeleteAppointment"),
-            confirmText: "Eliminar",
-            cancelText: "Cancelar",
+            confirmText: language.t("_delete"),
+            cancelText: language.t("_cancel"),
             isDanger: true,
             type: "trash",
             onConfirm: async () => {
@@ -394,7 +395,7 @@ export default function AppointmentsScreen() {
                     {selectedDateStr && (
                         <TouchableOpacity style={styles.clearFilterRow} onPress={() => setSelectedDateStr(null)}>
                             <Text style={styles.clearFilterText}>
-                                Citas para {selectedDateStr}  •  <Text style={styles.clearFilterTextBold}>Ver todas</Text>
+                                {language.t("_appointmentsForDate", { date: selectedDateStr })}  •  <Text style={styles.clearFilterTextBold}>{language.t("_viewAll")}</Text>
                             </Text>
                         </TouchableOpacity>
                     )}
@@ -403,7 +404,7 @@ export default function AppointmentsScreen() {
                 {/* Appointments List */}
                 <View style={styles.listSection}>
                     <Text style={styles.sectionTitle}>
-                        {selectedDateStr ? `Citas para ${selectedDateStr}` : language.t("_myAppointments")} ({filteredAppointments.length})
+                        {selectedDateStr ? language.t("_appointmentsForDate", { date: selectedDateStr }) : language.t("_myAppointments")} ({filteredAppointments.length})
                     </Text>
 
                     {filteredAppointments.length > 0 ? (
@@ -451,7 +452,7 @@ export default function AppointmentsScreen() {
                                             <Image source={item.image} style={styles.assignedThumb} />
                                             <View style={styles.assignedDetails}>
                                                 <Text style={styles.assignedLabel}>{language.t("_nailDesigns")}</Text>
-                                                <Text style={styles.assignedSub}>Toca para ver a pantalla completa</Text>
+                                                <Text style={styles.assignedSub}>{language.t("_tapFullscreen")}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     ) : (
@@ -506,7 +507,7 @@ export default function AppointmentsScreen() {
                             <Text style={styles.fieldLabel}>{language.t("_placeSalon")}</Text>
                             {savedSalons && savedSalons.length > 0 && (
                                 <View style={styles.salonsChipContainer}>
-                                    <Text style={styles.salonChipTitle}>Salones guardados (mantén pulsado para eliminar):</Text>
+                                    <Text style={styles.salonChipTitle}>{language.t("_savedSalonsHint")}</Text>
                                     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.salonsScroll}>
                                         {savedSalons.map((salon, sIdx) => (
                                             <TouchableOpacity
@@ -602,7 +603,7 @@ export default function AppointmentsScreen() {
                                 </View>
                             ) : (
                                 <TouchableOpacity style={styles.pickDesignBox} onPress={() => setShowImagePicker(true)}>
-                                    <Text style={styles.pickDesignText}>+ Elegir diseño de tus Favoritos</Text>
+                                    <Text style={styles.pickDesignText}>{language.t("_chooseFavoriteDesign")}</Text>
                                 </TouchableOpacity>
                             )}
 
@@ -612,7 +613,7 @@ export default function AppointmentsScreen() {
                                     <View style={styles.favPickerHeader}>
                                         <Text style={styles.favPickerTitle}>{language.t("_myFavorites")}</Text>
                                         <TouchableOpacity onPress={() => setShowImagePicker(false)}>
-                                            <Text style={styles.closeFavPickerText}>Cerrar</Text>
+                                            <Text style={styles.closeFavPickerText}>{language.t("_close")}</Text>
                                         </TouchableOpacity>
                                     </View>
                                     {favorites && favorites.length > 0 ? (
@@ -638,7 +639,7 @@ export default function AppointmentsScreen() {
 
                             <View style={styles.formActions}>
                                 <TouchableOpacity style={styles.cancelBtn} onPress={() => setModalVisible(false)}>
-                                    <Text style={styles.cancelBtnText}>Cancelar</Text>
+                                    <Text style={styles.cancelBtnText}>{language.t("_cancel")}</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.saveBtn} onPress={handleSave}>
                                     <Text style={styles.saveBtnText}>{language.t("_scheduleAppointment")}</Text>
@@ -684,6 +685,10 @@ const styles = StyleSheet.create({
     bannerWrapper: {
         position: "relative",
         zIndex: 1,
+        minHeight: 60,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: colors.white,
     },
     scrollContainer: {
         flex: 1,

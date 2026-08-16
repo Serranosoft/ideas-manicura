@@ -1,6 +1,6 @@
-import { Stack } from "expo-router";
+import { Stack, usePathname } from "expo-router";
 import { View, StyleSheet, AppState } from "react-native";
-import { createRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AdsContext, DataContext } from "../src/DataContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AdsHandler from "../src/components/AdsHandler";
@@ -11,17 +11,22 @@ import * as StoreReview from "expo-store-review";
 import { userPreferences } from "../src/utils/user-preferences";
 import * as Notifications from 'expo-notifications';
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { scheduleAppointmentNotification, cancelAppointmentNotification } from "../src/utils/appointmentNotifications";
+import { colors } from "../src/utils/styles";
 
 export default function Layout() {
+    const pathname = usePathname();
 
     // Gestión de anuncios
     const [adsLoaded, setAdsLoaded] = useState(false);
     const [adTrigger, setAdTrigger] = useState(0);
     const [showOpenAd, setShowOpenAd] = useState(true);
-    const adsHandlerRef = createRef();
+    const [privacyOptionsRequired, setPrivacyOptionsRequired] = useState(false);
+    const adsHandlerRef = useRef(null);
+    const reviewRequestedRef = useRef(false);
+    const appOpenBlocked = pathname === "/image" || pathname === "/appointments";
 
     // Gestión de favoritos
     const [favorites, setFavorites] = useState([]);
@@ -143,17 +148,28 @@ export default function Layout() {
 
 
     useEffect(() => {
-        if (adTrigger > 2) {
+        if (adTrigger > 2 && !reviewRequestedRef.current) {
+            reviewRequestedRef.current = true;
             askForReview();
         }
 
-        if (adsLoaded) {
-            if (adTrigger > 5) {
-                adsHandlerRef.current.showIntersitialAd();
+        if (adsLoaded && adTrigger > 5) {
+            const wasShown = adsHandlerRef.current?.tryShowInterstitialAd();
+            if (wasShown) {
                 setAdTrigger(0);
+            } else if (adTrigger > 6) {
+                setAdTrigger(6);
             }
         }
-    }, [adTrigger])
+    }, [adTrigger, adsLoaded])
+
+    async function showPrivacyOptionsForm() {
+        try {
+            await adsHandlerRef.current?.showPrivacyOptionsForm();
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     async function askForReview() {
         try {
@@ -184,32 +200,48 @@ export default function Layout() {
     }
 
     return (
-        <View style={styles.container}>
-            <AdsHandler ref={adsHandlerRef} setAdsLoaded={setAdsLoaded} showOpenAd={showOpenAd} setShowOpenAd={setShowOpenAd} adsLoaded={adsLoaded} />
-            <LanguageProvider>
-                <DataContext.Provider value={{
-                    favorites,
-                    setFavorites,
-                    appointments,
-                    setAppointments,
-                    addAppointment,
-                    updateAppointment,
-                    deleteAppointment,
-                    assignImageToAppointment,
-                    savedSalons,
-                    addSavedSalon,
-                    deleteSavedSalon,
-                }}>
-                    <AdsContext.Provider value={{ setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd, adsLoaded: adsLoaded }}>
-                        <GestureHandlerRootView style={styles.wrapper}>
-                            <Stack />
-                        </GestureHandlerRootView>
-                        <UpdatesModal />
-                    </AdsContext.Provider>
-                </DataContext.Provider>
-            </LanguageProvider>
-            <StatusBar style="light" backgroundColor={colors.primary} />
-        </View>
+        <SafeAreaProvider>
+            <View style={styles.container}>
+                <AdsHandler
+                    ref={adsHandlerRef}
+                    setAdsLoaded={setAdsLoaded}
+                    showOpenAd={showOpenAd}
+                    setShowOpenAd={setShowOpenAd}
+                    adsLoaded={adsLoaded}
+                    appOpenBlocked={appOpenBlocked}
+                    setPrivacyOptionsRequired={setPrivacyOptionsRequired}
+                />
+                <LanguageProvider>
+                    <DataContext.Provider value={{
+                        favorites,
+                        setFavorites,
+                        appointments,
+                        setAppointments,
+                        addAppointment,
+                        updateAppointment,
+                        deleteAppointment,
+                        assignImageToAppointment,
+                        savedSalons,
+                        addSavedSalon,
+                        deleteSavedSalon,
+                    }}>
+                        <AdsContext.Provider value={{
+                            setAdTrigger,
+                            setShowOpenAd,
+                            adsLoaded,
+                            privacyOptionsRequired,
+                            showPrivacyOptionsForm,
+                        }}>
+                            <GestureHandlerRootView style={styles.wrapper}>
+                                <Stack />
+                            </GestureHandlerRootView>
+                            <UpdatesModal />
+                        </AdsContext.Provider>
+                    </DataContext.Provider>
+                </LanguageProvider>
+                <StatusBar style="light" backgroundColor={colors.primary} />
+            </View>
+        </SafeAreaProvider>
     )
 }
 const styles = StyleSheet.create({

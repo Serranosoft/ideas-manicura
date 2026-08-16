@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../utils/styles";
+import { useLanguage } from "../utils/LanguageContext";
 
 function CloseIcon({ size = 20, color = colors.textDark }) {
     return (
@@ -17,6 +18,7 @@ const HOURS = ["08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18",
 const MINUTES = ["00", "15", "30", "45"];
 
 export default function TimePickerModal({ visible, onClose, onSelectTime, initialTime = "17:00" }) {
+    const { language } = useLanguage();
     const [selectedHour, setSelectedHour] = useState(initialTime.split(":")[0] || "17");
     const [selectedMin, setSelectedMin] = useState(initialTime.split(":")[1] || "00");
 
@@ -36,14 +38,14 @@ export default function TimePickerModal({ visible, onClose, onSelectTime, initia
             <View style={styles.overlay}>
                 <View style={styles.card}>
                     <View style={styles.header}>
-                        <Text style={styles.title}>Seleccionar Hora</Text>
+                        <Text style={styles.title}>{language.t("_selectTime")}</Text>
                         <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
                             <CloseIcon />
                         </TouchableOpacity>
                     </View>
 
                     {/* Quick selection chips */}
-                    <Text style={styles.subTitle}>Horas habituales:</Text>
+                    <Text style={styles.subTitle}>{language.t("_usualTimes")}:</Text>
                     <View style={styles.chipsRow}>
                         {QUICK_TIMES.map((t) => (
                             <TouchableOpacity
@@ -58,11 +60,11 @@ export default function TimePickerModal({ visible, onClose, onSelectTime, initia
                         ))}
                     </View>
 
-                    <Text style={[styles.subTitle, { marginTop: 14 }]}>O elige hora exacta:</Text>
+                    <Text style={[styles.subTitle, { marginTop: 14 }]}>{language.t("_exactTime")}:</Text>
                     <View style={styles.pickersContainer}>
                         {/* Hours */}
                         <View style={styles.pickerCol}>
-                            <Text style={styles.colLabel}>Hora</Text>
+                            <Text style={styles.colLabel}>{language.t("_hour")}</Text>
                             <ScrollView style={styles.scrollCol} nestedScrollEnabled showsVerticalScrollIndicator={false}>
                                 {HOURS.map((h) => (
                                     <TouchableOpacity
@@ -71,7 +73,7 @@ export default function TimePickerModal({ visible, onClose, onSelectTime, initia
                                         onPress={() => setSelectedHour(h)}
                                     >
                                         <Text style={[styles.itemText, selectedHour === h && styles.itemTextSelected]}>
-                                            {h}h
+                                            {h}
                                         </Text>
                                     </TouchableOpacity>
                                 ))}
@@ -82,7 +84,7 @@ export default function TimePickerModal({ visible, onClose, onSelectTime, initia
 
                         {/* Minutes */}
                         <View style={styles.pickerCol}>
-                            <Text style={styles.colLabel}>Minutos</Text>
+                            <Text style={styles.colLabel}>{language.t("_minutes")}</Text>
                             <ScrollView style={styles.scrollCol} nestedScrollEnabled showsVerticalScrollIndicator={false}>
                                 {MINUTES.map((m) => (
                                     <TouchableOpacity
@@ -91,7 +93,7 @@ export default function TimePickerModal({ visible, onClose, onSelectTime, initia
                                         onPress={() => setSelectedMin(m)}
                                     >
                                         <Text style={[styles.itemText, selectedMin === m && styles.itemTextSelected]}>
-                                            {m}m
+                                            {m}
                                         </Text>
                                     </TouchableOpacity>
                                 ))}
@@ -100,7 +102,9 @@ export default function TimePickerModal({ visible, onClose, onSelectTime, initia
                     </View>
 
                     <TouchableOpacity style={styles.confirmBtn} onPress={handleConfirmCustom}>
-                        <Text style={styles.confirmBtnText}>Confirmar ({selectedHour}:{selectedMin})</Text>
+                        <Text style={styles.confirmBtnText}>
+                            {language.t("_confirmTime", { time: `${selectedHour}:${selectedMin}` })}
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </View>

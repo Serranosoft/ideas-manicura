@@ -1,4 +1,6 @@
-export const translations = {
+import { supplementalTranslations } from "./supplemental-localizations.js";
+
+const baseTranslations = {
     es: {
 
         // Lista de idiomas
@@ -1160,4 +1162,24 @@ export const translations = {
     _notificationTitle: "زمان تغییر فرا رسیده است!", 
     _notificationBody: "فراموش نکن طراحی بعدی خود را جستجو و ذخیره کنی 💅",
 }
-}
+};
+
+export const translations = Object.fromEntries(
+    Object.entries(baseTranslations).map(([locale, values]) => {
+        const localizedDesignNames = Object.fromEntries(
+            Array.from({ length: 30 }, (_, index) => [
+                `_designName${index}`,
+                `${values._nailDesigns} ${index + 1}`,
+            ])
+        );
+
+        return [
+            locale,
+            {
+                ...localizedDesignNames,
+                ...values,
+                ...(supplementalTranslations[locale] || {}),
+            },
+        ];
+    })
+);

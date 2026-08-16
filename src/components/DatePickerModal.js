@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../utils/styles";
+import { useLanguage } from "../utils/LanguageContext";
 
 function ChevronLeft({ size = 20, color = colors.textDark }) {
     return (
@@ -28,19 +29,18 @@ function CloseIcon({ size = 20, color = colors.textDark }) {
     );
 }
 
-const MONTH_NAMES = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-];
-
-const WEEK_DAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
-
 export default function DatePickerModal({ visible, onClose, onSelectDate, initialDate }) {
+    const { language } = useLanguage();
     // Current viewed month/year in calendar
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
+    const calendarLocale = `${language.locale || language._locale || "es"}-u-ca-gregory`;
+    const monthName = new Intl.DateTimeFormat(calendarLocale, { month: "long" }).format(new Date(2024, month, 1));
+    const weekDays = Array.from({ length: 7 }, (_, index) =>
+        new Intl.DateTimeFormat(calendarLocale, { weekday: "short" }).format(new Date(2024, 0, index + 1))
+    );
 
     function getDaysInMonth(y, m) {
         return new Date(y, m + 1, 0).getDate();
@@ -75,7 +75,7 @@ export default function DatePickerModal({ visible, onClose, onSelectDate, initia
             <View style={styles.overlay}>
                 <View style={styles.card}>
                     <View style={styles.header}>
-                        <Text style={styles.title}>Seleccionar Fecha</Text>
+                        <Text style={styles.title}>{language.t("_selectDate")}</Text>
                         <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
                             <CloseIcon />
                         </TouchableOpacity>
@@ -86,7 +86,7 @@ export default function DatePickerModal({ visible, onClose, onSelectDate, initia
                         <TouchableOpacity style={styles.navBtn} onPress={handlePrevMonth}>
                             <ChevronLeft />
                         </TouchableOpacity>
-                        <Text style={styles.monthTitle}>{MONTH_NAMES[month]} {year}</Text>
+                        <Text style={styles.monthTitle}>{monthName} {year}</Text>
                         <TouchableOpacity style={styles.navBtn} onPress={handleNextMonth}>
                             <ChevronRight />
                         </TouchableOpacity>
@@ -94,7 +94,7 @@ export default function DatePickerModal({ visible, onClose, onSelectDate, initia
 
                     {/* Week Header */}
                     <View style={styles.weekRow}>
-                        {WEEK_DAYS.map((w, idx) => (
+                        {weekDays.map((w, idx) => (
                             <Text key={idx} style={styles.weekDayText}>{w}</Text>
                         ))}
                     </View>

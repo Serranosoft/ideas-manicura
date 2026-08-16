@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Svg, { Path, Circle } from "react-native-svg";
 import { colors } from "../utils/styles";
+import { useLanguage } from "../utils/LanguageContext";
 
 function TrashIconModal({ size = 28, color = "#E53935" }) {
     return (
@@ -26,14 +27,18 @@ export default function CustomConfirmModal({
     visible,
     title,
     message,
-    confirmText = "Confirmar",
-    cancelText = "Cancelar",
+    confirmText,
+    cancelText,
     isDanger = false,
     type = "trash",
     onConfirm,
     onCancel,
 }) {
+    const { language } = useLanguage();
     if (!visible) return null;
+
+    const resolvedConfirmText = confirmText ?? language.t("_understood");
+    const resolvedCancelText = cancelText === undefined ? language.t("_cancel") : cancelText;
 
     return (
         <Modal
@@ -59,13 +64,13 @@ export default function CustomConfirmModal({
 
                     {/* Buttons */}
                     <View style={styles.actionsRow}>
-                        {Boolean(cancelText) && (
+                        {Boolean(resolvedCancelText) && (
                             <TouchableOpacity
                                 style={styles.cancelBtn}
                                 activeOpacity={0.8}
                                 onPress={onCancel}
                             >
-                                <Text style={styles.cancelBtnText}>{cancelText}</Text>
+                                <Text style={styles.cancelBtnText}>{resolvedCancelText}</Text>
                             </TouchableOpacity>
                         )}
                         <TouchableOpacity
@@ -76,7 +81,7 @@ export default function CustomConfirmModal({
                             activeOpacity={0.8}
                             onPress={onConfirm}
                         >
-                            <Text style={styles.confirmBtnText}>{confirmText}</Text>
+                            <Text style={styles.confirmBtnText}>{resolvedConfirmText}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

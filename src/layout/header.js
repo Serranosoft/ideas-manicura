@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View, Platform } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import { colors } from "../utils/styles";
 import { router } from "expo-router";
 import { Menu, MenuItem } from "react-native-material-menu";
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         paddingHorizontal: 16,
-        paddingTop: Platform.OS === "ios" ? 44 : 26,
+        paddingTop: 8,
         paddingBottom: 8,
         backgroundColor: colors.background,
         borderBottomWidth: 1,

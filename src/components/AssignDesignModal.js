@@ -109,7 +109,7 @@ export default function AssignDesignModal({ visible, onClose, image }) {
             setConfirmModalConfig({
                 title: language.t("_nailDesigns"),
                 message: msg,
-                confirmText: "Entendido",
+                confirmText: language.t("_understood"),
                 cancelText: null,
                 isDanger: false,
                 type: "info",
@@ -123,8 +123,8 @@ export default function AssignDesignModal({ visible, onClose, image }) {
         setConfirmModalConfig({
             title: language.t("_deleteSalonTitle"),
             message: language.t("_deleteSalonConfirm"),
-            confirmText: "Eliminar",
-            cancelText: "Cancelar",
+            confirmText: language.t("_delete"),
+            cancelText: language.t("_cancel"),
             isDanger: true,
             type: "trash",
             onConfirm: async () => {
@@ -147,7 +147,7 @@ export default function AssignDesignModal({ visible, onClose, image }) {
             setConfirmModalConfig({
                 title: language.t("_placeSalon"),
                 message: language.t("_placePlaceholder"),
-                confirmText: "Entendido",
+                confirmText: language.t("_understood"),
                 cancelText: null,
                 isDanger: false,
                 type: "info",
@@ -237,7 +237,7 @@ export default function AssignDesignModal({ visible, onClose, image }) {
                                                     📅 {item.date}   ⏰ {item.time}
                                                 </Text>
                                             </View>
-                                            <Text style={styles.assignBadgeText}>Asignar</Text>
+                                            <Text style={styles.assignBadgeText}>{language.t("_assign")}</Text>
                                         </TouchableOpacity>
                                     ))
                                 ) : (
@@ -254,7 +254,7 @@ export default function AssignDesignModal({ visible, onClose, image }) {
 
                                 {savedSalons && savedSalons.length > 0 && (
                                     <View style={styles.salonsChipContainer}>
-                                        <Text style={styles.salonChipTitle}>Salones guardados (mantén pulsado para eliminar):</Text>
+                                        <Text style={styles.salonChipTitle}>{language.t("_savedSalonsHint")}</Text>
                                         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.salonsScroll}>
                                             {savedSalons.map((salon, sIdx) => (
                                                 <TouchableOpacity
@@ -339,7 +339,7 @@ export default function AssignDesignModal({ visible, onClose, image }) {
                                         style={styles.cancelBtn}
                                         onPress={() => setIsCreatingNew(false)}
                                     >
-                                        <Text style={styles.cancelBtnText}>Volver</Text>
+                                        <Text style={styles.cancelBtnText}>{language.t("_back")}</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
                                         style={styles.saveBtn}
