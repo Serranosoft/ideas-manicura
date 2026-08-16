@@ -3,7 +3,7 @@
         "name": "Ideas y diseño de uñas",
         "slug": "nails-designs",
         "version": "1.1.0",
-        "newArchEnabled": false,
+        "newArchEnabled": true,
         "orientation": "portrait",
         "icon": "./assets/logo-unas.png",
         "userInterfaceStyle": "light",
