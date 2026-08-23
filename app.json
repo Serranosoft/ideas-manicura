@@ -65,6 +65,14 @@
         },
         "plugins": [
             [
+                "expo-splash-screen",
+                {
+                    "image": "./assets/splash-unas.png",
+                    "resizeMode": "contain",
+                    "backgroundColor": "#ffffff"
+                }
+            ],
+            [
                 "expo-media-library",
                 {
                     "photosPermission": "Permite a Diseño de uñas acceder a tus fotos para descargar la imagen.",
