@@ -85,12 +85,12 @@ export function fetchDesigns(acronym) {
         {
             title: translations[acronym]["_auraTitle"],
             name: "Efecto aura",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/unas-aesthetic-39_ngjs9o.jpg"
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_64_503125994_9966754770074370_8095702935586093364_n.jpg"
         },
         {
             title: translations[acronym]["_feriaTitle"],
             name: "Feria",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/kdxokdo9xt2ltwiip0yv.jpg"
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_22_672409560_18006111617880938_8033245900862141236_n.jpg"
         },
         {
             title: translations[acronym]["_matteTitle"],
