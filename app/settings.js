@@ -6,28 +6,14 @@ import { colors, ui } from "../src/utils/styles";
 import Header from "../src/layout/header";
 import { useLanguage } from "../src/utils/LanguageContext";
 import { AdsContext } from "../src/DataContext";
+import { supportedLanguages } from "../src/utils/supported-locales";
 
 export default function Settings() {
     const { language, setLanguage } = useLanguage();
     const { privacyOptionsRequired, showPrivacyOptionsForm } = useContext(AdsContext);
     const [selected, setSelected] = useState(language._locale);
 
-    const languages = [
-        { title: language.t("_langListSpanish"), acronym: "es" },
-        { title: language.t("_langListEnglish"), acronym: "en" },
-        { title: language.t("_langListArabic"), acronym: "ar" },
-        { title: language.t("_langListGerman"), acronym: "de" },
-        { title: language.t("_langListFrench"), acronym: "fr" },
-        { title: language.t("_langListHindi"), acronym: "hi" },
-        { title: language.t("_langListIndonesian"), acronym: "id" },
-        { title: language.t("_langListPortuguese"), acronym: "pt" },
-        { title: language.t("_langListRussian"), acronym: "ru" },
-        { title: language.t("_langListPolish"), acronym: "pl" },
-        { title: language.t("_langListVietnamese"), acronym: "vi" },
-        { title: language.t("_langListTurkish"), acronym: "tr" },
-        { title: language.t("_langListItalian"), acronym: "it" },
-        { title: language.t("_langListFarsi"), acronym: "fa" },
-    ];
+    const languages = supportedLanguages;
 
     async function handlePress(acronym) {
         setSelected(acronym);
@@ -73,15 +59,16 @@ export default function Settings() {
 
                     <View style={styles.languageList}>
                         {languages.map((item, index) => {
-                            const isSelected = selected === item.acronym;
+                            const isSelected = selected === item.code;
 
                             return (
-                                <View key={item.acronym}>
+                                <View key={item.code}>
                                     <TouchableOpacity
                                         accessibilityRole="radio"
+                                        accessibilityLabel={`${item.nativeName} (${item.code})`}
                                         accessibilityState={{ checked: isSelected }}
                                         activeOpacity={0.7}
-                                        onPress={() => handlePress(item.acronym)}
+                                        onPress={() => handlePress(item.code)}
                                         style={[
                                             styles.option,
                                             isSelected && styles.optionSelected,
@@ -99,7 +86,7 @@ export default function Settings() {
                                                     isSelected && styles.languageCodeTextSelected,
                                                 ]}
                                             >
-                                                {item.acronym.toUpperCase()}
+                                                {item.code.toUpperCase()}
                                             </Text>
                                         </View>
 
@@ -110,7 +97,7 @@ export default function Settings() {
                                                 isSelected && styles.languageNameSelected,
                                             ]}
                                         >
-                                            {item.title}
+                                            {item.nativeName}
                                         </Text>
 
                                         <View
@@ -253,7 +240,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FBF5EA",
     },
     languageCode: {
-        width: 38,
+        width: 58,
         height: 34,
         borderRadius: 11,
         alignItems: "center",

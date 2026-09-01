@@ -1,4 +1,6 @@
 import { supplementalTranslations } from "./supplemental-localizations.js";
+import { additionalTranslations } from "./additional-localizations.js";
+import { reviewedTranslationOverrides } from "./reviewed-localization-overrides.js";
 
 const baseTranslations = {
     es: {
@@ -1165,11 +1167,15 @@ const baseTranslations = {
 };
 
 export const translations = Object.fromEntries(
-    Object.entries(baseTranslations).map(([locale, values]) => {
+    Object.entries({ ...baseTranslations, ...additionalTranslations }).map(([locale, values]) => {
+        const reviewedValues = {
+            ...values,
+            ...(reviewedTranslationOverrides[locale] || {}),
+        };
         const localizedDesignNames = Object.fromEntries(
             Array.from({ length: 30 }, (_, index) => [
                 `_designName${index}`,
-                `${values._nailDesigns} ${index + 1}`,
+                `${reviewedValues._nailDesigns} ${index + 1}`,
             ])
         );
 
@@ -1177,7 +1183,7 @@ export const translations = Object.fromEntries(
             locale,
             {
                 ...localizedDesignNames,
-                ...values,
+                ...reviewedValues,
                 ...(supplementalTranslations[locale] || {}),
             },
         ];

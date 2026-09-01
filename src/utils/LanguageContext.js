@@ -6,6 +6,7 @@ import { translations } from './localizations';
 import { getLocales } from 'expo-localization';
 import { userPreferences } from './user-preferences';
 import { scheduleWeeklyNotification } from './notifications';
+import { getDeviceLocale, normalizeLocale } from './supported-locales';
 
 const LanguageContext = createContext();
 
@@ -13,7 +14,7 @@ export const LanguageProvider = ({ children }) => {
 
     // Idioma
     const [langRdy, setLangRdy] = useState(false);
-    const [language, setLanguage] = useState(getLocales()[0].languageCode);
+    const [language, setLanguageState] = useState(getDeviceLocale(getLocales()[0]));
     const i18n = new I18n(translations);
     if (language) i18n.locale = language;
     i18n.enableFallback = true
@@ -31,9 +32,15 @@ export const LanguageProvider = ({ children }) => {
     }, [language])
 
     async function getLanguage() {
-        const language = await AsyncStorage.getItem(userPreferences.LANGUAGE);
-        setLanguage(language || getLocales()[0].languageCode);
+        const storedLanguage = await AsyncStorage.getItem(userPreferences.LANGUAGE);
+        setLanguageState(storedLanguage
+            ? normalizeLocale(storedLanguage)
+            : getDeviceLocale(getLocales()[0]));
         setLangRdy(true);
+    }
+
+    function setLanguage(locale) {
+        setLanguageState(normalizeLocale(locale));
     }
 
     return (
