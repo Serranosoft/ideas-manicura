@@ -24,6 +24,8 @@ export default function Layout() {
     const [adTrigger, setAdTrigger] = useState(0);
     const [showOpenAd, setShowOpenAd] = useState(true);
     const [privacyOptionsRequired, setPrivacyOptionsRequired] = useState(false);
+    const [requestNonPersonalizedAdsOnly, setRequestNonPersonalizedAdsOnly] =
+        useState(true);
     const adsHandlerRef = useRef(null);
     const reviewRequestedRef = useRef(false);
     const appOpenBlocked = pathname === "/image" || pathname === "/appointments";
@@ -210,6 +212,7 @@ export default function Layout() {
                     adsLoaded={adsLoaded}
                     appOpenBlocked={appOpenBlocked}
                     setPrivacyOptionsRequired={setPrivacyOptionsRequired}
+                    setRequestNonPersonalizedAdsOnly={setRequestNonPersonalizedAdsOnly}
                 />
                 <LanguageProvider>
                     <DataContext.Provider value={{
@@ -231,6 +234,7 @@ export default function Layout() {
                             adsLoaded,
                             privacyOptionsRequired,
                             showPrivacyOptionsForm,
+                            requestNonPersonalizedAdsOnly,
                         }}>
                             <GestureHandlerRootView style={styles.wrapper}>
                                 <Stack />

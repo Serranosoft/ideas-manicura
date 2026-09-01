@@ -124,7 +124,7 @@ export default function AppointmentsScreen() {
         addSavedSalon,
         deleteSavedSalon,
     } = useContext(DataContext);
-    const { adsLoaded } = useContext(AdsContext);
+    const { adsLoaded, requestNonPersonalizedAdsOnly } = useContext(AdsContext);
 
     // Calendar view state
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -300,7 +300,11 @@ export default function AppointmentsScreen() {
 
             {adsLoaded && (
                 <View style={styles.bannerWrapper}>
-                    <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
+                    <BannerAd
+                        unitId={bannerId}
+                        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                        requestOptions={{ requestNonPersonalizedAdsOnly }}
+                    />
                 </View>
             )}
 

@@ -1,4 +1,11 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import {
+    forwardRef,
+    useEffect,
+    useImperativeHandle,
+    useMemo,
+    useRef,
+    useState,
+} from "react";
 import { AppState } from "react-native";
 import MobileAds, {
     AdEventType,
@@ -16,6 +23,13 @@ const INTERSTITIAL_MIN_INTERVAL_MS = 2 * 60 * 1000;
 const AD_RETRY_DELAY_MS = 30 * 1000;
 
 const AdsHandler = forwardRef((props, ref) => {
+    const [consentResolved, setConsentResolved] = useState(false);
+    const [requestNonPersonalizedAdsOnly, setRequestNonPersonalizedAdsOnly] =
+        useState(true);
+    const adRequestOptions = useMemo(
+        () => ({ requestNonPersonalizedAdsOnly }),
+        [requestNonPersonalizedAdsOnly]
+    );
     const {
         isLoaded: isInterstitialLoaded,
         isClosed: isInterstitialClosed,
@@ -23,7 +37,10 @@ const AdsHandler = forwardRef((props, ref) => {
         error: interstitialError,
         load: loadInterstitial,
         show: showInterstitial,
-    } = useInterstitialAd(interstitialId);
+    } = useInterstitialAd(
+        consentResolved ? interstitialId : null,
+        adRequestOptions
+    );
 
     const sdkStartedRef = useRef(false);
     const lastInterstitialShownAtRef = useRef(0);
@@ -59,17 +76,50 @@ const AdsHandler = forwardRef((props, ref) => {
                 updatePrivacyOptionsRequirement(consentInfo);
             }
 
-            await startGoogleMobileAdsSDK();
+            await updateAdRequestConsent();
+            setConsentResolved(true);
         }
 
         prepareAds();
     }, []);
+
+    useEffect(() => {
+        if (!consentResolved) return;
+
+        startGoogleMobileAdsSDK();
+    }, [consentResolved]);
 
     function updatePrivacyOptionsRequirement(consentInfo) {
         props.setPrivacyOptionsRequired(
             consentInfo.privacyOptionsRequirementStatus ===
                 AdsConsentPrivacyOptionsRequirementStatus.REQUIRED
         );
+    }
+
+    async function updateAdRequestConsent() {
+        let shouldRequestNonPersonalizedAds = true;
+
+        try {
+            const gdprApplies = await AdsConsent.getGdprApplies();
+
+            if (!gdprApplies) {
+                shouldRequestNonPersonalizedAds = false;
+            } else {
+                const {
+                    createAPersonalisedAdsProfile,
+                    selectPersonalisedAds,
+                } = await AdsConsent.getUserChoices();
+
+                shouldRequestNonPersonalizedAds = !(
+                    createAPersonalisedAdsProfile && selectPersonalisedAds
+                );
+            }
+        } catch (error) {
+            console.error("Unable to read ad personalization consent:", error);
+        }
+
+        setRequestNonPersonalizedAdsOnly(shouldRequestNonPersonalizedAds);
+        props.setRequestNonPersonalizedAdsOnly(shouldRequestNonPersonalizedAds);
     }
 
     async function startGoogleMobileAdsSDK() {
@@ -79,9 +129,19 @@ const AdsHandler = forwardRef((props, ref) => {
         sdkStartedRef.current = true;
         await MobileAds().initialize();
         props.setAdsLoaded(true);
-        loadInterstitial();
         loadAppOpenAd();
     }
+
+    useEffect(() => {
+        if (props.adsLoaded) loadInterstitial();
+    }, [props.adsLoaded, loadInterstitial]);
+
+    useEffect(() => {
+        if (!sdkStartedRef.current) return;
+
+        resetAppOpenAd();
+        loadAppOpenAd();
+    }, [requestNonPersonalizedAdsOnly]);
 
     useEffect(() => {
         if (isInterstitialClosed) {
@@ -146,7 +206,10 @@ const AdsHandler = forwardRef((props, ref) => {
 
         resetAppOpenAd();
         appOpenIsLoadingRef.current = true;
-        const appOpenAd = AppOpenAd.createForAdRequest(appOpenId);
+        const appOpenAd = AppOpenAd.createForAdRequest(
+            appOpenId,
+            adRequestOptions
+        );
         appOpenAdRef.current = appOpenAd;
 
         appOpenAd.addAdEventListener(AdEventType.LOADED, () => {
@@ -234,6 +297,7 @@ const AdsHandler = forwardRef((props, ref) => {
         async showPrivacyOptionsForm() {
             const consentInfo = await AdsConsent.showPrivacyOptionsForm();
             updatePrivacyOptionsRequirement(consentInfo);
+            await updateAdRequestConsent();
         },
     }));
 

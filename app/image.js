@@ -53,7 +53,11 @@ export default function ImageWrapper() {
     const { language } = useLanguage();
 
     const { favorites, setFavorites } = useContext(DataContext);
-    const { adsLoaded, setShowOpenAd } = useContext(AdsContext);
+    const {
+        adsLoaded,
+        setShowOpenAd,
+        requestNonPersonalizedAdsOnly,
+    } = useContext(AdsContext);
     const [isFavorite, setIsFavorite] = useState(false);
     const [assignModalVisible, setAssignModalVisible] = useState(false);
 
@@ -127,7 +131,11 @@ export default function ImageWrapper() {
 
             {adsLoaded && (
                 <View style={styles.bannerWrapper}>
-                    <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
+                    <BannerAd
+                        unitId={bannerId}
+                        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                        requestOptions={{ requestNonPersonalizedAdsOnly }}
+                    />
                 </View>
             )}
 
