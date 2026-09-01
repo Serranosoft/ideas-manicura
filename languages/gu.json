@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "વિચારો અને નેઇલ ડિઝાઇન"
+    },
+    "ios": {
+        "CFBundleDisplayName": "વિચારો અને નેઇલ ડિઝાઇન"
     }
 }

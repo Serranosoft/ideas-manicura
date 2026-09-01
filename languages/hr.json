@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Ideje i dizajn noktiju"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Ideje i dizajn noktiju"
     }
 }

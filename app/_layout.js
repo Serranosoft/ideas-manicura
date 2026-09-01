@@ -9,11 +9,11 @@ import { LanguageProvider } from "../src/utils/LanguageContext";
 import UpdatesModal from "../src/layout/updates-modal";
 import * as StoreReview from "expo-store-review";
 import { userPreferences } from "../src/utils/user-preferences";
-import * as Notifications from 'expo-notifications';
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { scheduleAppointmentNotification, cancelAppointmentNotification } from "../src/utils/appointmentNotifications";
+import { ensureNotificationPermissionsAsync } from "../src/utils/notifications";
 import { colors } from "../src/utils/styles";
 
 export default function Layout() {
@@ -185,17 +185,9 @@ export default function Layout() {
     }
 
     async function configureNotifications() {
-        const { granted } = await Notifications.requestPermissionsAsync();
+        const granted = await ensureNotificationPermissionsAsync();
         if (granted) {
             await AsyncStorage.setItem(userPreferences.NOTIFICATION_PERMISSION, "true");
-            Notifications.setNotificationHandler({
-                handleNotification: async () => ({
-                    shouldShowBanner: true,
-                    shouldShowList: true,
-                    shouldPlaySound: false,
-                    shouldSetBadge: false,
-                }),
-            });
         } else {
             await AsyncStorage.setItem(userPreferences.NOTIFICATION_PERMISSION, "false");
         }

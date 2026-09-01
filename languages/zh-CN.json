@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "想法和指甲设计"
+    },
+    "ios": {
+        "CFBundleDisplayName": "想法和指甲设计"
     }
 }

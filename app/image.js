@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, ToastAndroid, View, TouchableOpacity, Text, Platform, Alert } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
-import * as FileSystem from 'expo-file-system';
+import { File, Paths } from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
@@ -49,7 +49,6 @@ export default function ImageWrapper() {
     const insets = useSafeAreaInsets();
     const params = useLocalSearchParams();
     const { image } = params;
-    const imageName = image ? image.substring(image.lastIndexOf("/") + 1, image.length) : "imagen";
     const { language } = useLanguage();
 
     const { favorites, setFavorites } = useContext(DataContext);
@@ -85,7 +84,7 @@ export default function ImageWrapper() {
             setShowOpenAd(false);
             const { status } = await MediaLibrary.requestPermissionsAsync(true);
             if (status === "granted") {
-                downloadImage();
+                await downloadImage();
             } else {
                 if (Platform.OS === "android") {
                     ToastAndroid.showWithGravityAndOffset(
@@ -106,8 +105,16 @@ export default function ImageWrapper() {
 
     async function downloadImage() {
         try {
-            const { uri } = await FileSystem.downloadAsync(image, FileSystem.documentDirectory + `${imageName}.jpg`);
-            await MediaLibrary.createAssetAsync(uri);
+            const remotePath = decodeURIComponent(image.split("?")[0]);
+            const remoteName = remotePath.substring(remotePath.lastIndexOf("/") + 1);
+            const safeName = remoteName.replace(/[^a-zA-Z0-9._-]/g, "-") || "nail-design.jpg";
+            const fileName = /\.(jpe?g|png|webp|heic)$/i.test(safeName)
+                ? safeName
+                : `${safeName}.jpg`;
+            const destination = new File(Paths.cache, `${Date.now()}-${fileName}`);
+            const downloadedFile = await File.downloadFileAsync(image, destination);
+
+            await MediaLibrary.saveToLibraryAsync(downloadedFile.uri);
 
             if (Platform.OS === "android") {
                 ToastAndroid.showWithGravityAndOffset(

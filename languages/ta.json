@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "நக வடிவமைப்பு யோசனைகள்"
+    },
+    "ios": {
+        "CFBundleDisplayName": "நக வடிவமைப்பு யோசனைகள்"
     }
 }

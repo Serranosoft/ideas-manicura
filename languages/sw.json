@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Mawazo na miundo ya kucha"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Mawazo na miundo ya kucha"
     }
 }

@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "নখের নকশার ধারণা"
+    },
+    "ios": {
+        "CFBundleDisplayName": "নখের নকশার ধারণা"
     }
 }

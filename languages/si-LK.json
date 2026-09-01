@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "අදහස් සහ නියපොතු සැලසුම්"
+    },
+    "ios": {
+        "CFBundleDisplayName": "අදහස් සහ නියපොතු සැලසුම්"
     }
 }

@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Idei și modele de unghii"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Idei și modele de unghii"
     }
 }

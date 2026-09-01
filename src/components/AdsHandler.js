@@ -14,7 +14,7 @@ import MobileAds, {
     AppOpenAd,
     useInterstitialAd,
 } from "react-native-google-mobile-ads";
-import { appOpenId, interstitialId } from "../utils/constants";
+import { adsEnabled, appOpenId, interstitialId } from "../utils/constants";
 
 const APP_OPEN_EXPIRATION_MS = 4 * 60 * 60 * 1000;
 const APP_OPEN_MIN_INTERVAL_MS = 4 * 60 * 1000;
@@ -38,7 +38,7 @@ const AdsHandler = forwardRef((props, ref) => {
         load: loadInterstitial,
         show: showInterstitial,
     } = useInterstitialAd(
-        consentResolved ? interstitialId : null,
+        adsEnabled && consentResolved ? interstitialId : null,
         adRequestOptions
     );
 
@@ -66,6 +66,8 @@ const AdsHandler = forwardRef((props, ref) => {
 
     useEffect(() => {
         async function prepareAds() {
+            if (!adsEnabled) return;
+
             try {
                 await AdsConsent.requestInfoUpdate();
                 const consentInfo = await AdsConsent.loadAndShowConsentFormIfRequired();

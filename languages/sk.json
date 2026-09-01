@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Nápady a nechtový dizajn"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Nápady a nechtový dizajn"
     }
 }

@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Ý tưởng và thiết kế móng tay"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Ý tưởng và thiết kế móng tay"
     }
 }

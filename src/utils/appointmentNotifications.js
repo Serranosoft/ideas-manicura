@@ -1,10 +1,13 @@
 import * as Notifications from "expo-notifications";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { translations } from "./localizations";
+import { ensureNotificationPermissionsAsync } from "./notifications";
 
 export async function scheduleAppointmentNotification(appointment) {
     if (!appointment || !appointment.date || !appointment.time) return null;
     try {
+        if (!(await ensureNotificationPermissionsAsync())) return null;
+
         const [day, month, year] = appointment.date.split("-").map(Number);
         const [hour, minute] = appointment.time.split(":").map(Number);
 
@@ -43,7 +46,10 @@ export async function scheduleAppointmentNotification(appointment) {
                     body: notificationBody,
                     data: { appointmentId: appointment.id },
                 },
-                trigger: { date: finalTrigger },
+                trigger: {
+                    type: Notifications.SchedulableTriggerInputTypes.DATE,
+                    date: finalTrigger,
+                },
             });
             return notificationId;
         }

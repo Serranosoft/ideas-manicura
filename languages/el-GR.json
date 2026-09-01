@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Ιδέες και σχέδια νυχιών"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Ιδέες και σχέδια νυχιών"
     }
 }

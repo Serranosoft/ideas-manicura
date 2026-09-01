@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Идеи и дизайн на ноктите"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Идеи и дизайн на ноктите"
     }
 }

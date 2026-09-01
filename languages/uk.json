@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Ідеї та дизайн нігтів"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Ідеї та дизайн нігтів"
     }
 }

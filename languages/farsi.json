@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "ایده‌های مانیکور"
+    },
+    "ios": {
+        "CFBundleDisplayName": "ایده‌های مانیکور"
     }
 }

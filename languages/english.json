@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Nail Ideas and Designs"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Nail Ideas and Designs"
     }
 }

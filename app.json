@@ -18,7 +18,7 @@
         ],
         "ios": {
             "supportsTablet": false,
-            "buildNumber": "3",
+            "buildNumber": "4",
             "bundleIdentifier": "com.paulaymanu113.nailsdesigns",
             "infoPlist": {
                 "ITSAppUsesNonExemptEncryption": false
@@ -51,7 +51,7 @@
             "uk": "./languages/uk.json",
             "ro": "./languages/ro.json",
             "nl-NL": "./languages/nl-NL.json",
-            "iw-IL": "./languages/iw-IL.json",
+            "he": "./languages/iw-IL.json",
             "zh-CN": "./languages/zh-CN.json",
             "zh-HK": "./languages/zh-HK.json",
             "pt-BR": "./languages/pt-BR.json",

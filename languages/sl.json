@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Ideje in oblikovanje nohtov"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Ideje in oblikovanje nohtov"
     }
 }

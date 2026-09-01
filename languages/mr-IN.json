@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "कल्पना आणि नखे डिझाइन"
+    },
+    "ios": {
+        "CFBundleDisplayName": "कल्पना आणि नखे डिझाइन"
     }
 }

@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Ideoita ja kynsisuunnittelua"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Ideoita ja kynsisuunnittelua"
     }
 }

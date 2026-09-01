@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Idéer og negledesign"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Idéer og negledesign"
     }
 }

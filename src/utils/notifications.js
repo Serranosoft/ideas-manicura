@@ -1,7 +1,35 @@
 import * as Notifications from "expo-notifications";
 
+let permissionRequest = null;
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowBanner: true,
+        shouldShowList: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+    }),
+});
+
+export async function ensureNotificationPermissionsAsync() {
+    if (!permissionRequest) {
+        permissionRequest = (async () => {
+            const currentPermission = await Notifications.getPermissionsAsync();
+            if (currentPermission.granted) return true;
+
+            const requestedPermission = await Notifications.requestPermissionsAsync();
+            return requestedPermission.granted;
+        })().finally(() => {
+            permissionRequest = null;
+        });
+    }
+
+    return permissionRequest;
+}
+
 export async function scheduleWeeklyNotification(language) {
     try {
+        if (!(await ensureNotificationPermissionsAsync())) return;
 
         // Obtener la lista de notificaciones programadas
         const scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
@@ -23,7 +51,7 @@ export async function scheduleWeeklyNotification(language) {
                 body: language.t("_notificationBody"),
             },
             trigger: {
-                type: "weekly",
+                type: Notifications.SchedulableTriggerInputTypes.WEEKLY,
                 weekday: 4,
                 hour: 12,
                 minute: 0,

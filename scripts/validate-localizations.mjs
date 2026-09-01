@@ -119,7 +119,9 @@ for (const code of expectedCodes) {
 
 const defaultLocaleWithoutMetadata = "es";
 for (const code of expectedCodes.filter((code) => code !== defaultLocaleWithoutMetadata)) {
-    const metadataPath = appConfig.expo.locales?.[code];
+    const metadataEntry = Object.entries(appConfig.expo.locales || {})
+        .find(([configuredCode]) => normalizeLocale(configuredCode) === code);
+    const metadataPath = metadataEntry?.[1];
     if (!metadataPath) {
         errors.push(`Missing Expo locale metadata entry: ${code}`);
         continue;
@@ -127,6 +129,9 @@ for (const code of expectedCodes.filter((code) => code !== defaultLocaleWithoutM
     const absoluteMetadataPath = resolve(currentDirectory, "..", metadataPath);
     const metadata = JSON.parse(await readFile(absoluteMetadataPath, "utf8"));
     if (!metadata.android?.app_name) errors.push(`Missing Android app_name: ${code}`);
+    if (!metadata.ios?.CFBundleDisplayName) {
+        errors.push(`Missing iOS CFBundleDisplayName: ${code}`);
+    }
 }
 
 const normalizationCases = {

@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "គំនិត និងការរចនាក្រចក"
+    },
+    "ios": {
+        "CFBundleDisplayName": "គំនិត និងការរចនាក្រចក"
     }
 }

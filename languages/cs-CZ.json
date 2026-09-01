@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Nápady a návrhy nehtů"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Nápady a návrhy nehtů"
     }
 }

@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Ötletek és körömdizájnok"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Ötletek és körömdizájnok"
     }
 }

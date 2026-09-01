@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Pomysły i wzory na paznokcie"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Pomysły i wzory na paznokcie"
     }
 }

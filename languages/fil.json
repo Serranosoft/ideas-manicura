@@ -1,5 +1,8 @@
 {
     "android": {
         "app_name": "Mga ideya at disenyo ng kuko"
+    },
+    "ios": {
+        "CFBundleDisplayName": "Mga ideya at disenyo ng kuko"
     }
 }
