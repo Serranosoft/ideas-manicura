@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-catalog.mjs",
-    "build": "npm run validate",
-    "sync:mobile": "node scripts/sync-mobile.cjs"
+    "build": "npm run validate"
   },
   "engines": {
     "node": ">=20.19.4"

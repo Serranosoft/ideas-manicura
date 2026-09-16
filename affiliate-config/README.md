@@ -10,7 +10,9 @@ El único catálogo comercial es:
 public/affiliate/v1/catalog.json
 ```
 
-La app móvil no incluye una copia de estos productos. Descarga el JSON publicado y conserva una caché local. Por tanto, cambiar productos o enlaces requiere publicar de nuevo este proyecto estático, pero **no requiere compilar ni publicar una nueva versión de la app**.
+La app móvil no incluye una copia de estos productos. La futura funcionalidad descargará este JSON publicado y conservará una caché local. Por tanto, cambiar productos o enlaces requerirá publicar de nuevo este proyecto estático, pero **no requerirá compilar ni publicar una nueva versión de la app**.
+
+La integración móvil todavía no se añade porque la pantalla que utilizará los productos aún no existe. Se implementará junto a esa funcionalidad, con el contrato del catálogo ya definido.
 
 El catálogo comienza vacío y con `enabled:false` porque todavía no hay URLs reales.
 

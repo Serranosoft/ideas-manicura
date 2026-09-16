@@ -3,7 +3,6 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import mobileValidator from '../schema/mobile-validator.cjs';
 
 const ajv = new Ajv({ allErrors: true, strict: true });
 addFormats(ajv);
@@ -32,7 +31,6 @@ export function validateCatalog(catalog) {
             });
         }
     }
-    if (!mobileValidator.validateCatalog(catalog)) errors.push('Catalog incompatible with the mobile runtime validator');
     return errors;
 }
 
