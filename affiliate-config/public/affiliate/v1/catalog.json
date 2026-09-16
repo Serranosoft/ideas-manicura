@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "enabled": false,
+  "updatedAt": "2026-09-16T00:00:00Z",
+  "supportedMarkets": [
+    "spain",
+    "europe",
+    "americas",
+    "east"
+  ],
+  "products": {}
+}

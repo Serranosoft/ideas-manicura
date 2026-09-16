@@ -8,6 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "validate:i18n": "node scripts/validate-localizations.mjs",
+    "affiliate:test": "node --test tests/affiliate-catalog.test.cjs",
+    "affiliate:validate": "npm --prefix affiliate-config run validate",
     "eas-build-pre-install": "node ./build-scripts/prepare-eas-dependencies.js"
   },
   "dependencies": {

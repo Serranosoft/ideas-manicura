@@ -1,6 +1,0 @@
-.next/
-node_modules/
-.env*
-!.env.example
-data/catalog.local.json
-*.tsbuildinfo
