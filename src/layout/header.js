@@ -7,6 +7,7 @@ import Svg, { Path, Circle } from "react-native-svg";
 import { useLanguage } from "../utils/LanguageContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+
 function BackArrowIcon({ color = colors.textDark, size = 20 }) {
     return (
         <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
