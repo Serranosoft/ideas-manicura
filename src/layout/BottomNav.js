@@ -28,11 +28,13 @@ function GridIcon({ active }) {
     );
 }
 
-function HeartIcon({ active }) {
+function GuideIcon({ active }) {
     const color = active ? colors.accent : "#9E9085";
     return (
-        <Svg width="22" height="22" viewBox="0 0 24 24" fill={active ? colors.accent : "none"} stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        <Svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <Path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <Path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill={active ? `${colors.accent}15` : "none"} />
+            <Path d="M9 7h7M9 11h5" />
         </Svg>
     );
 }
@@ -51,6 +53,9 @@ function CalendarIcon({ active }) {
 
 export default function BottomNav({ activeTab }) {
     const { language } = useLanguage();
+    const guidesLabel = String(language._locale || "es").toLowerCase().startsWith("es")
+        ? "Guías"
+        : "Guides";
 
     const tabs = [
         {
@@ -66,10 +71,10 @@ export default function BottomNav({ activeTab }) {
             pathname: '/categories',
         },
         {
-            key: 'favorites',
-            label: language.t('_navFavorites'),
-            icon: HeartIcon,
-            pathname: '/favorites',
+            key: 'guides',
+            label: guidesLabel,
+            icon: GuideIcon,
+            pathname: '/guides',
         },
         {
             key: 'appointments',

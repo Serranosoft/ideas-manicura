@@ -5,6 +5,8 @@ const androidProductionIds = {
     banner: "ca-app-pub-3738413299329691/9492904106",
     interstitial: "ca-app-pub-3738413299329691/4108144669",
     appOpen: "ca-app-pub-3738413299329691/2302002382",
+    // Rewarded ad · placement: unlocking a step-by-step guide.
+    rewarded: "ca-app-pub-3738413299329691/3223745851",
 };
 
 const iosProductionIds = {
@@ -12,9 +14,15 @@ const iosProductionIds = {
     banner: process.env.EXPO_PUBLIC_IOS_ADMOB_BANNER_ID,
     interstitial: process.env.EXPO_PUBLIC_IOS_ADMOB_INTERSTITIAL_ID,
     appOpen: process.env.EXPO_PUBLIC_IOS_ADMOB_APP_OPEN_ID,
+    rewarded: process.env.EXPO_PUBLIC_IOS_ADMOB_REWARDED_ID,
 };
 
-const hasIosProductionIds = Object.values(iosProductionIds).every(Boolean);
+const hasIosProductionIds = [
+    iosProductionIds.appId,
+    iosProductionIds.banner,
+    iosProductionIds.interstitial,
+    iosProductionIds.appOpen,
+].every(Boolean);
 const productionIds = Platform.OS === "ios" ? iosProductionIds : androidProductionIds;
 const useTestAds = __DEV__ || process.env.EXPO_PUBLIC_USE_TEST_ADS === "true";
 
@@ -25,3 +33,4 @@ export const adsEnabled =
 export const bannerId = useTestAds ? TestIds.ADAPTIVE_BANNER : productionIds.banner;
 export const interstitialId = useTestAds ? TestIds.INTERSTITIAL : productionIds.interstitial;
 export const appOpenId = useTestAds ? TestIds.APP_OPEN : productionIds.appOpen;
+export const rewardedId = useTestAds ? TestIds.REWARDED : productionIds.rewarded || null;

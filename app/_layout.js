@@ -14,7 +14,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { scheduleAppointmentNotification, cancelAppointmentNotification } from "../src/utils/appointmentNotifications";
 import { ensureNotificationPermissionsAsync } from "../src/utils/notifications";
-import { colors } from "../src/utils/styles";
+
+const GUIDE_UNLOCKS_STORAGE_KEY = "rewardedGuideUnlocks";
+const GUIDE_UNLOCK_DURATION_MS = 24 * 60 * 60 * 1000;
 
 export default function Layout() {
     const pathname = usePathname();
@@ -24,11 +26,95 @@ export default function Layout() {
     const [adTrigger, setAdTrigger] = useState(0);
     const [showOpenAd, setShowOpenAd] = useState(true);
     const [privacyOptionsRequired, setPrivacyOptionsRequired] = useState(false);
+    const [rewardedAdLoaded, setRewardedAdLoaded] = useState(false);
     const [requestNonPersonalizedAdsOnly, setRequestNonPersonalizedAdsOnly] =
         useState(true);
     const adsHandlerRef = useRef(null);
     const reviewRequestedRef = useRef(false);
-    const appOpenBlocked = pathname === "/image" || pathname === "/appointments";
+    const appOpenBlocked =
+        pathname === "/image"
+        || pathname === "/appointments"
+        || pathname === "/guide-steps";
+
+    // Una recompensa desbloquea esa guía durante 24 horas.
+    const [unlockedGuides, setUnlockedGuides] = useState([]);
+    const [guideUnlocksLoaded, setGuideUnlocksLoaded] = useState(false);
+    const unlockedGuidesRef = useRef({});
+
+    function isGuideUnlocked(guideId) {
+        return Number(unlockedGuidesRef.current[guideId]) > Date.now();
+    }
+
+    async function saveGuideUnlocks(unlocks) {
+        await AsyncStorage.setItem(GUIDE_UNLOCKS_STORAGE_KEY, JSON.stringify(unlocks));
+    }
+
+    async function removeExpiredGuideUnlocks() {
+        const now = Date.now();
+        const validUnlocks = Object.fromEntries(
+            Object.entries(unlockedGuidesRef.current).filter(([, expiresAt]) => (
+                Number(expiresAt) > now
+            ))
+        );
+        const changed = Object.keys(validUnlocks).length
+            !== Object.keys(unlockedGuidesRef.current).length;
+
+        unlockedGuidesRef.current = validUnlocks;
+        setUnlockedGuides(Object.keys(validUnlocks));
+        if (changed) await saveGuideUnlocks(validUnlocks);
+    }
+
+    useEffect(() => {
+        async function loadGuideUnlocks() {
+            try {
+                const stored = await AsyncStorage.getItem(GUIDE_UNLOCKS_STORAGE_KEY);
+                unlockedGuidesRef.current = stored ? JSON.parse(stored) : {};
+                await removeExpiredGuideUnlocks();
+            } catch (error) {
+                console.log("Error loading rewarded guide unlocks:", error);
+                unlockedGuidesRef.current = {};
+                setUnlockedGuides([]);
+            } finally {
+                setGuideUnlocksLoaded(true);
+            }
+        }
+
+        loadGuideUnlocks();
+
+        const subscription = AppState.addEventListener("change", (nextState) => {
+            if (nextState === "active") removeExpiredGuideUnlocks();
+        });
+        return () => subscription.remove();
+    }, []);
+
+    async function grantGuideUnlock(guideId) {
+        const expiresAt = Date.now() + GUIDE_UNLOCK_DURATION_MS;
+        const updatedUnlocks = {
+            ...unlockedGuidesRef.current,
+            [guideId]: expiresAt,
+        };
+        unlockedGuidesRef.current = updatedUnlocks;
+        setUnlockedGuides(Object.keys(updatedUnlocks));
+        await saveGuideUnlocks(updatedUnlocks);
+        return expiresAt;
+    }
+
+    async function unlockGuideWithReward(guideId) {
+        if (isGuideUnlocked(guideId)) {
+            return {
+                status: "earned",
+                expiresAt: unlockedGuidesRef.current[guideId],
+            };
+        }
+
+        const result = await adsHandlerRef.current?.tryShowRewardedAd()
+            || { status: "not-ready" };
+        if (result.status === "earned") {
+            const expiresAt = await grantGuideUnlock(guideId);
+            return { ...result, expiresAt };
+        }
+        return result;
+    }
 
     // Gestión de favoritos
     const [favorites, setFavorites] = useState([]);
@@ -204,6 +290,7 @@ export default function Layout() {
                     adsLoaded={adsLoaded}
                     appOpenBlocked={appOpenBlocked}
                     setPrivacyOptionsRequired={setPrivacyOptionsRequired}
+                    setRewardedAdLoaded={setRewardedAdLoaded}
                     setRequestNonPersonalizedAdsOnly={setRequestNonPersonalizedAdsOnly}
                 />
                 <LanguageProvider>
@@ -227,6 +314,11 @@ export default function Layout() {
                             privacyOptionsRequired,
                             showPrivacyOptionsForm,
                             requestNonPersonalizedAdsOnly,
+                            rewardedAdLoaded,
+                            unlockedGuides,
+                            guideUnlocksLoaded,
+                            isGuideUnlocked,
+                            unlockGuideWithReward,
                         }}>
                             <GestureHandlerRootView style={styles.wrapper}>
                                 <Stack />
@@ -235,7 +327,7 @@ export default function Layout() {
                         </AdsContext.Provider>
                     </DataContext.Provider>
                 </LanguageProvider>
-                <StatusBar style="light" backgroundColor={colors.primary} />
+                <StatusBar style="dark" backgroundColor="transparent" translucent />
             </View>
         </SafeAreaProvider>
     )

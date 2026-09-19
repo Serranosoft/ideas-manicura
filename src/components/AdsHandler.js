@@ -13,8 +13,9 @@ import MobileAds, {
     AdsConsentPrivacyOptionsRequirementStatus,
     AppOpenAd,
     useInterstitialAd,
+    useRewardedAd,
 } from "react-native-google-mobile-ads";
-import { adsEnabled, appOpenId, interstitialId } from "../utils/constants";
+import { adsEnabled, appOpenId, interstitialId, rewardedId } from "../utils/constants";
 
 const APP_OPEN_EXPIRATION_MS = 4 * 60 * 60 * 1000;
 const APP_OPEN_MIN_INTERVAL_MS = 4 * 60 * 1000;
@@ -41,6 +42,18 @@ const AdsHandler = forwardRef((props, ref) => {
         adsEnabled && consentResolved ? interstitialId : null,
         adRequestOptions
     );
+    const {
+        isLoaded: isRewardedLoaded,
+        isClosed: isRewardedClosed,
+        isShowing: isRewardedShowing,
+        isEarnedReward,
+        error: rewardedError,
+        load: loadRewarded,
+        show: showRewarded,
+    } = useRewardedAd(
+        adsEnabled && consentResolved && rewardedId ? rewardedId : null,
+        adRequestOptions
+    );
 
     const sdkStartedRef = useRef(false);
     const lastInterstitialShownAtRef = useRef(0);
@@ -55,6 +68,9 @@ const AdsHandler = forwardRef((props, ref) => {
     const showOpenAdRef = useRef(props.showOpenAd);
     const appOpenRetryTimeoutRef = useRef(null);
     const interstitialRetryTimeoutRef = useRef(null);
+    const rewardedRetryTimeoutRef = useRef(null);
+    const rewardedResolveRef = useRef(null);
+    const rewardedEarnedRef = useRef(false);
 
     useEffect(() => {
         appOpenBlockedRef.current = props.appOpenBlocked;
@@ -135,8 +151,15 @@ const AdsHandler = forwardRef((props, ref) => {
     }
 
     useEffect(() => {
-        if (props.adsLoaded) loadInterstitial();
-    }, [props.adsLoaded, loadInterstitial]);
+        if (!props.adsLoaded) return;
+
+        loadInterstitial();
+        if (rewardedId) loadRewarded();
+    }, [props.adsLoaded, loadInterstitial, loadRewarded]);
+
+    useEffect(() => {
+        props.setRewardedAdLoaded(Boolean(isRewardedLoaded));
+    }, [isRewardedLoaded]);
 
     useEffect(() => {
         if (!sdkStartedRef.current) return;
@@ -162,6 +185,60 @@ const AdsHandler = forwardRef((props, ref) => {
 
         return () => clearTimeout(interstitialRetryTimeoutRef.current);
     }, [interstitialError, loadInterstitial]);
+
+    useEffect(() => {
+        if (isEarnedReward) rewardedEarnedRef.current = true;
+    }, [isEarnedReward]);
+
+    useEffect(() => {
+        if (!isRewardedClosed) return;
+
+        completeRewardedRequest(rewardedEarnedRef.current ? "earned" : "dismissed");
+        loadRewarded();
+    }, [isRewardedClosed, loadRewarded]);
+
+    useEffect(() => {
+        if (!rewardedError) return;
+
+        completeRewardedRequest("error");
+        clearTimeout(rewardedRetryTimeoutRef.current);
+        rewardedRetryTimeoutRef.current = setTimeout(
+            loadRewarded,
+            AD_RETRY_DELAY_MS
+        );
+
+        return () => clearTimeout(rewardedRetryTimeoutRef.current);
+    }, [rewardedError, loadRewarded]);
+
+    function completeRewardedRequest(status) {
+        const resolve = rewardedResolveRef.current;
+        rewardedResolveRef.current = null;
+        rewardedEarnedRef.current = false;
+        resolve?.({ status });
+    }
+
+    function tryShowRewardedAd() {
+        if (!rewardedId) return Promise.resolve({ status: "not-configured" });
+        if (!adsEnabled) return Promise.resolve({ status: "disabled" });
+        if (rewardedResolveRef.current || isRewardedShowing) {
+            return Promise.resolve({ status: "busy" });
+        }
+        if (!isRewardedLoaded || AppState.currentState !== "active") {
+            if (!isRewardedLoaded) loadRewarded();
+            return Promise.resolve({ status: "not-ready" });
+        }
+
+        rewardedEarnedRef.current = false;
+        return new Promise((resolve) => {
+            rewardedResolveRef.current = resolve;
+            try {
+                showRewarded();
+            } catch {
+                completeRewardedRequest("error");
+                loadRewarded();
+            }
+        });
+    }
 
     function tryShowInterstitialAd() {
         const enoughTimeHasPassed =
@@ -289,6 +366,8 @@ const AdsHandler = forwardRef((props, ref) => {
         return () => {
             clearTimeout(appOpenRetryTimeoutRef.current);
             clearTimeout(interstitialRetryTimeoutRef.current);
+            clearTimeout(rewardedRetryTimeoutRef.current);
+            completeRewardedRequest("error");
             resetAppOpenAd();
         };
     }, []);
@@ -296,6 +375,7 @@ const AdsHandler = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
         loadInterstitialAd: loadInterstitial,
         tryShowInterstitialAd,
+        tryShowRewardedAd,
         async showPrivacyOptionsForm() {
             const consentInfo = await AdsConsent.showPrivacyOptionsForm();
             updatePrivacyOptionsRequirement(consentInfo);

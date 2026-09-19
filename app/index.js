@@ -27,10 +27,18 @@ function SettingsIcon({ color = colors.textDark, size = 20 }) {
     );
 }
 
+function HeartHeaderIcon({ color = colors.accentDark, size = 20 }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </Svg>
+    );
+}
+
 function HeartBadge({ isFav, size = 16 }) {
     return (
         <Svg width={size} height={size} viewBox="0 0 24 24" fill={isFav ? "#E53935" : "none"} stroke={isFav ? "#E53935" : "#FFFFFF"} strokeWidth="2.2">
-            <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
         </Svg>
     );
 }
@@ -155,15 +163,30 @@ export default function Home() {
 
             {/* Header compacto con fondo armonizado */}
             <SafeAreaView edges={["top"]} style={styles.topHeader}>
+                <View style={styles.headerSpacer} />
                 <View style={styles.brandingCenter}>
-                    <Text style={styles.brandTitle}>{language.t("_homeTitle")}</Text>
+                    <Text style={styles.brandTitle} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
+                        {language.t("_homeTitle")}
+                    </Text>
                 </View>
-                <TouchableOpacity
-                    style={styles.settingsBtn}
-                    onPress={() => router.push("/settings")}
-                >
-                    <SettingsIcon />
-                </TouchableOpacity>
+                <View style={styles.headerActions}>
+                    <TouchableOpacity
+                        style={styles.headerActionBtn}
+                        accessibilityRole="button"
+                        accessibilityLabel={language.t("_navFavorites")}
+                        onPress={() => router.push("/favorites")}
+                    >
+                        <HeartHeaderIcon />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.headerActionBtn}
+                        accessibilityRole="button"
+                        accessibilityLabel={language.t("_settingsLabel")}
+                        onPress={() => router.push("/settings")}
+                    >
+                        <SettingsIcon />
+                    </TouchableOpacity>
+                </View>
             </SafeAreaView>
 
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
@@ -355,13 +378,23 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
     },
+    headerSpacer: {
+        width: 72,
+    },
+    headerActions: {
+        width: 72,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        gap: 8,
+    },
     brandTitle: {
         fontFamily: "ancizar-bold",
         fontSize: 22,
         color: colors.textDark,
         letterSpacing: -0.3,
     },
-    settingsBtn: {
+    headerActionBtn: {
         padding: 4,
     },
     scrollContent: {

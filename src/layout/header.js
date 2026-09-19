@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../utils/styles";
 import { router } from "expo-router";
-import { Menu, MenuItem } from "react-native-material-menu";
 import Svg, { Path, Circle } from "react-native-svg";
 import { useLanguage } from "../utils/LanguageContext";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -29,15 +28,12 @@ function SettingsIcon({ color = colors.textDark, size = 20 }) {
 function HeartMenuIcon({ color = colors.accentDark, size = 18 }) {
     return (
         <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
         </Svg>
     );
 }
 
-export default function Header({ title, back, settings = true }) {
-    const [visible, setVisible] = useState(false);
-    const hideMenu = () => setVisible(false);
-    const showMenu = () => setVisible(true);
+export default function Header({ title, back, settings = true, favorites = true }) {
     const { language } = useLanguage();
 
     return (
@@ -61,10 +57,23 @@ export default function Header({ title, back, settings = true }) {
                 </View>
 
                 <View style={styles.rightContainer}>
+                    {favorites && (
+                        <TouchableOpacity
+                            style={styles.headerIconWrapper}
+                            activeOpacity={0.7}
+                            accessibilityRole="button"
+                            accessibilityLabel={language.t("_navFavorites")}
+                            onPress={() => router.push("/favorites")}
+                        >
+                            <HeartMenuIcon />
+                        </TouchableOpacity>
+                    )}
                     {settings && (
                         <TouchableOpacity
-                            style={styles.settingsIconWrapper}
+                            style={styles.headerIconWrapper}
                             activeOpacity={0.7}
+                            accessibilityRole="button"
+                            accessibilityLabel={language.t("_settingsLabel")}
                             onPress={() => router.push("/settings")}
                         >
                             <SettingsIcon />
@@ -93,12 +102,15 @@ const styles = StyleSheet.create({
         borderBottomColor: "rgba(240, 232, 225, 0.7)",
     },
     leftContainer: {
-        width: 40,
+        width: 76,
         alignItems: "flex-start",
     },
     rightContainer: {
-        width: 40,
-        alignItems: "flex-end",
+        width: 76,
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        gap: 10,
+        alignItems: "center",
     },
     logoCenter: {
         flex: 1,
@@ -116,22 +128,7 @@ const styles = StyleSheet.create({
     placeholderBox: {
         width: 24,
     },
-    settingsIconWrapper: {
+    headerIconWrapper: {
         padding: 4,
-    },
-    menuBox: {
-        borderRadius: 12,
-        marginTop: 35,
-        backgroundColor: colors.white,
-    },
-    menuRow: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 10,
-    },
-    menuText: {
-        fontFamily: "ancizar-medium",
-        fontSize: 14,
-        color: colors.textDark,
     },
 });
