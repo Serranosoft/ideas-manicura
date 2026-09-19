@@ -8,6 +8,8 @@ const ajv = new Ajv({ allErrors: true, strict: true });
 addFormats(ajv);
 const schema = JSON.parse(readFileSync(new URL('../schema/catalog.schema.json', import.meta.url), 'utf8'));
 const validateSchema = ajv.compile(schema);
+const AMAZON_ES_AFFILIATE_TAG = 'paulaymanu113-21';
+const AMAZON_ES_HOSTS = new Set(['amazon.es', 'www.amazon.es']);
 
 export function validateCatalog(catalog) {
     if (!validateSchema(catalog)) {
@@ -24,6 +26,17 @@ export function validateCatalog(catalog) {
                     const url = new URL(offer.url);
                     if (url.protocol !== 'https:' || !url.hostname || url.username || url.password || url.port) {
                         errors.push(`/products/${productId}/offers/${market}/${index}/url: secure HTTPS URL required`);
+                    }
+                    if (offer.retailer === 'Amazon España') {
+                        if (!AMAZON_ES_HOSTS.has(url.hostname)) {
+                            errors.push(`/products/${productId}/offers/${market}/${index}/url: Amazon España URL required`);
+                        }
+                        if (!/^\/dp\/[A-Z0-9]{10}\/?$/.test(url.pathname)) {
+                            errors.push(`/products/${productId}/offers/${market}/${index}/url: canonical Amazon /dp/ASIN URL required`);
+                        }
+                        if (url.searchParams.get('tag') !== AMAZON_ES_AFFILIATE_TAG) {
+                            errors.push(`/products/${productId}/offers/${market}/${index}/url: Amazon affiliate tag must be ${AMAZON_ES_AFFILIATE_TAG}`);
+                        }
                     }
                 } catch {
                     errors.push(`/products/${productId}/offers/${market}/${index}/url: invalid URL`);

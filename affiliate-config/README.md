@@ -14,11 +14,11 @@ La app móvil no incluye una copia de estos productos. La futura funcionalidad d
 
 La integración móvil todavía no se añade porque la pantalla que utilizará los productos aún no existe. Se implementará junto a esa funcionalidad, con el contrato del catálogo ya definido.
 
-El catálogo comienza vacío y con `enabled:false` porque todavía no hay URLs reales.
+El catálogo de España está activo con una selección inicial de productos de Amazon. Los enlaces usan el identificador de afiliado `paulaymanu113-21` y el validador comprueba que no se publique por error un enlace de Amazon España sin ese identificador.
 
 ## Mercados
 
-Las ofertas se separan en cuatro grupos sin fallback entre ellos:
+Las ofertas pueden separarse en cuatro grupos sin fallback entre ellos:
 
 - `spain`: exclusivamente España.
 - `europe`: países europeos excepto España.
@@ -26,6 +26,8 @@ Las ofertas se separan en cuatro grupos sin fallback entre ellos:
 - `east`: Asia y Oriente Medio.
 
 África y Oceanía no reciben enlaces automáticamente. Se pueden añadir posteriormente mediante una nueva versión coordinada del contrato.
+
+En esta primera fase, `supportedMarkets` solo contiene `spain`. Los demás mercados se activarán cuando tengan productos y enlaces reales.
 
 ## Añadir un producto
 
@@ -43,14 +45,11 @@ Ejemplo de estructura. No copies estas URLs ficticias al catálogo real:
       "spain": [
         {
           "retailer": "Amazon España",
-          "url": "https://www.amazon.es/dp/PRODUCTO?tag=AFILIADO",
+          "url": "https://www.amazon.es/dp/B012345678?tag=paulaymanu113-21",
           "enabled": true,
           "priority": 100
         }
-      ],
-      "europe": [],
-      "americas": [],
-      "east": []
+      ]
     }
   }
 }
@@ -61,7 +60,7 @@ Los IDs (`lampara_uv_led`) son estables y solo admiten minúsculas, números y g
 Al publicar productos reales:
 
 1. Añádelos en `products`.
-2. Añade solamente enlaces HTTPS completos con sus parámetros de afiliación.
+2. Para Amazon España, usa el formato canónico `https://www.amazon.es/dp/ASIN?tag=paulaymanu113-21`.
 3. Cambia `updatedAt` a la fecha actual.
 4. Pon `enabled:true` cuando el catálogo esté listo.
 5. Ejecuta `npm run validate`.
