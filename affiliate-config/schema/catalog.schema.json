@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nails affiliate catalog V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "enabled", "updatedAt", "supportedMarkets", "products"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "enabled": { "type": "boolean" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "supportedMarkets": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/definitions/market" }
+    },
+    "products": {
+      "type": "object",
+      "maxProperties": 2000,
+      "propertyNames": { "$ref": "#/definitions/id" },
+      "additionalProperties": { "$ref": "#/definitions/product" }
+    }
+  },
+  "definitions": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+      "maxLength": 100
+    },
+    "market": {
+      "type": "string",
+      "enum": ["spain", "europe", "americas", "east"]
+    },
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "category", "offers"],
+      "properties": {
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "\\S" },
+        "brand": { "type": "string", "maxLength": 120 },
+        "category": { "$ref": "#/definitions/id" },
+        "description": { "type": "string", "maxLength": 600 },
+        "imageUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "offers": {
+          "type": "object",
+          "propertyNames": { "$ref": "#/definitions/market" },
+          "additionalProperties": {
+            "type": "array",
+            "maxItems": 20,
+            "items": { "$ref": "#/definitions/offer" }
+          }
+        }
+      }
+    },
+    "offer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retailer", "url", "enabled", "priority"],
+      "properties": {
+        "retailer": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "\\S" },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://[^\\s]+$" },
+        "enabled": { "type": "boolean" },
+        "priority": { "type": "integer", "minimum": 0, "maximum": 2147483647 }
+      }
+    }
+  }
+}

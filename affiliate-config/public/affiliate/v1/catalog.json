@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "enabled": true,
+  "updatedAt": "2026-09-19T10:42:06Z",
+  "supportedMarkets": [
+    "spain"
+  ],
+  "products": {
+    "kit_semipermanente_jodsone_36_piezas": {
+      "displayName": "Kit de manicura semipermanente de 36 piezas",
+      "brand": "JODSONE",
+      "category": "kits_iniciacion",
+      "description": "Kit para principiantes con lámpara, 32 colores, base y acabados brillante y mate.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0FJS1PQ2K?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "lampara_uv_led_sunuv": {
+      "displayName": "Lámpara profesional UV/LED con cuatro temporizadores",
+      "brand": "SUNUV",
+      "category": "lamparas_uv_led",
+      "description": "Lámpara para curado de gel con modos de 10, 30, 60 y 90 segundos.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B08KS4W6L6?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "torno_unas_xoali": {
+      "displayName": "Torno para uñas 12 en 1",
+      "brand": "Xoali",
+      "category": "tornos_y_limas",
+      "description": "Torno USB de velocidad ajustable con brocas para manicura y pedicura.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0B3Y81RN2?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "kit_cuticulas_makartt": {
+      "displayName": "Kit profesional para cutículas",
+      "brand": "Makartt",
+      "category": "preparacion",
+      "description": "Juego de acero inoxidable con alicate, empujador de doble extremo y raspador.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0BK7Z259G?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "set_limas_multigrano": {
+      "displayName": "Set de limas y bloques de pulido multigrano",
+      "category": "tornos_y_limas",
+      "description": "Seis limas de doble cara con granos desde 100 hasta 4000 para preparación y acabado.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B086S52X9Y?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "pinceles_nail_art_sularpek": {
+      "displayName": "Set de pinceles de doble punta para nail art",
+      "brand": "Sularpek",
+      "category": "nail_art",
+      "description": "Cinco herramientas de doble punta para líneas, detalles, pintura y punteado.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B09Z2C2J5M?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "tips_almendra_diboniur": {
+      "displayName": "Tips transparentes de almendra, 550 piezas",
+      "brand": "Diboniur",
+      "category": "tips_y_extensiones",
+      "description": "Tips full cover en 11 tamaños para personalizar diseños o realizar extensiones.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0CP3HVK5T?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "pegatinas_flores_jmeowio": {
+      "displayName": "Pegatinas 3D de flores para uñas",
+      "brand": "JMEOWIO",
+      "category": "decoracion",
+      "description": "Cinco hojas de pegatinas autoadhesivas de flores para diseños de nail art.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0BKPQF9JM?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "strass_beadsland_dorado": {
+      "displayName": "Strass dorado para nail art en seis tamaños",
+      "brand": "Beadsland",
+      "category": "decoracion",
+      "description": "Surtido de pedrería de base plana con seis tamaños y lápiz de cera aplicador.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0BGNZ55XX?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "muestrario_unas_aiqinu": {
+      "displayName": "Muestrario transparente de 100 uñas",
+      "brand": "AiQInu",
+      "category": "practica_y_organizacion",
+      "description": "Palitos transparentes con etiquetas numeradas para practicar diseños y organizar colores.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0D4DL4ZYH?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "clips_quitaesmalte_mylee": {
+      "displayName": "Clips reutilizables para retirar esmalte de gel",
+      "brand": "Mylee",
+      "category": "retirada",
+      "description": "Juego de diez clips reutilizables para mantener las almohadillas de retirada en su sitio.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B09QCQ27SB?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    }
+  }
+}
