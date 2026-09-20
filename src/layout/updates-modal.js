@@ -5,7 +5,7 @@ import { ui } from '../utils/styles';
 import Button from '../components/button';
 import { useLanguage } from '../utils/LanguageContext';
 
-const VERSION_MODAL = 'v2';
+const VERSION_MODAL = 'v3';
 
 export default function UpdatesModal() {
     const [visible, setVisible] = useState(false);
