@@ -19,17 +19,26 @@ function Chevron({ direction = "right", color = colors.textDark }) {
     );
 }
 
+function ToolIcon() {
+    return (
+        <Svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={colors.accentDark} strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <Path d="m14.5 4.5 5 5-8.7 8.7a2.1 2.1 0 0 1-3 0l-2-2a2.1 2.1 0 0 1 0-3L14.5 4.5z" />
+            <Path d="m4 20 3.8-1.8-2-2L4 20zM13 6l5 5" />
+        </Svg>
+    );
+}
+
 export default function GuideSteps() {
     const { category, design: designId } = useLocalSearchParams();
     const { language } = useLanguage();
     const copy = getGuideCopy(language._locale);
     const design = getGuideDesign(category, designId);
-    const images = design?.images || [];
+    const steps = design?.steps || [];
     const title = getGuideLabel(design?.title, language._locale) || copy.guidesTitle;
     const [currentStep, setCurrentStep] = useState(0);
     const listRef = useRef(null);
     const { width } = useWindowDimensions();
-    const progress = images.length ? ((currentStep + 1) / images.length) * 100 : 0;
+    const progress = steps.length ? ((currentStep + 1) / steps.length) * 100 : 0;
     const { guideUnlocksLoaded, isGuideUnlocked } = useContext(AdsContext);
     const guideId = `${category}/${designId}`;
 
@@ -40,7 +49,7 @@ export default function GuideSteps() {
     }, [category, guideId, guideUnlocksLoaded, isGuideUnlocked]);
 
     function goToStep(index) {
-        if (index < 0 || index >= images.length) return;
+        if (index < 0 || index >= steps.length) return;
         listRef.current?.scrollToIndex({ index, animated: true });
         setCurrentStep(index);
     }
@@ -53,31 +62,31 @@ export default function GuideSteps() {
                 <View style={styles.progressTrack}>
                     <View style={[styles.progressFill, { width: `${progress}%` }]} />
                 </View>
-                <Text style={styles.counter}>{currentStep + 1}/{images.length}</Text>
+                <Text style={styles.counter}>{currentStep + 1}/{steps.length}</Text>
             </View>
 
             <FlatList
                 ref={listRef}
-                data={images}
+                data={steps}
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
-                initialNumToRender={images.length}
-                maxToRenderPerBatch={images.length}
-                windowSize={Math.max(3, images.length)}
+                initialNumToRender={steps.length}
+                maxToRenderPerBatch={steps.length}
+                windowSize={Math.max(3, steps.length)}
                 removeClippedSubviews={false}
-                keyExtractor={(item) => item}
+                keyExtractor={(item) => item.image}
                 getItemLayout={(_, index) => ({ length: width, offset: width * index, index })}
                 onMomentumScrollEnd={(event) => {
                     const nextIndex = Math.round(event.nativeEvent.contentOffset.x / width);
-                    setCurrentStep(Math.max(0, Math.min(nextIndex, images.length - 1)));
+                    setCurrentStep(Math.max(0, Math.min(nextIndex, steps.length - 1)));
                 }}
                 renderItem={({ item, index }) => (
                     <View style={[styles.page, { width }]}>
                         <View style={styles.imageCard}>
                             <Image
-                                source={item}
-                                recyclingKey={item}
+                                source={item.image}
+                                recyclingKey={item.image}
                                 cachePolicy="memory-disk"
                                 style={styles.image}
                                 contentFit="cover"
@@ -85,6 +94,25 @@ export default function GuideSteps() {
                             />
                             <View style={styles.stepBadge}>
                                 <Text style={styles.stepBadgeText}>{copy.step} {index + 1}</Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.instructionCard}>
+                            <Text style={styles.instructionLabel}>{copy.whatToDo}</Text>
+                            <Text style={styles.instructionText}>
+                                {getGuideLabel(item.instruction, language._locale)}
+                            </Text>
+
+                            <View style={styles.toolRow}>
+                                <View style={styles.toolIconWrap}>
+                                    <ToolIcon />
+                                </View>
+                                <View style={styles.toolCopy}>
+                                    <Text style={styles.toolLabel}>{copy.tool}</Text>
+                                    <Text style={styles.toolText}>
+                                        {getGuideLabel(item.tool, language._locale)}
+                                    </Text>
+                                </View>
                             </View>
                         </View>
                     </View>
@@ -106,7 +134,7 @@ export default function GuideSteps() {
                     style={styles.nextButton}
                     activeOpacity={0.8}
                     onPress={() => {
-                        if (currentStep < images.length - 1) {
+                        if (currentStep < steps.length - 1) {
                             goToStep(currentStep + 1);
                         } else {
                             router.back();
@@ -114,9 +142,9 @@ export default function GuideSteps() {
                     }}
                 >
                     <Text style={styles.nextButtonText}>
-                        {currentStep < images.length - 1 ? copy.next : copy.finish}
+                        {currentStep < steps.length - 1 ? copy.next : copy.finish}
                     </Text>
-                    {currentStep < images.length - 1 && <Chevron color={colors.white} />}
+                    {currentStep < steps.length - 1 && <Chevron color={colors.white} />}
                 </TouchableOpacity>
             </SafeAreaView>
         </View>
@@ -159,10 +187,11 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 18,
         paddingTop: 8,
-        paddingBottom: 14,
+        paddingBottom: 8,
     },
     imageCard: {
         flex: 1,
+        minHeight: 250,
         borderRadius: 24,
         overflow: "hidden",
         backgroundColor: colors.cardBg,
@@ -192,6 +221,63 @@ const styles = StyleSheet.create({
         fontSize: 12,
         letterSpacing: 0.5,
         textTransform: "uppercase",
+    },
+    instructionCard: {
+        marginTop: 12,
+        paddingHorizontal: 18,
+        paddingTop: 15,
+        paddingBottom: 14,
+        borderRadius: 20,
+        backgroundColor: colors.cardBg,
+        borderWidth: 1,
+        borderColor: colors.cardBorder,
+    },
+    instructionLabel: {
+        color: colors.accentDark,
+        fontFamily: "ancizar-bold",
+        fontSize: 10,
+        letterSpacing: 1.1,
+        textTransform: "uppercase",
+    },
+    instructionText: {
+        marginTop: 5,
+        color: colors.textDark,
+        fontFamily: "ancizar-regular",
+        fontSize: 15,
+        lineHeight: 20,
+    },
+    toolRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
+        marginTop: 12,
+        paddingTop: 11,
+        borderTopWidth: 1,
+        borderTopColor: colors.cardBorder,
+    },
+    toolIconWrap: {
+        width: 36,
+        height: 36,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 18,
+        backgroundColor: colors.badgeBg,
+    },
+    toolCopy: {
+        flex: 1,
+    },
+    toolLabel: {
+        color: colors.textMuted,
+        fontFamily: "ancizar-bold",
+        fontSize: 10,
+        letterSpacing: 0.6,
+        textTransform: "uppercase",
+    },
+    toolText: {
+        marginTop: 1,
+        color: colors.textDark,
+        fontFamily: "ancizar-medium",
+        fontSize: 14,
     },
     footer: {
         flexDirection: "row",

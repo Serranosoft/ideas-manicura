@@ -239,7 +239,7 @@ export default function GuideDesigns() {
                                     <View style={styles.cardContent}>
                                         <Text style={styles.cardTitle}>{getGuideLabel(item.title, language._locale)}</Text>
                                         <View style={styles.stepPill}>
-                                            <Text style={styles.stepPillText}>{item.images.length} {copy.steps}</Text>
+                                            <Text style={styles.stepPillText}>{item.steps.length} {copy.steps}</Text>
                                         </View>
                                     </View>
                                 </Pressable>
