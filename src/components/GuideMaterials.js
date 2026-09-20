@@ -65,7 +65,7 @@ export default function GuideMaterials({ materials = [], copy, locale }) {
     async function openProduct(url) {
         setOpenFailed(false);
         try {
-            if (!isHttpsUrl(url) || !(await Linking.canOpenURL(url))) throw new Error("Invalid product URL");
+            if (!isHttpsUrl(url)) throw new Error("Invalid product URL");
             await Linking.openURL(url);
         } catch {
             setOpenFailed(true);
