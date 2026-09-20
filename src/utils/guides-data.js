@@ -2,6 +2,12 @@ const WORDPRESS_UPLOADS = "https://mollydigital.manu-scholz.com/wp-content/uploa
 
 const localized = (es, en) => ({ es, en });
 
+const material = (id, es, en, productId) => ({
+    id,
+    name: localized(es, en),
+    ...(productId ? { productId } : {}),
+});
+
 const buildSteps = (prefix, definitions) => definitions.map(([
     imageNumber,
     instructionEs,
@@ -24,6 +30,14 @@ export const guideCategories = [
                 id: "sencillas",
                 title: localized("Sencillas", "Simple"),
                 cover: `${WORDPRESS_UPLOADS}/baby-boomer-8.jpg`,
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("colors", "Esmaltes rosa translúcido y blanco lechoso", "Sheer pink and milky white polish"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                    material("files", "Lima fina o buffer", "Fine file or buffer", "set_limas_multigrano"),
+                    material("brushes", "Pincel para degradado u ombré", "Gradient or ombré brush", "pinceles_nail_art_sularpek"),
+                    material("wipes", "Toallitas sin pelusa y limpiador", "Lint-free wipes and cleanser"),
+                ],
                 steps: buildSteps("baby-boomer", [
                     [1, "Da forma a la uña y elimina el brillo de la superficie con movimientos suaves.", "Shape the nail and gently remove the surface shine.", "Lima fina o buffer", "Fine file or buffer"],
                     [2, "Aplica una capa fina de base transparente sin tocar la cutícula y cura.", "Apply a thin clear base coat without touching the cuticle, then cure.", "Pincel del esmalte y lámpara UV/LED", "Polish brush and UV/LED lamp"],
@@ -46,6 +60,12 @@ export const guideCategories = [
                 id: "margarita",
                 title: localized("Margarita", "Daisy"),
                 cover: `${WORDPRESS_UPLOADS}/flores-margarita-6.jpg`,
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("colors", "Gel blanco y gel amarillo", "White gel and yellow gel"),
+                    material("brushes", "Pincel liner, pincel de detalle y dotting tool", "Liner brush, detail brush, and dotting tool", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
                 steps: buildSteps("flores-margarita", [
                     [1, "Marca cuatro líneas finas en forma de cruz para repartir los primeros pétalos.", "Paint four fine guide lines in a cross to space the first petals.", "Pincel liner fino y gel blanco", "Fine liner brush and white gel"],
                     [2, "Añade cuatro líneas diagonales para completar ocho guías alrededor del centro.", "Add four diagonal lines to create eight evenly spaced guides around the centre.", "Pincel liner fino", "Fine liner brush"],
@@ -59,6 +79,15 @@ export const guideCategories = [
                 id: "relieve",
                 title: localized("Flores en relieve", "Embossed flowers"),
                 cover: `${WORDPRESS_UPLOADS}/relieve-6.jpg`,
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("pearly-gel", "Gel rosa nacarado", "Pearly pink gel"),
+                    material("3d-gel", "Gel 3D para modelar", "3D sculpting gel"),
+                    material("silicone-brush", "Pincel de silicona o pincel para gel 3D", "Silicone tool or 3D gel brush"),
+                    material("brushes", "Pincel fino, espátula y dotting tool", "Fine brush, spatula, and dotting tool", "pinceles_nail_art_sularpek"),
+                    material("strass", "Microperlas doradas, gel para gemas y lápiz de cera", "Gold microbeads, gem gel, and wax pencil", "strass_beadsland_dorado"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
                 steps: buildSteps("relieve", [
                     [1, "Coloca cinco perlas iguales de gel 3D formando un círculo y dejando libre el centro.", "Place five equal beads of 3D gel in a circle, leaving the centre clear.", "Gel 3D y espátula o dotting tool", "3D gel and spatula or dotting tool"],
                     [2, "Presiona y estira la primera perla desde el centro hacia fuera para formar un pétalo con relieve.", "Press and pull the first bead outward from the centre to shape a raised petal.", "Pincel de silicona o pincel para gel 3D", "Silicone tool or 3D gel brush"],
@@ -78,6 +107,12 @@ export const guideCategories = [
                 id: "oscuro",
                 title: localized("Lazo oscuro", "Dark bow"),
                 cover: `${WORDPRESS_UPLOADS}/lazos-oscuro-4.jpg`,
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("gels", "Gel negro, dorado y dorado oscuro", "Black, gold, and dark gold gel"),
+                    material("brushes", "Pincel liner, pincel fino y dotting tool", "Liner brush, fine brush, and dotting tool", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
                 steps: buildSteps("lazos-oscuro", [
                     [6, "Marca el centro del lazo y cuatro puntos exteriores para mantener la composición simétrica.", "Mark the bow centre and four outer points to keep the design symmetrical.", "Dotting tool y gel negro", "Dotting tool and black gel"],
                     [2, "Une los puntos con líneas curvas para dibujar el contorno de las dos lazadas superiores.", "Join the dots with curved lines to outline the two upper loops.", "Pincel liner fino", "Fine liner brush"],
@@ -91,6 +126,12 @@ export const guideCategories = [
                 id: "relleno",
                 title: localized("Lazo relleno", "Filled bow"),
                 cover: `${WORDPRESS_UPLOADS}/lazos-relleno-3.jpg`,
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("gels", "Gel rojo, rojo oscuro y blanco", "Red, dark red, and white gel"),
+                    material("brushes", "Pincel liner y pincel fino de detalle", "Liner brush and fine detail brush", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
                 steps: buildSteps("lazos-relleno", [
                     [1, "Dibuja el centro y el contorno de las dos lazadas superiores con líneas finas.", "Draw the centre and outline the two upper loops with fine lines.", "Pincel liner y gel rojo", "Liner brush and red gel"],
                     [2, "Añade una curva interior debajo de cada lazada para definir el pliegue inferior.", "Add an inner curve beneath each loop to define its lower fold.", "Pincel liner fino", "Fine liner brush"],
@@ -111,6 +152,13 @@ export const guideCategories = [
                 id: "cuadradas",
                 title: localized("Francesas cuadradas", "Square French manicure"),
                 cover: `${WORDPRESS_UPLOADS}/francesas-cuadradas-4.jpg`,
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("white-gel", "Gel blanco", "White gel"),
+                    material("files", "Lima para dar forma cuadrada", "File for shaping a square nail", "set_limas_multigrano"),
+                    material("brushes", "Pincel liner y pincel plano fino", "Liner brush and small flat brush", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
                 steps: buildSteps("francesas-cuadradas", [
                     [1, "Traza una línea horizontal fina a la altura donde quieres que empiece la punta francesa.", "Paint a thin horizontal line where you want the French tip to begin.", "Pincel liner y gel blanco", "Liner brush and white gel"],
                     [2, "Dibuja una diagonal desde un lateral de la uña hasta cruzar la línea guía.", "Draw a diagonal from one side of the nail across the guide line.", "Pincel liner fino", "Fine liner brush"],
@@ -135,6 +183,14 @@ const guideCopy = {
         steps: "pasos",
         whatToDo: "Qué hacer",
         tool: "Herramienta o material",
+        materialsTitle: "Qué necesitas",
+        materialsIntro: "Prepara estos materiales antes de empezar.",
+        materialsShort: "Materiales",
+        startGuide: "Empezar guía",
+        viewProduct: "Ver en Amazon",
+        affiliateProduct: "Producto recomendado",
+        affiliateDisclosure: "En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. No necesitas comprar nada para seguir esta guía.",
+        openProductError: "No se pudo abrir el producto.",
         previous: "Anterior",
         next: "Siguiente",
         finish: "Terminar",
@@ -163,6 +219,14 @@ const guideCopy = {
         steps: "steps",
         whatToDo: "What to do",
         tool: "Tool or material",
+        materialsTitle: "What you need",
+        materialsIntro: "Get these materials ready before you begin.",
+        materialsShort: "Materials",
+        startGuide: "Start guide",
+        viewProduct: "View on Amazon",
+        affiliateProduct: "Recommended product",
+        affiliateDisclosure: "As an Amazon Associate I earn from qualifying purchases. You do not need to buy anything to follow this guide.",
+        openProductError: "The product could not be opened.",
         previous: "Previous",
         next: "Next",
         finish: "Finish",

@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { FlatList, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { Stack, router, useLocalSearchParams } from "expo-router";
 import { Image } from "expo-image";
 import Svg, { Path } from "react-native-svg";
 import Header from "../src/layout/header";
+import GuideMaterials from "../src/components/GuideMaterials";
 import { AdsContext } from "../src/DataContext";
 import { useLanguage } from "../src/utils/LanguageContext";
 import { colors } from "../src/utils/styles";
@@ -34,11 +35,15 @@ export default function GuideSteps() {
     const copy = getGuideCopy(language._locale);
     const design = getGuideDesign(category, designId);
     const steps = design?.steps || [];
+    const pages = useMemo(
+        () => [{ id: "materials", type: "materials" }, ...steps.map((step) => ({ ...step, type: "step" }))],
+        [steps],
+    );
     const title = getGuideLabel(design?.title, language._locale) || copy.guidesTitle;
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
     const listRef = useRef(null);
     const { width } = useWindowDimensions();
-    const progress = steps.length ? ((currentStep + 1) / steps.length) * 100 : 0;
+    const progress = steps.length ? (currentPage / steps.length) * 100 : 0;
     const { guideUnlocksLoaded, isGuideUnlocked } = useContext(AdsContext);
     const guideId = `${category}/${designId}`;
 
@@ -48,10 +53,10 @@ export default function GuideSteps() {
         }
     }, [category, guideId, guideUnlocksLoaded, isGuideUnlocked]);
 
-    function goToStep(index) {
-        if (index < 0 || index >= steps.length) return;
+    function goToPage(index) {
+        if (index < 0 || index >= pages.length) return;
         listRef.current?.scrollToIndex({ index, animated: true });
-        setCurrentStep(index);
+        setCurrentPage(index);
     }
 
     return (
@@ -62,26 +67,34 @@ export default function GuideSteps() {
                 <View style={styles.progressTrack}>
                     <View style={[styles.progressFill, { width: `${progress}%` }]} />
                 </View>
-                <Text style={styles.counter}>{currentStep + 1}/{steps.length}</Text>
+                <Text style={styles.counter}>{currentPage}/{steps.length}</Text>
             </View>
 
             <FlatList
                 ref={listRef}
-                data={steps}
+                data={pages}
                 horizontal
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
-                initialNumToRender={steps.length}
-                maxToRenderPerBatch={steps.length}
-                windowSize={Math.max(3, steps.length)}
+                initialNumToRender={pages.length}
+                maxToRenderPerBatch={pages.length}
+                windowSize={Math.max(3, pages.length)}
                 removeClippedSubviews={false}
-                keyExtractor={(item) => item.image}
+                keyExtractor={(item) => item.id || item.image}
                 getItemLayout={(_, index) => ({ length: width, offset: width * index, index })}
                 onMomentumScrollEnd={(event) => {
                     const nextIndex = Math.round(event.nativeEvent.contentOffset.x / width);
-                    setCurrentStep(Math.max(0, Math.min(nextIndex, steps.length - 1)));
+                    setCurrentPage(Math.max(0, Math.min(nextIndex, pages.length - 1)));
                 }}
-                renderItem={({ item, index }) => (
+                renderItem={({ item, index }) => item.type === "materials" ? (
+                    <View style={[styles.materialsPage, { width }]}>
+                        <GuideMaterials
+                            materials={design?.materials}
+                            copy={copy}
+                            locale={language._locale}
+                        />
+                    </View>
+                ) : (
                     <View style={[styles.page, { width }]}>
                         <View style={styles.imageCard}>
                             <Image
@@ -93,7 +106,7 @@ export default function GuideSteps() {
                                 transition={350}
                             />
                             <View style={styles.stepBadge}>
-                                <Text style={styles.stepBadgeText}>{copy.step} {index + 1}</Text>
+                                <Text style={styles.stepBadgeText}>{copy.step} {index}</Text>
                             </View>
                         </View>
 
@@ -121,30 +134,32 @@ export default function GuideSteps() {
 
             <SafeAreaView edges={["bottom"]} style={styles.footer}>
                 <TouchableOpacity
-                    style={[styles.previousButton, currentStep === 0 && styles.disabledButton]}
+                    style={[styles.previousButton, currentPage === 0 && styles.disabledButton]}
                     activeOpacity={0.75}
-                    disabled={currentStep === 0}
+                    disabled={currentPage === 0}
                     accessibilityLabel={copy.previous}
-                    onPress={() => goToStep(currentStep - 1)}
+                    onPress={() => goToPage(currentPage - 1)}
                 >
-                    <Chevron direction="left" color={currentStep === 0 ? colors.textMuted : colors.textDark} />
+                    <Chevron direction="left" color={currentPage === 0 ? colors.textMuted : colors.textDark} />
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={styles.nextButton}
                     activeOpacity={0.8}
                     onPress={() => {
-                        if (currentStep < steps.length - 1) {
-                            goToStep(currentStep + 1);
+                        if (currentPage < pages.length - 1) {
+                            goToPage(currentPage + 1);
                         } else {
                             router.back();
                         }
                     }}
                 >
                     <Text style={styles.nextButtonText}>
-                        {currentStep < steps.length - 1 ? copy.next : copy.finish}
+                        {currentPage === 0
+                            ? copy.startGuide
+                            : currentPage < pages.length - 1 ? copy.next : copy.finish}
                     </Text>
-                    {currentStep < steps.length - 1 && <Chevron color={colors.white} />}
+                    {currentPage < pages.length - 1 && <Chevron color={colors.white} />}
                 </TouchableOpacity>
             </SafeAreaView>
         </View>
@@ -188,6 +203,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 18,
         paddingTop: 8,
         paddingBottom: 8,
+    },
+    materialsPage: {
+        flex: 1,
     },
     imageCard: {
         flex: 1,

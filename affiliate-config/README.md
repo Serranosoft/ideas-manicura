@@ -10,9 +10,9 @@ El único catálogo comercial es:
 public/affiliate/v1/catalog.json
 ```
 
-La app móvil no incluye una copia de estos productos. La futura funcionalidad descargará este JSON publicado y conservará una caché local. Por tanto, cambiar productos o enlaces requerirá publicar de nuevo este proyecto estático, pero **no requerirá compilar ni publicar una nueva versión de la app**.
+La app móvil no incluye una copia de estos productos. La pantalla inicial de cada guía descarga este JSON y conserva una caché local. Por tanto, cambiar productos o enlaces requiere publicar de nuevo este proyecto estático, pero **no requiere compilar ni publicar una nueva versión de la app**.
 
-La integración móvil todavía no se añade porque la pantalla que utilizará los productos aún no existe. Se implementará junto a esa funcionalidad, con el contrato del catálogo ya definido.
+Los botones de afiliación solo se muestran cuando la región del dispositivo es España. En los demás países se mantiene la lista de materiales sin enlaces comerciales.
 
 El catálogo de España está activo con una selección inicial de productos de Amazon. Los enlaces usan el identificador de afiliado `paulaymanu113-21` y el validador comprueba que no se publique por error un enlace de Amazon España sin ese identificador.
 
@@ -55,7 +55,7 @@ Ejemplo de estructura. No copies estas URLs ficticias al catálogo real:
 }
 ```
 
-Los IDs (`lampara_uv_led`) son estables y solo admiten minúsculas, números y guiones bajos. Si hay varias ofertas habilitadas para un mercado, se utiliza la de mayor `priority`. `brand`, `description` e `imageUrl` son opcionales; se pueden completar cuando la futura pantalla defina qué información mostrará.
+Los IDs (`lampara_uv_led`) son estables y solo admiten minúsculas, números y guiones bajos. Si hay varias ofertas habilitadas para un mercado, se utiliza la de mayor `priority`. `brand`, `description` e `imageUrl` son opcionales; la app utiliza el nombre del producto y la oferta activa.
 
 Al publicar productos reales:
 
