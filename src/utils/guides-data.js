@@ -32,11 +32,11 @@ export const guideCategories = [
                 cover: `${WORDPRESS_UPLOADS}/baby-boomer-8.jpg`,
                 materials: [
                     material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
-                    material("colors", "Esmaltes rosa translúcido y blanco lechoso", "Sheer pink and milky white polish"),
+                    material("colors", "Esmaltes rosa translúcido y blanco lechoso", "Sheer pink and milky white polish", "set_baby_boomer_vishine"),
                     material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
                     material("files", "Lima fina o buffer", "Fine file or buffer", "set_limas_multigrano"),
                     material("brushes", "Pincel para degradado u ombré", "Gradient or ombré brush", "pinceles_nail_art_sularpek"),
-                    material("wipes", "Toallitas sin pelusa y limpiador", "Lint-free wipes and cleanser"),
+                    material("wipes", "Toallitas sin pelusa y limpiador", "Lint-free wipes and cleanser", "cleaner_celulosas_nail"),
                 ],
                 steps: buildSteps("baby-boomer", [
                     [1, "Da forma a la uña y elimina el brillo de la superficie con movimientos suaves.", "Shape the nail and gently remove the surface shine.", "Lima fina o buffer", "Fine file or buffer"],
@@ -62,7 +62,7 @@ export const guideCategories = [
                 cover: `${WORDPRESS_UPLOADS}/flores-margarita-6.jpg`,
                 materials: [
                     material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
-                    material("colors", "Gel blanco y gel amarillo", "White gel and yellow gel"),
+                    material("colors", "Gel blanco y gel amarillo", "White gel and yellow gel", "painting_gel_biutee_12_colores"),
                     material("brushes", "Pincel liner, pincel de detalle y dotting tool", "Liner brush, detail brush, and dotting tool", "pinceles_nail_art_sularpek"),
                     material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
                 ],
@@ -81,11 +81,12 @@ export const guideCategories = [
                 cover: `${WORDPRESS_UPLOADS}/relieve-6.jpg`,
                 materials: [
                     material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
-                    material("pearly-gel", "Gel rosa nacarado", "Pearly pink gel"),
-                    material("3d-gel", "Gel 3D para modelar", "3D sculpting gel"),
-                    material("silicone-brush", "Pincel de silicona o pincel para gel 3D", "Silicone tool or 3D gel brush"),
+                    material("pearly-gel", "Gel rosa nacarado", "Pearly pink gel", "gel_nacarado_rosalind_6_colores"),
+                    material("3d-gel", "Gel 3D para modelar", "3D sculpting gel", "gel_3d_sularpek"),
+                    material("silicone-brush", "Pincel de silicona o pincel para gel 3D", "Silicone tool or 3D gel brush", "pinceles_silicona_hanyousheng"),
                     material("brushes", "Pincel fino, espátula y dotting tool", "Fine brush, spatula, and dotting tool", "pinceles_nail_art_sularpek"),
-                    material("strass", "Microperlas doradas, gel para gemas y lápiz de cera", "Gold microbeads, gem gel, and wax pencil", "strass_beadsland_dorado"),
+                    material("strass", "Microperlas doradas y lápiz de cera", "Gold microbeads and wax pencil", "strass_beadsland_dorado"),
+                    material("gem-glue", "Gel adhesivo para gemas", "Gem adhesive gel", "pegamento_strass_makartt"),
                     material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
                 ],
                 steps: buildSteps("relieve", [
@@ -109,7 +110,7 @@ export const guideCategories = [
                 cover: `${WORDPRESS_UPLOADS}/lazos-oscuro-4.jpg`,
                 materials: [
                     material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
-                    material("gels", "Gel negro, dorado y dorado oscuro", "Black, gold, and dark gold gel"),
+                    material("gels", "Gel negro y dorado para luces y sombras", "Black and gold gel for highlights and shadows", "gel_liner_aimeili_6_colores"),
                     material("brushes", "Pincel liner, pincel fino y dotting tool", "Liner brush, fine brush, and dotting tool", "pinceles_nail_art_sularpek"),
                     material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
                 ],
@@ -128,7 +129,7 @@ export const guideCategories = [
                 cover: `${WORDPRESS_UPLOADS}/lazos-relleno-3.jpg`,
                 materials: [
                     material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
-                    material("gels", "Gel rojo, rojo oscuro y blanco", "Red, dark red, and white gel"),
+                    material("gels", "Gel rojo, negro y blanco para crear luces y sombras", "Red, black, and white gel for highlights and shadows", "painting_gel_biutee_12_colores"),
                     material("brushes", "Pincel liner y pincel fino de detalle", "Liner brush and fine detail brush", "pinceles_nail_art_sularpek"),
                     material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
                 ],
@@ -154,7 +155,7 @@ export const guideCategories = [
                 cover: `${WORDPRESS_UPLOADS}/francesas-cuadradas-4.jpg`,
                 materials: [
                     material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
-                    material("white-gel", "Gel blanco", "White gel"),
+                    material("white-gel", "Gel blanco", "White gel", "gel_liner_aimeili_6_colores"),
                     material("files", "Lima para dar forma cuadrada", "File for shaping a square nail", "set_limas_multigrano"),
                     material("brushes", "Pincel liner y pincel plano fino", "Liner brush and small flat brush", "pinceles_nail_art_sularpek"),
                     material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),

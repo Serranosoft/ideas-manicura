@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "enabled": true,
-  "updatedAt": "2026-09-19T10:42:06Z",
+  "updatedAt": "2026-09-20T10:20:38Z",
   "supportedMarkets": [
     "spain"
   ],
@@ -175,6 +175,133 @@
           {
             "retailer": "Amazon España",
             "url": "https://www.amazon.es/dp/B09QCQ27SB?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "set_baby_boomer_vishine": {
+      "displayName": "Set Baby Boomer de cuatro geles lechosos",
+      "brand": "Vishine",
+      "category": "esmaltes_gel",
+      "description": "Cuatro tonos translúcidos blancos y rosas para degradados Baby Boomer y manicura francesa.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B07Z1SFVL3?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "cleaner_celulosas_nail": {
+      "displayName": "Cleaner para gel con 500 celulosas sin pelusa",
+      "category": "preparacion",
+      "description": "Conjunto de cleaner para retirar la capa pegajosa y celulosas precortadas sin pelusa.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B07BD3WNVT?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "painting_gel_biutee_12_colores": {
+      "displayName": "Painting gel para nail art de 12 colores",
+      "brand": "Biutee",
+      "category": "geles_nail_art",
+      "description": "Paleta UV/LED con blanco, negro, amarillo, rojo y otros tonos para flores y diseños pintados.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B08THDTJHF?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "gel_liner_aimeili_6_colores": {
+      "displayName": "Gel liner para nail art de seis colores",
+      "brand": "AIMEILI",
+      "category": "geles_nail_art",
+      "description": "Geles liner blanco, negro, dorado, plateado, rojo y rosa con pincel fino incorporado.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0FKH3KHRG?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "gel_nacarado_rosalind_6_colores": {
+      "displayName": "Set de seis geles nacarados",
+      "brand": "ROSALIND",
+      "category": "esmaltes_gel",
+      "description": "Selección de tonos perlados, incluidos rosas, para detalles nacarados y efecto sirena.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0FC6FDHGZ?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "gel_3d_sularpek": {
+      "displayName": "Gel constructor sólido 3D, dos unidades",
+      "brand": "Sularpek",
+      "category": "geles_3d",
+      "description": "Gel sólido antiadherente para modelar flores, relieves, extensiones y pequeñas esculturas.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B0F5Q9KWPN?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "pinceles_silicona_hanyousheng": {
+      "displayName": "Set de cinco pinceles de silicona para modelado",
+      "brand": "Hanyousheng",
+      "category": "nail_art",
+      "description": "Herramientas de silicona de doble cabeza para esculpir y dar forma a geles 3D.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B08SQRGPKV?tag=paulaymanu113-21",
+            "enabled": true,
+            "priority": 100
+          }
+        ]
+      }
+    },
+    "pegamento_strass_makartt": {
+      "displayName": "Gel adhesivo 3D para strass y gemas",
+      "brand": "Makartt",
+      "category": "decoracion",
+      "description": "Gel sólido de 30 gramos para fijar pedrería, gemas y adornos de nail art.",
+      "offers": {
+        "spain": [
+          {
+            "retailer": "Amazon España",
+            "url": "https://www.amazon.es/dp/B08GQYCPHL?tag=paulaymanu113-21",
             "enabled": true,
             "priority": 100
           }

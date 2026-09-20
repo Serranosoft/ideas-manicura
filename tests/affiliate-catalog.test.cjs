@@ -9,6 +9,7 @@ const { createProductResolver } = require("../src/domain/affiliate/product-resol
 const { createAffiliateCatalogRepository } = require("../src/services/affiliate-catalog-repository");
 
 const catalogPath = path.join(__dirname, "..", "affiliate-config", "public", "affiliate", "v1", "catalog.json");
+const guidesPath = path.join(__dirname, "..", "src", "utils", "guides-data.js");
 
 async function shippedCatalog() {
     return JSON.parse(await readFile(catalogPath, "utf8"));
@@ -36,7 +37,7 @@ test("the shipped Spain catalog passes the mobile validator", async () => {
     assert.ok(catalog);
     assert.equal(catalog.enabled, true);
     assert.deepEqual(catalog.supportedMarkets, ["spain"]);
-    assert.equal(Object.keys(catalog.products).length, 11);
+    assert.equal(Object.keys(catalog.products).length, 19);
 });
 
 test("affiliate availability is restricted to Spain region codes", () => {
@@ -44,6 +45,19 @@ test("affiliate availability is restricted to Spain region codes", () => {
     assert.equal(isSpainRegion("es"), true);
     assert.equal(isSpainRegion("PT"), false);
     assert.equal(isSpainRegion(undefined), false);
+});
+
+test("every guide material references a product in the shipped catalog", async () => {
+    const catalog = await shippedCatalog();
+    const source = await readFile(guidesPath, "utf8");
+    const materialLines = source.split(/\r?\n/).filter((line) => line.includes('material("'));
+
+    assert.ok(materialLines.length > 0);
+    for (const line of materialLines) {
+        const match = line.match(/,\s*"([a-z][a-z0-9]*(?:_[a-z0-9]+)*)"\),?\s*$/);
+        assert.ok(match, `Guide material is missing productId: ${line.trim()}`);
+        assert.ok(catalog.products[match[1]], `Unknown guide productId: ${match[1]}`);
+    }
 });
 
 test("the resolver returns one enabled, highest-priority Spain offer per product", async () => {
@@ -86,7 +100,7 @@ test("the repository downloads, validates and caches the catalog", async () => {
     });
 
     const products = await repository.getSpainProducts();
-    assert.equal(products.length, 11);
+    assert.equal(products.length, 19);
     assert.equal(requests, 1);
 
     await repository.getSpainProducts();
@@ -105,9 +119,9 @@ test("an invalid refresh never replaces a valid cached catalog", async () => {
         now: () => now,
     });
 
-    assert.equal((await repository.getSpainProducts()).length, 11);
+    assert.equal((await repository.getSpainProducts()).length, 19);
     now += 16 * 60 * 1000;
     response = { enabled: true };
     const refreshed = await repository.refresh();
-    assert.equal(Object.keys(refreshed.products).length, 11);
+    assert.equal(Object.keys(refreshed.products).length, 19);
 });
