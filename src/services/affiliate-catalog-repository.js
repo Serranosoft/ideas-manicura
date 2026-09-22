@@ -86,11 +86,16 @@ function createAffiliateCatalogRepository({
         return catalog;
     }
 
-    async function getSpainProducts() {
-        return createProductResolver(await getCatalog()).getSpainProducts();
+    async function getProducts(market) {
+        return createProductResolver(await getCatalog()).getProducts(market);
     }
 
-    return { getCatalog, getSpainProducts, refresh };
+    return {
+        getCatalog,
+        getProducts,
+        getSpainProducts: () => getProducts("spain"),
+        refresh,
+    };
 }
 
 module.exports = { createAffiliateCatalogRepository };

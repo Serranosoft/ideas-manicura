@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getLocales } from "expo-localization";
 import { createAffiliateCatalogRepository } from "./affiliate-catalog-repository";
-import { isSpainRegion } from "../domain/affiliate/market";
+import { getAffiliateMarket } from "../domain/affiliate/market";
 
-const DEFAULT_CATALOG_URL = "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v1/catalog.json";
+const DEFAULT_CATALOG_URL = "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v2/catalog.json";
 
 export const affiliateCatalog = createAffiliateCatalogRepository({
     storage: AsyncStorage,
@@ -11,11 +11,12 @@ export const affiliateCatalog = createAffiliateCatalogRepository({
 });
 
 export function isAffiliateAvailableForDevice() {
-    return isSpainRegion(getLocales()[0]?.regionCode);
+    return getAffiliateMarket(getLocales()[0]?.regionCode) !== null;
 }
 
 export async function getAffiliateProductsForDevice({ refresh = false } = {}) {
-    if (!isAffiliateAvailableForDevice()) return [];
+    const market = getAffiliateMarket(getLocales()[0]?.regionCode);
+    if (!market) return [];
     if (refresh) await affiliateCatalog.refresh();
-    return affiliateCatalog.getSpainProducts();
+    return affiliateCatalog.getProducts(market);
 }

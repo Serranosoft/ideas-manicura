@@ -9,20 +9,20 @@
       "distribution": "internal",
       "env": {
         "NAILS_EXCLUDE_EXPO_DEV_CLIENT": "false",
-        "EXPO_PUBLIC_AFFILIATE_CATALOG_URL": "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v1/catalog.json"
+        "EXPO_PUBLIC_AFFILIATE_CATALOG_URL": "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v2/catalog.json"
       }
     },
     "preview": {
       "distribution": "internal",
       "env": {
         "NAILS_EXCLUDE_EXPO_DEV_CLIENT": "true",
-        "EXPO_PUBLIC_AFFILIATE_CATALOG_URL": "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v1/catalog.json"
+        "EXPO_PUBLIC_AFFILIATE_CATALOG_URL": "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v2/catalog.json"
       }
     },
     "production": {
       "env": {
         "NAILS_EXCLUDE_EXPO_DEV_CLIENT": "true",
-        "EXPO_PUBLIC_AFFILIATE_CATALOG_URL": "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v1/catalog.json"
+        "EXPO_PUBLIC_AFFILIATE_CATALOG_URL": "https://raw.githubusercontent.com/Serranosoft/ideas-manicura/master/affiliate-config/public/affiliate/v2/catalog.json"
       }
     }
   },

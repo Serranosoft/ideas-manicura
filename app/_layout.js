@@ -11,6 +11,7 @@ import * as StoreReview from "expo-store-review";
 import { userPreferences } from "../src/utils/user-preferences";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { guideAccessRequiresReward } from "../src/utils/constants";
 
 import { scheduleAppointmentNotification, cancelAppointmentNotification } from "../src/utils/appointmentNotifications";
 import { ensureNotificationPermissionsAsync } from "../src/utils/notifications";
@@ -36,13 +37,17 @@ export default function Layout() {
         || pathname === "/appointments"
         || pathname === "/guide-steps";
 
-    // Una recompensa desbloquea esa guía durante 24 horas.
+    // En plataformas con anuncios, una recompensa desbloquea la guía durante
+    // 24 horas. En iOS las guías son de acceso directo mientras no haya anuncios.
     const [unlockedGuides, setUnlockedGuides] = useState([]);
-    const [guideUnlocksLoaded, setGuideUnlocksLoaded] = useState(false);
+    const [guideUnlocksLoaded, setGuideUnlocksLoaded] = useState(
+        !guideAccessRequiresReward
+    );
     const unlockedGuidesRef = useRef({});
 
     function isGuideUnlocked(guideId) {
-        return Number(unlockedGuidesRef.current[guideId]) > Date.now();
+        return !guideAccessRequiresReward
+            || Number(unlockedGuidesRef.current[guideId]) > Date.now();
     }
 
     async function saveGuideUnlocks(unlocks) {
@@ -65,6 +70,8 @@ export default function Layout() {
     }
 
     useEffect(() => {
+        if (!guideAccessRequiresReward) return undefined;
+
         async function loadGuideUnlocks() {
             try {
                 const stored = await AsyncStorage.getItem(GUIDE_UNLOCKS_STORAGE_KEY);
@@ -100,6 +107,10 @@ export default function Layout() {
     }
 
     async function unlockGuideWithReward(guideId) {
+        if (!guideAccessRequiresReward) {
+            return { status: "earned", expiresAt: null };
+        }
+
         if (isGuideUnlocked(guideId)) {
             return {
                 status: "earned",

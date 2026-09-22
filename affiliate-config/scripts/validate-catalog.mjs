@@ -8,8 +8,44 @@ const ajv = new Ajv({ allErrors: true, strict: true });
 addFormats(ajv);
 const schema = JSON.parse(readFileSync(new URL('../schema/catalog.schema.json', import.meta.url), 'utf8'));
 const validateSchema = ajv.compile(schema);
-const AMAZON_ES_AFFILIATE_TAG = 'paulaymanu113-21';
-const AMAZON_ES_HOSTS = new Set(['amazon.es', 'www.amazon.es']);
+
+const AMAZON_MARKETS = {
+    spain: {
+        retailer: 'Amazon España',
+        hosts: new Set(['amazon.es', 'www.amazon.es']),
+        affiliateTag: 'paulaymanu113-21',
+    },
+    france: {
+        retailer: 'Amazon France',
+        hosts: new Set(['amazon.fr', 'www.amazon.fr']),
+        affiliateTag: 'paulaymanu105-21',
+    },
+    germany: {
+        retailer: 'Amazon Deutschland',
+        hosts: new Set(['amazon.de', 'www.amazon.de']),
+        affiliateTag: 'paulaymanu102-21',
+    },
+    united_states: {
+        retailer: 'Amazon United States',
+        hosts: new Set(['amazon.com', 'www.amazon.com']),
+        affiliateTag: 'paulaymanu-20',
+    },
+    united_kingdom: {
+        retailer: 'Amazon United Kingdom',
+        hosts: new Set(['amazon.co.uk', 'www.amazon.co.uk']),
+        affiliateTag: 'paulaymanu100-21',
+    },
+    italy: {
+        retailer: 'Amazon Italia',
+        hosts: new Set(['amazon.it', 'www.amazon.it']),
+        affiliateTag: 'paulaymanu10d-21',
+    },
+};
+
+function hasCanonicalAmazonPath(url) {
+    return /^\/dp\/[A-Z0-9]{10}\/?$/.test(url.pathname)
+        || (url.pathname === '/s' && Boolean(url.searchParams.get('k')?.trim()));
+}
 
 export function validateCatalog(catalog) {
     if (!validateSchema(catalog)) {
@@ -18,28 +54,35 @@ export function validateCatalog(catalog) {
     const errors = [];
     for (const [productId, product] of Object.entries(catalog.products)) {
         for (const [market, offers] of Object.entries(product.offers)) {
+            const config = AMAZON_MARKETS[market];
             if (!catalog.supportedMarkets.includes(market)) {
                 errors.push(`/products/${productId}/offers/${market}: market must be declared in supportedMarkets`);
             }
             offers.forEach((offer, index) => {
+                const field = `/products/${productId}/offers/${market}/${index}`;
                 try {
                     const url = new URL(offer.url);
-                    if (url.protocol !== 'https:' || !url.hostname || url.username || url.password || url.port) {
-                        errors.push(`/products/${productId}/offers/${market}/${index}/url: secure HTTPS URL required`);
+                    if (url.protocol !== 'https:' || !url.hostname || url.username || url.password || url.port || url.hash) {
+                        errors.push(`${field}/url: secure HTTPS URL without credentials, port or fragment required`);
                     }
-                    if (offer.retailer === 'Amazon España') {
-                        if (!AMAZON_ES_HOSTS.has(url.hostname)) {
-                            errors.push(`/products/${productId}/offers/${market}/${index}/url: Amazon España URL required`);
+                    if (!config) {
+                        errors.push(`${field}: unsupported Amazon market`);
+                    } else if (offer.enabled) {
+                        if (offer.retailer !== config.retailer) {
+                            errors.push(`${field}/retailer: must be ${config.retailer}`);
                         }
-                        if (!/^\/dp\/[A-Z0-9]{10}\/?$/.test(url.pathname)) {
-                            errors.push(`/products/${productId}/offers/${market}/${index}/url: canonical Amazon /dp/ASIN URL required`);
+                        if (!config.hosts.has(url.hostname.toLowerCase())) {
+                            errors.push(`${field}/url: must use the official ${config.retailer} domain`);
                         }
-                        if (url.searchParams.get('tag') !== AMAZON_ES_AFFILIATE_TAG) {
-                            errors.push(`/products/${productId}/offers/${market}/${index}/url: Amazon affiliate tag must be ${AMAZON_ES_AFFILIATE_TAG}`);
+                        if (!hasCanonicalAmazonPath(url)) {
+                            errors.push(`${field}/url: canonical Amazon /dp/ASIN or /s?k=... URL required`);
+                        }
+                        if (url.searchParams.get('tag') !== config.affiliateTag) {
+                            errors.push(`${field}/url: Amazon affiliate tag must be ${config.affiliateTag}`);
                         }
                     }
                 } catch {
-                    errors.push(`/products/${productId}/offers/${market}/${index}/url: invalid URL`);
+                    errors.push(`${field}/url: invalid URL`);
                 }
             });
         }
@@ -49,13 +92,13 @@ export function validateCatalog(catalog) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
     try {
-        const path = process.argv[2] ? resolve(process.argv[2]) : new URL('../public/affiliate/v1/catalog.json', import.meta.url);
+        const path = process.argv[2] ? resolve(process.argv[2]) : new URL('../public/affiliate/v2/catalog.json', import.meta.url);
         const errors = validateCatalog(JSON.parse(readFileSync(path, 'utf8')));
         if (errors.length) {
             console.error(`Invalid catalog:\n${errors.join('\n')}`);
             process.exitCode = 1;
         } else {
-            console.log('Affiliate catalog V1 valid.');
+            console.log('Affiliate catalog V2 valid.');
         }
     } catch (error) {
         console.error(`Cannot validate catalog: ${error.message}`);

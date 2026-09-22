@@ -1,6 +1,6 @@
 const { validateCatalog, MAX_CATALOG_BYTES } = require("../domain/affiliate/catalog-schema");
 
-const CACHE_KEY = "nails.affiliateCatalog.v1";
+const CACHE_KEY = "nails.affiliateCatalog.v2";
 const TTL_MS = 15 * 60 * 1000;
 const MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 

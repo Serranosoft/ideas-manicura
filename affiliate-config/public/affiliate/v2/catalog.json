@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 2,
+  "enabled": true,
+  "updatedAt": "2026-09-22T00:00:00Z",
+  "supportedMarkets": ["spain", "france", "germany", "united_states", "united_kingdom", "italy"],
+  "products": {
+    "kit_semipermanente_jodsone_36_piezas": {
+      "displayName": "Kit de manicura semipermanente de 36 piezas",
+      "brand": "JODSONE",
+      "category": "kits_iniciacion",
+      "description": "Kit para principiantes con lámpara, 32 colores, base y acabados brillante y mate.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0FJS1PQ2K?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=JODSONE+gel+nail+kit+36+pieces&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=JODSONE+gel+nail+kit+36+pieces&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=JODSONE+gel+nail+kit+36+pieces&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=JODSONE+gel+nail+kit+36+pieces&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=JODSONE+gel+nail+kit+36+pieces&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "lampara_uv_led_sunuv": {
+      "displayName": "Lámpara profesional UV/LED con cuatro temporizadores",
+      "brand": "SUNUV",
+      "category": "lamparas_uv_led",
+      "description": "Lámpara para curado de gel con modos de 10, 30, 60 y 90 segundos.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B08KS4W6L6?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=SUNUV+UV+LED+nail+lamp+4+timers&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=SUNUV+UV+LED+nail+lamp+4+timers&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=SUNUV+UV+LED+nail+lamp+4+timers&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=SUNUV+UV+LED+nail+lamp+4+timers&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=SUNUV+UV+LED+nail+lamp+4+timers&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "torno_unas_xoali": {
+      "displayName": "Torno para uñas 12 en 1",
+      "brand": "Xoali",
+      "category": "tornos_y_limas",
+      "description": "Torno USB de velocidad ajustable con brocas para manicura y pedicura.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0B3Y81RN2?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=nail+drill+12+in+1+manicure&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=nail+drill+12+in+1+manicure&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=nail+drill+12+in+1+manicure&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=nail+drill+12+in+1+manicure&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=nail+drill+12+in+1+manicure&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "kit_cuticulas_makartt": {
+      "displayName": "Kit profesional para cutículas",
+      "brand": "Makartt",
+      "category": "preparacion",
+      "description": "Juego de acero inoxidable con alicate, empujador de doble extremo y raspador.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0BK7Z259G?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=Makartt+cuticle+kit+nipper+pusher&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=Makartt+cuticle+kit+nipper+pusher&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=Makartt+cuticle+kit+nipper+pusher&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=Makartt+cuticle+kit+nipper+pusher&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=Makartt+cuticle+kit+nipper+pusher&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "set_limas_multigrano": {
+      "displayName": "Set de limas y bloques de pulido multigrano",
+      "category": "tornos_y_limas",
+      "description": "Seis limas de doble cara con granos desde 100 hasta 4000 para preparación y acabado.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B086S52X9Y?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=nail+files+buffer+set+100+180+240+4000&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=nail+files+buffer+set+100+180+240+4000&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=nail+files+buffer+set+100+180+240+4000&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=nail+files+buffer+set+100+180+240+4000&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=nail+files+buffer+set+100+180+240+4000&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "pinceles_nail_art_sularpek": {
+      "displayName": "Set de pinceles de doble punta para nail art",
+      "brand": "Sularpek",
+      "category": "nail_art",
+      "description": "Cinco herramientas de doble punta para líneas, detalles, pintura y punteado.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B09Z2C2J5M?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=Sularpek+nail+art+brushes+dotting+tools&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=Sularpek+nail+art+brushes+dotting+tools&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=Sularpek+nail+art+brushes+dotting+tools&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=Sularpek+nail+art+brushes+dotting+tools&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=Sularpek+nail+art+brushes+dotting+tools&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "tips_almendra_diboniur": {
+      "displayName": "Tips transparentes de almendra, 550 piezas",
+      "brand": "Diboniur",
+      "category": "tips_y_extensiones",
+      "description": "Tips full cover en 11 tamaños para personalizar diseños o realizar extensiones.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0CP3HVK5T?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=almond+full+cover+nail+tips+550&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=almond+full+cover+nail+tips+550&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=almond+full+cover+nail+tips+550&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=almond+full+cover+nail+tips+550&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=almond+full+cover+nail+tips+550&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "pegatinas_flores_jmeowio": {
+      "displayName": "Pegatinas 3D de flores para uñas",
+      "brand": "JMEOWIO",
+      "category": "decoracion",
+      "description": "Cinco hojas de pegatinas autoadhesivas de flores para diseños de nail art.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0BKPQF9JM?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=3D+flower+nail+stickers&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=3D+flower+nail+stickers&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=3D+flower+nail+stickers&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=3D+flower+nail+stickers&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=3D+flower+nail+stickers&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "strass_beadsland_dorado": {
+      "displayName": "Strass dorado para nail art en seis tamaños",
+      "brand": "Beadsland",
+      "category": "decoracion",
+      "description": "Surtido de pedrería de base plana con seis tamaños y lápiz de cera aplicador.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0BGNZ55XX?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=gold+nail+rhinestones+flatback+6+sizes&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=gold+nail+rhinestones+flatback+6+sizes&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=gold+nail+rhinestones+flatback+6+sizes&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=gold+nail+rhinestones+flatback+6+sizes&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=gold+nail+rhinestones+flatback+6+sizes&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "muestrario_unas_aiqinu": {
+      "displayName": "Muestrario transparente de 100 uñas",
+      "brand": "AiQInu",
+      "category": "practica_y_organizacion",
+      "description": "Palitos transparentes con etiquetas numeradas para practicar diseños y organizar colores.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0D4DL4ZYH?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=clear+nail+swatch+sticks+100&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=clear+nail+swatch+sticks+100&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=clear+nail+swatch+sticks+100&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=clear+nail+swatch+sticks+100&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=clear+nail+swatch+sticks+100&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "clips_quitaesmalte_mylee": {
+      "displayName": "Clips reutilizables para retirar esmalte de gel",
+      "brand": "Mylee",
+      "category": "retirada",
+      "description": "Juego de diez clips reutilizables para mantener las almohadillas de retirada en su sitio.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B09QCQ27SB?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=Mylee+gel+polish+remover+clips&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=Mylee+gel+polish+remover+clips&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=Mylee+gel+polish+remover+clips&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=Mylee+gel+polish+remover+clips&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=Mylee+gel+polish+remover+clips&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "set_baby_boomer_vishine": {
+      "displayName": "Set Baby Boomer de cuatro geles lechosos",
+      "brand": "Vishine",
+      "category": "esmaltes_gel",
+      "description": "Cuatro tonos translúcidos blancos y rosas para degradados Baby Boomer y manicura francesa.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B07Z1SFVL3?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=Vishine+baby+boomer+gel+polish+set&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=Vishine+baby+boomer+gel+polish+set&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=Vishine+baby+boomer+gel+polish+set&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=Vishine+baby+boomer+gel+polish+set&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=Vishine+baby+boomer+gel+polish+set&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "cleaner_celulosas_nail": {
+      "displayName": "Cleaner para gel con 500 celulosas sin pelusa",
+      "category": "preparacion",
+      "description": "Conjunto de cleaner para retirar la capa pegajosa y celulosas precortadas sin pelusa.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B07BD3WNVT?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=nail+cleanser+lint+free+wipes+500&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=nail+cleanser+lint+free+wipes+500&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=nail+cleanser+lint+free+wipes+500&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=nail+cleanser+lint+free+wipes+500&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=nail+cleanser+lint+free+wipes+500&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "painting_gel_biutee_12_colores": {
+      "displayName": "Painting gel para nail art de 12 colores",
+      "brand": "Biutee",
+      "category": "geles_nail_art",
+      "description": "Paleta UV/LED con blanco, negro, amarillo, rojo y otros tonos para flores y diseños pintados.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B08THDTJHF?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=Biutee+painting+gel+nail+art+12+colors&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=Biutee+painting+gel+nail+art+12+colors&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=Biutee+painting+gel+nail+art+12+colors&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=Biutee+painting+gel+nail+art+12+colors&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=Biutee+painting+gel+nail+art+12+colors&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "gel_liner_aimeili_6_colores": {
+      "displayName": "Gel liner para nail art de seis colores",
+      "brand": "AIMEILI",
+      "category": "geles_nail_art",
+      "description": "Geles liner blanco, negro, dorado, plateado, rojo y rosa con pincel fino incorporado.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0FKH3KHRG?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=AIMEILI+liner+gel+nail+art+6+colors&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=AIMEILI+liner+gel+nail+art+6+colors&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=AIMEILI+liner+gel+nail+art+6+colors&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=AIMEILI+liner+gel+nail+art+6+colors&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=AIMEILI+liner+gel+nail+art+6+colors&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "gel_nacarado_rosalind_6_colores": {
+      "displayName": "Set de seis geles nacarados",
+      "brand": "ROSALIND",
+      "category": "esmaltes_gel",
+      "description": "Selección de tonos perlados, incluidos rosas, para detalles nacarados y efecto sirena.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0FC6FDHGZ?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=ROSALIND+pearl+gel+polish+6+colors&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=ROSALIND+pearl+gel+polish+6+colors&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=ROSALIND+pearl+gel+polish+6+colors&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=ROSALIND+pearl+gel+polish+6+colors&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=ROSALIND+pearl+gel+polish+6+colors&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "gel_3d_sularpek": {
+      "displayName": "Gel constructor sólido 3D, dos unidades",
+      "brand": "Sularpek",
+      "category": "geles_3d",
+      "description": "Gel sólido antiadherente para modelar flores, relieves, extensiones y pequeñas esculturas.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B0F5Q9KWPN?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=solid+3D+sculpting+nail+gel&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=solid+3D+sculpting+nail+gel&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=solid+3D+sculpting+nail+gel&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=solid+3D+sculpting+nail+gel&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=solid+3D+sculpting+nail+gel&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "pinceles_silicona_hanyousheng": {
+      "displayName": "Set de cinco pinceles de silicona para modelado",
+      "brand": "Hanyousheng",
+      "category": "nail_art",
+      "description": "Herramientas de silicona de doble cabeza para esculpir y dar forma a geles 3D.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B08SQRGPKV?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=silicone+nail+art+sculpting+tools+5&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=silicone+nail+art+sculpting+tools+5&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=silicone+nail+art+sculpting+tools+5&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=silicone+nail+art+sculpting+tools+5&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=silicone+nail+art+sculpting+tools+5&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    },
+    "pegamento_strass_makartt": {
+      "displayName": "Gel adhesivo 3D para strass y gemas",
+      "brand": "Makartt",
+      "category": "decoracion",
+      "description": "Gel sólido de 30 gramos para fijar pedrería, gemas y adornos de nail art.",
+      "offers": {
+        "spain": [{ "retailer": "Amazon España", "url": "https://www.amazon.es/dp/B08GQYCPHL?tag=paulaymanu113-21", "enabled": true, "priority": 100 }],
+        "france": [{ "retailer": "Amazon France", "url": "https://www.amazon.fr/s?k=Makartt+rhinestone+nail+glue+gel+30g&tag=paulaymanu105-21", "enabled": true, "priority": 100 }],
+        "germany": [{ "retailer": "Amazon Deutschland", "url": "https://www.amazon.de/s?k=Makartt+rhinestone+nail+glue+gel+30g&tag=paulaymanu102-21", "enabled": true, "priority": 100 }],
+        "united_states": [{ "retailer": "Amazon United States", "url": "https://www.amazon.com/s?k=Makartt+rhinestone+nail+glue+gel+30g&tag=paulaymanu-20", "enabled": true, "priority": 100 }],
+        "united_kingdom": [{ "retailer": "Amazon United Kingdom", "url": "https://www.amazon.co.uk/s?k=Makartt+rhinestone+nail+glue+gel+30g&tag=paulaymanu100-21", "enabled": true, "priority": 100 }],
+        "italy": [{ "retailer": "Amazon Italia", "url": "https://www.amazon.it/s?k=Makartt+rhinestone+nail+glue+gel+30g&tag=paulaymanu10d-21", "enabled": true, "priority": 100 }]
+      }
+    }
+  }
+}

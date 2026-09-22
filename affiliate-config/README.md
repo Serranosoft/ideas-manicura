@@ -2,98 +2,68 @@
 
 Este directorio es un proyecto estático independiente para Vercel, siguiendo la arquitectura de `become-attractive/affiliate-config`.
 
-## Qué se edita
+## Catálogos
 
-El único catálogo comercial es:
+- `public/affiliate/v1/catalog.json`: catálogo histórico de España. Se conserva sin cambios para las versiones antiguas de la app.
+- `public/affiliate/v2/catalog.json`: catálogo activo para España, Francia, Alemania, Estados Unidos, Reino Unido e Italia.
 
-```text
-public/affiliate/v1/catalog.json
-```
+La app descarga el catálogo V2 y mantiene una caché local. Los productos y enlaces pueden cambiarse publicando de nuevo este proyecto estático, sin compilar una nueva versión de la app, siempre que se mantenga el contrato V2.
 
-La app móvil no incluye una copia de estos productos. La pantalla inicial de cada guía descarga este JSON y conserva una caché local. Por tanto, cambiar productos o enlaces requiere publicar de nuevo este proyecto estático, pero **no requiere compilar ni publicar una nueva versión de la app**.
+## Selección de tienda
 
-Los botones de afiliación solo se muestran cuando la región del dispositivo es España. En los demás países se mantiene la lista de materiales sin enlaces comerciales.
+No hay fallback entre países. La región del dispositivo selecciona exclusivamente este mercado:
 
-El catálogo de España está activo con una selección inicial de productos de Amazon. Los enlaces usan el identificador de afiliado `paulaymanu113-21` y el validador comprueba que no se publique por error un enlace de Amazon España sin ese identificador.
+| Región | Mercado | Tienda | ID de afiliado |
+| --- | --- | --- | --- |
+| `ES` | `spain` | `amazon.es` | `paulaymanu113-21` |
+| `FR` | `france` | `amazon.fr` | `paulaymanu105-21` |
+| `DE` | `germany` | `amazon.de` | `paulaymanu102-21` |
+| `US` | `united_states` | `amazon.com` | `paulaymanu-20` |
+| `GB` | `united_kingdom` | `amazon.co.uk` | `paulaymanu100-21` |
+| `IT` | `italy` | `amazon.it` | `paulaymanu10d-21` |
 
-## Mercados
+En otras regiones la lista de materiales se mantiene visible, pero no aparecen botones comerciales.
 
-Las ofertas pueden separarse en cuatro grupos sin fallback entre ellos:
+## Ofertas
 
-- `spain`: exclusivamente España.
-- `europe`: países europeos excepto España.
-- `americas`: Norteamérica, Centroamérica, Caribe y Sudamérica.
-- `east`: Asia y Oriente Medio.
+Cada producto mantiene el mismo ID estable en todos los países. Una oferta puede usar:
 
-África y Oceanía no reciben enlaces automáticamente. Se pueden añadir posteriormente mediante una nueva versión coordinada del contrato.
+- un producto concreto: `https://www.amazon.fr/dp/ASIN?tag=ID_AFILIADO`;
+- una búsqueda específica de Amazon: `https://www.amazon.fr/s?k=terminos+del+producto&tag=ID_AFILIADO`.
 
-En esta primera fase, `supportedMarkets` solo contiene `spain`. Los demás mercados se activarán cuando tengan productos y enlaces reales.
+Las búsquedas se usan cuando no existe un ASIN común verificable en ese marketplace: permiten mostrar el mismo producto o el equivalente más próximo disponible en la tienda oficial del país. Si se localiza un producto concreto, se puede sustituir la búsqueda por su URL `/dp/ASIN` sin actualizar la app.
 
-## Añadir un producto
+Si hay varias ofertas habilitadas para un producto y mercado, la app elige la de mayor `priority`. Para retirar una oferta basta con usar `enabled: false`. Para apagar todo el catálogo, cambia el `enabled` superior a `false`.
 
-Ejemplo de estructura. No copies estas URLs ficticias al catálogo real:
+## Validación
 
-```json
-{
-  "lampara_uv_led": {
-    "displayName": "Lámpara UV/LED",
-    "brand": "Marca",
-    "category": "lamparas",
-    "description": "Lámpara para secado de esmalte semipermanente.",
-    "imageUrl": "https://cdn.example.com/lampara.jpg",
-    "offers": {
-      "spain": [
-        {
-          "retailer": "Amazon España",
-          "url": "https://www.amazon.es/dp/B012345678?tag=paulaymanu113-21",
-          "enabled": true,
-          "priority": 100
-        }
-      ]
-    }
-  }
-}
-```
+El validador exige para cada oferta habilitada:
 
-Los IDs (`lampara_uv_led`) son estables y solo admiten minúsculas, números y guiones bajos. Si hay varias ofertas habilitadas para un mercado, se utiliza la de mayor `priority`. `brand`, `description` e `imageUrl` son opcionales; la app utiliza el nombre del producto y la oferta activa.
+- HTTPS y dominio oficial del mercado;
+- retailer correspondiente al país;
+- ruta canónica `/dp/ASIN` o `/s?k=...`;
+- ID de afiliado exacto del país;
+- mercado declarado en `supportedMarkets`.
 
-Al publicar productos reales:
-
-1. Añádelos en `products`.
-2. Para Amazon España, usa el formato canónico `https://www.amazon.es/dp/ASIN?tag=paulaymanu113-21`.
-3. Cambia `updatedAt` a la fecha actual.
-4. Pon `enabled:true` cuando el catálogo esté listo.
-5. Ejecuta `npm run validate`.
-6. Haz commit y push; Vercel publicará el JSON actualizado.
-
-Para retirar todos los productos sin actualizar la app, cambia únicamente `enabled` a `false`, actualiza `updatedAt` y vuelve a desplegar.
-
-## Validación local
+Ejecuta desde la raíz del repositorio:
 
 ```powershell
-cd E:\PROGRAMACION\ideas-manicura\affiliate-config
-npm ci
-npm run validate
+npm run validate:affiliate
+npm run test:affiliate
 ```
 
-## Vercel
+Antes de publicar un cambio, actualiza también `updatedAt`.
 
-Al crear el proyecto:
+## Vercel
 
 - Root Directory: `affiliate-config`
 - Framework Preset: `Other`
 - Build Command y Output Directory: se leen de `vercel.json`
 
-La URL resultante será:
+La URL activa es:
 
 ```text
-https://TU-DOMINIO/affiliate/v1/catalog.json
+https://TU-DOMINIO/affiliate/v2/catalog.json
 ```
 
-Configúrala una sola vez en Expo/EAS:
-
-```text
-EXPO_PUBLIC_AFFILIATE_CATALOG_URL=https://TU-DOMINIO/affiliate/v1/catalog.json
-```
-
-Esa configuración inicial sí necesita una nueva compilación de la app. Después, los cambios compatibles del JSON no.
+La configuración de Expo/EAS debe usar esa misma ruta en `EXPO_PUBLIC_AFFILIATE_CATALOG_URL`.

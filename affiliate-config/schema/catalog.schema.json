@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Nails affiliate catalog V1",
+  "title": "Nails affiliate catalog V2",
   "type": "object",
   "additionalProperties": false,
   "required": ["schemaVersion", "enabled", "updatedAt", "supportedMarkets", "products"],
   "properties": {
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "const": 2 },
     "enabled": { "type": "boolean" },
     "updatedAt": { "type": "string", "format": "date-time" },
     "supportedMarkets": {
@@ -28,7 +28,7 @@
     },
     "market": {
       "type": "string",
-      "enum": ["spain", "europe", "americas", "east"]
+      "enum": ["spain", "france", "germany", "united_states", "united_kingdom", "italy"]
     },
     "product": {
       "type": "object",

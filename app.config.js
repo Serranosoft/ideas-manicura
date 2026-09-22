@@ -1,11 +1,10 @@
 const IOS_GOOGLE_MOBILE_ADS_TEST_APP_ID = "ca-app-pub-3940256099942544~1458002511";
 
 module.exports = ({ config }) => {
-    // The native SDK requires an iOS app ID even when ads are disabled. The
-    // sample ID is safe and the JS layer stays disabled in production until
-    // the iOS app ID and its core ad-unit environment variables are configured.
-    const iosAppId =
-        process.env.EXPO_PUBLIC_IOS_ADMOB_APP_ID || IOS_GOOGLE_MOBILE_ADS_TEST_APP_ID;
+    // The native SDK is included for Android and requires an iOS app ID even
+    // though ads are disabled there. Always use Google's sample ID on iOS so
+    // an environment variable cannot accidentally enable a production app ID.
+    const iosAppId = IOS_GOOGLE_MOBILE_ADS_TEST_APP_ID;
 
     return {
         ...config,

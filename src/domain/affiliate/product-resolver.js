@@ -3,11 +3,11 @@ const { validateCatalog } = require("./catalog-schema");
 function createProductResolver(input) {
     const catalog = validateCatalog(input);
 
-    function getSpainProducts() {
-        if (!catalog?.enabled || !catalog.supportedMarkets.includes("spain")) return [];
+    function getProducts(market) {
+        if (!catalog?.enabled || !catalog.supportedMarkets.includes(market)) return [];
 
         return Object.entries(catalog.products).flatMap(([productId, product]) => {
-            const offers = [...(product.offers.spain || [])]
+            const offers = [...(product.offers[market] || [])]
                 .filter((offer) => offer.enabled)
                 .sort((left, right) => right.priority - left.priority);
 
@@ -19,7 +19,10 @@ function createProductResolver(input) {
         });
     }
 
-    return { getSpainProducts };
+    return {
+        getProducts,
+        getSpainProducts: () => getProducts("spain"),
+    };
 }
 
 module.exports = { createProductResolver };

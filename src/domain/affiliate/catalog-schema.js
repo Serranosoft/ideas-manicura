@@ -1,6 +1,8 @@
+const { AFFILIATE_MARKETS } = require("./market");
+
 const MAX_CATALOG_BYTES = 1024 * 1024;
-const AMAZON_ES_AFFILIATE_TAG = "paulaymanu113-21";
-const AMAZON_ES_HOSTS = new Set(["amazon.es", "www.amazon.es"]);
+const CATALOG_SCHEMA_VERSION = 2;
+const AMAZON_ES_AFFILIATE_TAG = AFFILIATE_MARKETS.spain.affiliateTag;
 
 const isObject = (value) => value !== null && typeof value === "object" && !Array.isArray(value);
 const hasOnlyKeys = (value, allowed) => Object.keys(value).every((key) => allowed.includes(key));
@@ -26,13 +28,21 @@ function isHttpsUrl(value) {
     }
 }
 
-function isAllowedAmazonSpainOffer(offer) {
+function hasCanonicalAmazonPath(url) {
+    return /^\/dp\/[A-Z0-9]{10}\/?$/.test(url.pathname)
+        || (url.pathname === "/s" && isText(url.searchParams.get("k"), 300));
+}
+
+function isAllowedAmazonOffer(market, offer) {
     try {
+        const config = AFFILIATE_MARKETS[market];
         const url = new URL(offer.url);
-        return offer.retailer === "Amazon España"
-            && AMAZON_ES_HOSTS.has(url.hostname.toLowerCase())
-            && /^\/dp\/[A-Z0-9]{10}\/?$/.test(url.pathname)
-            && url.searchParams.get("tag") === AMAZON_ES_AFFILIATE_TAG;
+        return Boolean(config)
+            && offer.retailer === config.retailer
+            && config.hosts.includes(url.hostname.toLowerCase())
+            && hasCanonicalAmazonPath(url)
+            && url.searchParams.get("tag") === config.affiliateTag
+            && !url.hash;
     } catch {
         return false;
     }
@@ -43,13 +53,13 @@ function validateCatalog(value) {
         if (!isObject(value)
             || JSON.stringify(value).length > MAX_CATALOG_BYTES
             || !hasOnlyKeys(value, ["schemaVersion", "enabled", "updatedAt", "supportedMarkets", "products"])
-            || value.schemaVersion !== 1
+            || value.schemaVersion !== CATALOG_SCHEMA_VERSION
             || typeof value.enabled !== "boolean") return null;
 
         if (typeof value.updatedAt !== "string"
             || !Number.isFinite(Date.parse(value.updatedAt))) return null;
         if (!Array.isArray(value.supportedMarkets)
-            || value.supportedMarkets.some((market) => market !== "spain")
+            || value.supportedMarkets.some((market) => !AFFILIATE_MARKETS[market])
             || new Set(value.supportedMarkets).size !== value.supportedMarkets.length) return null;
         if (!isObject(value.products) || Object.keys(value.products).length > 2000) return null;
 
@@ -64,10 +74,9 @@ function validateCatalog(value) {
                 || (product.description !== undefined && (typeof product.description !== "string" || product.description.length > 600))
                 || (product.imageUrl !== undefined && !isHttpsUrl(product.imageUrl))) return null;
 
-            if (!hasOnlyKeys(product.offers, ["spain"])) return null;
+            if (!hasOnlyKeys(product.offers, Object.keys(AFFILIATE_MARKETS))) return null;
             for (const [market, offers] of Object.entries(product.offers)) {
-                if (market !== "spain"
-                    || !value.supportedMarkets.includes(market)
+                if (!value.supportedMarkets.includes(market)
                     || !Array.isArray(offers)
                     || offers.length > 20) return null;
 
@@ -80,7 +89,7 @@ function validateCatalog(value) {
                         || !Number.isInteger(offer.priority)
                         || offer.priority < 0
                         || offer.priority > 2147483647
-                        || (offer.enabled && !isAllowedAmazonSpainOffer(offer))) return null;
+                        || (offer.enabled && !isAllowedAmazonOffer(market, offer))) return null;
                 }
             }
         }
@@ -93,7 +102,9 @@ function validateCatalog(value) {
 
 module.exports = {
     AMAZON_ES_AFFILIATE_TAG,
+    CATALOG_SCHEMA_VERSION,
     MAX_CATALOG_BYTES,
+    isAllowedAmazonOffer,
     isHttpsUrl,
     validateCatalog,
 };
