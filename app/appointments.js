@@ -298,7 +298,7 @@ export default function AppointmentsScreen() {
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header title={language.t("_appointmentsTitle")} /> }} />
 
-            {adsLoaded && (
+            {adsLoaded && Platform.OS !== "ios" && (
                 <View style={styles.bannerWrapper}>
                     <BannerAd
                         unitId={bannerId}

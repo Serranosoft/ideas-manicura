@@ -11,7 +11,10 @@ import * as StoreReview from "expo-store-review";
 import { userPreferences } from "../src/utils/user-preferences";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { guideAccessRequiresReward } from "../src/utils/constants";
+import {
+    guideAccessRequiresReward,
+    interstitialTriggerCount,
+} from "../src/utils/constants";
 
 import { scheduleAppointmentNotification, cancelAppointmentNotification } from "../src/utils/appointmentNotifications";
 import { ensureNotificationPermissionsAsync } from "../src/utils/notifications";
@@ -252,12 +255,12 @@ export default function Layout() {
             askForReview();
         }
 
-        if (adsLoaded && adTrigger > 5) {
+        if (adsLoaded && adTrigger >= interstitialTriggerCount) {
             const wasShown = adsHandlerRef.current?.tryShowInterstitialAd();
             if (wasShown) {
                 setAdTrigger(0);
-            } else if (adTrigger > 6) {
-                setAdTrigger(6);
+            } else if (adTrigger > interstitialTriggerCount) {
+                setAdTrigger(interstitialTriggerCount);
             }
         }
     }, [adTrigger, adsLoaded])

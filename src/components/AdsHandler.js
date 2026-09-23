@@ -15,12 +15,17 @@ import MobileAds, {
     useInterstitialAd,
     useRewardedAd,
 } from "react-native-google-mobile-ads";
-import { adsEnabled, appOpenId, interstitialId, rewardedId } from "../utils/constants";
+import {
+    adsEnabled,
+    appOpenId,
+    interstitialId,
+    interstitialMinIntervalMs,
+    rewardedId,
+} from "../utils/constants";
 
 const APP_OPEN_EXPIRATION_MS = 4 * 60 * 60 * 1000;
 const APP_OPEN_MIN_INTERVAL_MS = 4 * 60 * 1000;
 const MIN_BACKGROUND_TIME_MS = 15 * 1000;
-const INTERSTITIAL_MIN_INTERVAL_MS = 2 * 60 * 1000;
 const AD_RETRY_DELAY_MS = 30 * 1000;
 
 const AdsHandler = forwardRef((props, ref) => {
@@ -242,7 +247,7 @@ const AdsHandler = forwardRef((props, ref) => {
 
     function tryShowInterstitialAd() {
         const enoughTimeHasPassed =
-            Date.now() - lastInterstitialShownAtRef.current >= INTERSTITIAL_MIN_INTERVAL_MS;
+            Date.now() - lastInterstitialShownAtRef.current >= interstitialMinIntervalMs;
 
         if (
             !isInterstitialLoaded ||
@@ -281,6 +286,7 @@ const AdsHandler = forwardRef((props, ref) => {
     }
 
     function loadAppOpenAd() {
+        if (!appOpenId) return;
         if (appOpenIsLoadingRef.current || isAppOpenFresh()) return;
 
         resetAppOpenAd();
@@ -314,6 +320,7 @@ const AdsHandler = forwardRef((props, ref) => {
     }
 
     function tryShowAppOpenAd() {
+        if (!appOpenId) return false;
         if (!showOpenAdRef.current) {
             props.setShowOpenAd(true);
             return false;
