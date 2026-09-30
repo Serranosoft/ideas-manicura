@@ -95,7 +95,6 @@ export default function NewDesigns() {
             />
 
             <View style={styles.headerArea}>
-                <Text style={ui.badgeLabel}>{language.t("_newBadge")}</Text>
                 <Text style={ui.h2}>{language.t("_newTitle")}</Text>
             </View>
 

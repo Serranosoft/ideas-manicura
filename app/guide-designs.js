@@ -197,7 +197,6 @@ export default function GuideDesigns() {
             <Stack.Screen options={{ header: () => <Header back title={categoryTitle || copy.guidesTitle} /> }} />
 
             <View style={styles.headerArea}>
-                <Text style={ui.badgeLabel}>{copy.guidesTitle}</Text>
                 <Text style={ui.h2}>{copy.designsTitle}</Text>
             </View>
 

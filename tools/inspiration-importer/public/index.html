@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Importar inspiración · Ideas de manicura</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><div><strong>Ideas de manicura</strong><span>Estudio de inspiración</span></div></div>
+      <div class="status-group"><span id="ig-status" class="status">Instagram…</span><span id="wp-status" class="status">WordPress…</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">HERRAMIENTA LOCAL</div>
+      <h1>De la inspiración a la galería.</h1>
+      <p>Guarda las fotos que quieras desde Instagram, sueltas o en varios ZIP. Revísalas, elige sus categorías y la herramienta las optimizará antes de subirlas a WordPress.</p>
+    </section>
+
+    <section class="upload-panel" aria-labelledby="upload-title">
+      <div class="panel-heading"><div><div class="step">01 · AÑADIR</div><h2 id="upload-title">Tus imágenes guardadas</h2></div><p>Elige varios ZIP y/o fotos sueltas: JPG, PNG y WebP.</p></div>
+      <label id="file-drop" class="file-drop" for="file-input">
+        <span class="drop-icon" aria-hidden="true">↑</span>
+        <strong>Arrastra varios ZIP o fotos aquí, o pulsa para elegirlos</strong>
+        <span>Verás todas las imágenes antes de subirlas y podrás categorizar cada ZIP de una vez.</span>
+        <input id="file-input" type="file" accept=".zip,application/zip,image/jpeg,image/png,image/webp" multiple>
+      </label>
+      <details class="setup-help">
+        <summary>Conectar o actualizar WordPress</summary>
+        <p><a href="/inspiration-importer-wp.zip" download>Descargar complemento 0.2.0</a> con la categoría Cat eye. En WordPress, ve a Plugins → Añadir nuevo → Subir plugin. Si ya está instalado, elige reemplazar la versión actual.</p>
+        <p>Para la primera conexión, configura la contraseña de aplicación en el archivo local indicado en el README y reinicia el servidor.</p>
+      </details>
+    </section>
+
+    <details id="meta-section" class="meta-section">
+      <summary>Búsqueda automática en Instagram <span>requiere Meta API</span></summary>
+      <section class="search-panel" aria-labelledby="search-title">
+        <div class="panel-heading"><div><div class="step">OPCIONAL</div><h2 id="search-title">Buscar diseños</h2></div><p>La búsqueda lee el texto de las publicaciones más recientes de cada cuenta.</p></div>
+        <form id="search-form">
+          <label>Cuentas de Instagram <small>separadas por comas o espacios</small>
+            <input id="accounts" name="accounts" type="text" placeholder="@nailstudio, @otra_cuenta" autocomplete="off" required>
+          </label>
+          <label>Término en la descripción <small>opcional</small>
+            <input id="term" name="term" type="search" placeholder="francesa, flores, rojo…" autocomplete="off">
+          </label>
+          <button id="search-button" class="primary" type="submit">Buscar imágenes <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="hint">La API de Instagram solo permite consultar cuentas profesionales públicas. Se revisan hasta 100 publicaciones recientes por cuenta.</p>
+      </section>
+    </details>
+
+    <section class="results" aria-labelledby="results-title">
+      <div class="results-head"><div><div class="step">02 · ELEGIR</div><h2 id="results-title">Resultados <span id="result-count" class="count">0</span></h2></div><div class="result-tools"><button id="select-all" class="text-button" type="button" disabled>Seleccionar todas</button><button id="clear-all" class="text-button" type="button" disabled>Limpiar selección</button></div></div>
+      <div id="notice" class="notice" role="status">Elige las imágenes que hayas guardado para empezar.</div>
+      <div id="archive-controls" class="archive-controls" hidden></div>
+      <div id="gallery" class="gallery"></div>
+    </section>
+  </main>
+
+  <div id="selection-bar" class="selection-bar" hidden>
+    <div class="selection-count"><div><strong id="selected-count">0</strong> seleccionadas</div><span id="ready-summary">0 listas para subir</span></div>
+    <label>Asignar en bloque <select id="bulk-category"><option value="">Opcional: elegir categoría…</option></select></label>
+    <button id="import-button" class="primary" type="button">Optimizar y subir <span aria-hidden="true">↑</span></button>
+  </div>
+</body>
+</html>

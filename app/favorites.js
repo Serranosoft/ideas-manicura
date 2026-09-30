@@ -52,7 +52,6 @@ export default function Favorites() {
             <Stack.Screen options={{ header: () => <Header title={language.t("_favoritesTitle")} /> }} />
 
             <View style={styles.headerArea}>
-                <Text style={ui.badgeLabel}>{language.t("_myFavorites")}</Text>
                 <Text style={ui.h2}>{language.t("_favoritesTitle")}</Text>
             </View>
 

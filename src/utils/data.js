@@ -8,6 +8,17 @@ export function fetchDesigns(acronym) {
             image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/unas-efecto-espejo-16_caury2.jpg",
         },
         {
+            title: "Efecto metal",
+            name: "Efecto metal",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_68_451491369_17932280528880938_8559504282600656063_n.jpg",
+        },
+        {
+            title: "Cat eye",
+            name: "Cat eye",
+            image: null,
+            coverCategory: "cat-eye",
+        },
+        {
             title: translations[acronym]["_summerTitle"],
             name: "Verano",
             image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/urfiyuzndiugvkblhisr.jpg",

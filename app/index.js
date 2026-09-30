@@ -12,7 +12,7 @@ import { Link, Stack, router } from "expo-router";
 import { Image } from "expo-image";
 import Svg, { Path, Circle } from "react-native-svg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { colors, ui } from "../src/utils/styles";
+import { colors } from "../src/utils/styles";
 import { DataContext, AdsContext } from "../src/DataContext";
 import { useLanguage } from "../src/utils/LanguageContext";
 import BottomNav from "../src/layout/BottomNav";
@@ -82,38 +82,23 @@ export default function Home() {
     const trendingItems = [
         {
             id: "trend-1",
-            badge: language.t("_trendBadge1"),
-            title: language.t("_trendTitle1"),
-            categoryName: "Aesthetic",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_34_551471730_17982613121880938_1782766545229619605_n.jpg",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-58a94635e61e3234be72.jpg",
         },
         {
             id: "trend-2",
-            badge: language.t("_trendBadge2"),
-            title: language.t("_trendTitle2"),
-            categoryName: "Francesas",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_45_496826612_17967872528880938_3958946590144160765_n.jpg",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-9721f81a746bfb2d1875.jpg",
         },
         {
             id: "trend-3",
-            badge: language.t("_trendBadge3"),
-            title: language.t("_trendTitle3"),
-            categoryName: "Coquette",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_43_504174056_17970729461880938_5267083542416700930_n.jpg",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-b4faaa67997369aa646c.jpg",
         },
         {
             id: "trend-4",
-            badge: language.t("_trendBadge4"),
-            title: language.t("_trendTitle4"),
-            categoryName: "3d",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_24_704592033_18085427648623807_6871529267577361798_n.jpg",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-1fae44a2ec0026026866.jpg",
         },
         {
             id: "trend-5",
-            badge: language.t("_trendBadge5"),
-            title: language.t("_trendTitle5"),
-            categoryName: "Efecto espejo",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_53_473626332_17954604791880938_2241174342439885299_n.jpg",
+            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-26e1f1871ed754b59249.jpg",
         },
     ];
 
@@ -195,14 +180,18 @@ export default function Home() {
                     <Text style={styles.heroTitle}>{language.t("_heroTitle")}</Text>
                 </View>
 
-                {/* Sección 1: AHORA MISMO - Tendencias */}
-                <View style={styles.sectionContainer}>
+                {/* Sección 1: Tendencias */}
+                <View style={[styles.sectionContainer, styles.trendingSection]}>
                     <View style={styles.sectionHeaderRow}>
-                        <View>
-                            <Text style={ui.badgeLabel}>{language.t("_trendingBadge")}</Text>
-                            <Text style={ui.h2}>{language.t("_trendingTitle")}</Text>
+                        <View style={styles.sectionHeading}>
+                            <Text style={styles.sectionTitle}>{language.t("_trendingTitle")}</Text>
                         </View>
-                        <TouchableOpacity onPress={() => router.push("/categories")}>
+                        <TouchableOpacity
+                            style={styles.seeAllButton}
+                            accessibilityRole="button"
+                            accessibilityLabel={language.t("_seeAll")}
+                            onPress={() => router.push("/categories")}
+                        >
                             <Text style={styles.seeAllText}>{language.t("_seeAll")}</Text>
                         </TouchableOpacity>
                     </View>
@@ -228,25 +217,24 @@ export default function Home() {
                                         source={item.image}
                                         placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"}
                                     />
-                                    <View style={styles.trendOverlay} />
-                                    <View style={styles.trendCardFooter}>
-                                        <Text style={styles.trendBadge}>{item.badge}</Text>
-                                        <Text style={styles.trendTitle}>{item.title}</Text>
-                                    </View>
                                 </Pressable>
                             </Link>
                         ))}
                     </ScrollView>
                 </View>
 
-                {/* Sección 2: NOVEDAD - Nuevos Diseños */}
-                <View style={styles.sectionContainer}>
+                {/* Sección 2: Nuevos Diseños */}
+                <View style={[styles.sectionContainer, styles.newSection]}>
                     <View style={styles.sectionHeaderRow}>
-                        <View>
-                            <Text style={ui.badgeLabel}>{language.t("_newBadge")}</Text>
-                            <Text style={ui.h2}>{language.t("_newTitle")}</Text>
+                        <View style={styles.sectionHeading}>
+                            <Text style={styles.sectionTitle}>{language.t("_newTitle")}</Text>
                         </View>
-                        <TouchableOpacity onPress={() => router.push("/new-designs")}>
+                        <TouchableOpacity
+                            style={styles.seeAllButton}
+                            accessibilityRole="button"
+                            accessibilityLabel={language.t("_seeAll")}
+                            onPress={() => router.push("/new-designs")}
+                        >
                             <Text style={styles.seeAllText}>{language.t("_seeAll")}</Text>
                         </TouchableOpacity>
                     </View>
@@ -298,12 +286,11 @@ export default function Home() {
                     )}
                 </View>
 
-                {/* Sección 3: PARA TI - Diseños Populares */}
-                <View style={styles.sectionContainer}>
+                {/* Sección 3: Diseños Populares */}
+                <View style={[styles.sectionContainer, styles.popularSection]}>
                     <View style={styles.sectionHeaderRow}>
-                        <View>
-                            <Text style={ui.badgeLabel}>{language.t("_popularBadge")}</Text>
-                            <Text style={ui.h2}>{language.t("_popularTitle")}</Text>
+                        <View style={styles.sectionHeading}>
+                            <Text style={styles.sectionTitle}>{language.t("_popularTitle")}</Text>
                         </View>
                     </View>
 
@@ -398,7 +385,7 @@ const styles = StyleSheet.create({
         padding: 4,
     },
     scrollContent: {
-        paddingBottom: 20,
+        paddingBottom: 32,
     },
     heroSection: {
         paddingHorizontal: 20,
@@ -413,24 +400,72 @@ const styles = StyleSheet.create({
         marginBottom: 6,
     },
     sectionContainer: {
-        marginTop: 12,
+        marginHorizontal: 12,
+        marginTop: 20,
+        paddingTop: 18,
+        paddingBottom: 16,
+        borderWidth: 1,
+        borderRadius: 24,
+        overflow: "hidden",
+        elevation: 2,
+        shadowColor: "#2C221E",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.07,
+        shadowRadius: 10,
+    },
+    trendingSection: {
+        backgroundColor: "#FFF7F1",
+        borderColor: "#E8D4BE",
+    },
+    newSection: {
+        backgroundColor: colors.cardBg,
+        borderColor: colors.cardBorder,
+    },
+    popularSection: {
+        backgroundColor: "#F3EEE9",
+        borderColor: "#E3D8CF",
     },
     sectionHeaderRow: {
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "flex-end",
-        paddingHorizontal: 20,
-        marginBottom: 10,
+        alignItems: "center",
+        paddingHorizontal: 16,
+        marginBottom: 16,
+    },
+    sectionHeading: {
+        flex: 1,
+        alignItems: "flex-start",
+        paddingRight: 12,
+    },
+    sectionTitle: {
+        fontFamily: "ancizar-bold",
+        fontSize: 25,
+        lineHeight: 29,
+        color: colors.textDark,
+        letterSpacing: -0.25,
+    },
+    seeAllButton: {
+        flexShrink: 0,
+        minHeight: 38,
+        justifyContent: "center",
+        paddingHorizontal: 14,
+        paddingVertical: 8,
+        borderRadius: 19,
+        backgroundColor: colors.accentDark,
+        elevation: 1,
+        shadowColor: "#2C221E",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.12,
+        shadowRadius: 4,
     },
     seeAllText: {
-        fontFamily: "ancizar-medium",
+        fontFamily: "ancizar-bold",
         fontSize: 14,
-        color: colors.accentDark,
-        textDecorationLine: "underline",
+        color: colors.white,
     },
     trendScroll: {
-        paddingLeft: 20,
-        paddingRight: 10,
+        paddingLeft: 16,
+        paddingRight: 2,
     },
     trendCard: {
         width: 190,
@@ -449,31 +484,6 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
     },
-    trendOverlay: {
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: "rgba(0,0,0,0.22)",
-    },
-    trendCardFooter: {
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        padding: 14,
-        backgroundColor: "rgba(44, 34, 30, 0.45)",
-    },
-    trendBadge: {
-        fontFamily: "ancizar-bold",
-        fontSize: 9.5,
-        color: colors.accent,
-        letterSpacing: 1,
-        textTransform: "uppercase",
-        marginBottom: 2,
-    },
-    trendTitle: {
-        fontFamily: "ancizar-bold",
-        fontSize: 17,
-        color: colors.white,
-    },
     loadingBox: {
         paddingVertical: 40,
         alignItems: "center",
@@ -481,7 +491,7 @@ const styles = StyleSheet.create({
     gridContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
-        paddingHorizontal: 14,
+        paddingHorizontal: 10,
     },
     gridCardWrapper: {
         width: "50%",

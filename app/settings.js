@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 import { Stack } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext, useState } from "react";
-import { colors, ui } from "../src/utils/styles";
+import { colors } from "../src/utils/styles";
 import Header from "../src/layout/header";
 import { useLanguage } from "../src/utils/LanguageContext";
 import { AdsContext } from "../src/DataContext";
@@ -44,7 +44,6 @@ export default function Settings() {
                         <Text style={styles.introIconText}>Aa</Text>
                     </View>
                     <View style={styles.introCopy}>
-                        <Text style={ui.badgeLabel}>{language.t("_settingsLabel")}</Text>
                         <Text style={styles.title}>{language.t("_settingsApp")}</Text>
                     </View>
                 </View>

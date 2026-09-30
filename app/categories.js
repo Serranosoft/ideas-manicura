@@ -4,6 +4,7 @@ import { Link, Stack, useFocusEffect } from "expo-router";
 import { Image } from "expo-image";
 import { colors, ui } from "../src/utils/styles";
 import { fetchDesigns } from "../src/utils/data";
+import { applyCategoryUpdates, CATEGORY_UPDATE_SINCE } from "../src/utils/category-updates";
 import { useLanguage } from "../src/utils/LanguageContext";
 import Header from "../src/layout/header";
 import BottomNav from "../src/layout/BottomNav";
@@ -16,6 +17,27 @@ export default function Categories() {
         useCallback(() => {
             const list = fetchDesigns(language._locale);
             setCategories(list);
+            const controller = new AbortController();
+            fetch(`https://mollydigital.manu-scholz.com/wp-json/inspiration-importer/v1/category-updates?since=${encodeURIComponent(CATEGORY_UPDATE_SINCE)}`, { signal: controller.signal })
+                .then((response) => response.ok ? response.json() : null)
+                .then((updates) => {
+                    if (updates && !controller.signal.aborted) {
+                        setCategories((current) => applyCategoryUpdates(current, updates));
+                    }
+                })
+                .catch(() => {});
+            for (const category of list.filter((item) => item.coverCategory)) {
+                fetch(`https://mollydigital.manu-scholz.com/wp-json/custom/v1/media-filtered?app=diseno-de-unas&categoria=${encodeURIComponent(category.coverCategory)}`, { signal: controller.signal })
+                    .then((response) => response.ok ? response.json() : [])
+                    .then((media) => {
+                        const image = Array.isArray(media) ? media.find((item) => item.url)?.url : null;
+                        if (image && !controller.signal.aborted) {
+                            setCategories((current) => current.map((item) => item.name === category.name ? { ...item, image } : item));
+                        }
+                    })
+                    .catch(() => {});
+            }
+            return () => controller.abort();
         }, [language])
     );
 
@@ -24,7 +46,6 @@ export default function Categories() {
             <Stack.Screen options={{ header: () => <Header title={language.t("_navCategories")} /> }} />
             
             <View style={styles.headerTitleArea}>
-                <Text style={ui.badgeLabel}>{language.t("_navCategories")}</Text>
                 <Text style={ui.h2}>{language.t("_allCategoriesTitle")}</Text>
             </View>
 
@@ -46,6 +67,11 @@ export default function Categories() {
                                         placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"}
                                     />
                                     <View style={styles.overlayGradient} />
+                                    {item.isNew && (
+                                        <View style={styles.newBadge}>
+                                            <Text style={styles.newBadgeText}>{language.t("_newBadge")}</Text>
+                                        </View>
+                                    )}
                                     <View style={styles.cardFooter}>
                                         <Text style={styles.cardTitle}>{item.title}</Text>
                                     </View>
@@ -109,6 +135,21 @@ const styles = StyleSheet.create({
         right: 0,
         padding: 12,
         justifyContent: 'flex-end',
+    },
+    newBadge: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        borderRadius: 12,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        backgroundColor: colors.accentDark,
+    },
+    newBadgeText: {
+        color: colors.white,
+        fontFamily: 'ancizar-bold',
+        fontSize: 11,
+        letterSpacing: 0.5,
     },
     cardTitle: {
         color: colors.white,

@@ -313,7 +313,6 @@ export default function AppointmentsScreen() {
                 {/* Header Banner Section */}
                 <View style={styles.topHeaderCard}>
                     <View style={styles.headerInfo}>
-                        <Text style={ui.badgeLabel}>{language.t("_myAppointments")}</Text>
                         <Text style={ui.h2}>{language.t("_appointmentsTitle")}</Text>
                     </View>
 
