@@ -148,12 +148,6 @@ export default function Home() {
 
             {/* Header compacto con fondo armonizado */}
             <SafeAreaView edges={["top"]} style={styles.topHeader}>
-                <View style={styles.headerSpacer} />
-                <View style={styles.brandingCenter}>
-                    <Text style={styles.brandTitle} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
-                        {language.t("_homeTitle")}
-                    </Text>
-                </View>
                 <View style={styles.headerActions}>
                     <TouchableOpacity
                         style={styles.headerActionBtn}
@@ -355,18 +349,11 @@ const styles = StyleSheet.create({
     topHeader: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         paddingHorizontal: 20,
         paddingTop: 8,
         paddingBottom: 6,
         backgroundColor: colors.background,
-    },
-    brandingCenter: {
-        flex: 1,
-        alignItems: "center",
-    },
-    headerSpacer: {
-        width: 72,
     },
     headerActions: {
         width: 72,
@@ -374,12 +361,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-end",
         gap: 8,
-    },
-    brandTitle: {
-        fontFamily: "ancizar-bold",
-        fontSize: 22,
-        color: colors.textDark,
-        letterSpacing: -0.3,
     },
     headerActionBtn: {
         padding: 4,

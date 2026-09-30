@@ -298,16 +298,6 @@ export default function AppointmentsScreen() {
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header title={language.t("_appointmentsTitle")} /> }} />
 
-            {adsLoaded && Platform.OS !== "ios" && (
-                <View style={styles.bannerWrapper}>
-                    <BannerAd
-                        unitId={bannerId}
-                        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-                        requestOptions={{ requestNonPersonalizedAdsOnly }}
-                    />
-                </View>
-            )}
-
             <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 
                 {/* Header Banner Section */}
@@ -403,6 +393,16 @@ export default function AppointmentsScreen() {
                         </TouchableOpacity>
                     )}
                 </View>
+
+                {adsLoaded && Platform.OS !== "ios" && (
+                    <View style={styles.bannerWrapper}>
+                        <BannerAd
+                            unitId={bannerId}
+                            size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                            requestOptions={{ requestNonPersonalizedAdsOnly }}
+                        />
+                    </View>
+                )}
 
                 {/* Appointments List */}
                 <View style={styles.listSection}>
@@ -692,6 +692,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: colors.white,
+        marginHorizontal: -16,
+        marginBottom: 20,
     },
     scrollContainer: {
         flex: 1,
@@ -733,7 +735,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderRadius: 20,
         padding: 16,
-        marginBottom: 20,
+        marginBottom: 12,
         elevation: 3,
         shadowColor: "#2C221E",
         shadowOffset: { width: 0, height: 3 },
