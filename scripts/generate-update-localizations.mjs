@@ -11,7 +11,7 @@ const source = {
     _updateList1: "📖 Learn new manicure designs with step-by-step guides",
     _updateList2: "🧰 Check the materials and detailed instructions before you start",
     _updateList3: "🎬 Watch an ad to unlock each guide for 24 hours",
-    _updateList4: "❤️ Open favorites from the header and keep your chosen designs close at hand",
+    _updateList4: "🎃 New dark nail designs for autumn and Halloween",
     _updateButton: "Let's explore!",
 };
 
@@ -20,7 +20,7 @@ const spanish = {
     _updateList1: "📖 Aprende nuevos diseños con guías paso a paso",
     _updateList2: "🧰 Consulta los materiales y las instrucciones detalladas antes de empezar",
     _updateList3: "🎬 Desbloquea cada guía durante 24 horas viendo un anuncio",
-    _updateList4: "❤️ Abre tus favoritos desde la cabecera y ten tus diseños elegidos siempre a mano",
+    _updateList4: "🎃 Nuevos diseños de uñas oscuras para el otoño y Halloween",
     _updateButton: "¡Vamos allá!",
 };
 
