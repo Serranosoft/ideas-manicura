@@ -1,6 +1,6 @@
 # Importador visual de inspiración
 
-Herramienta local para elegir fotos guardadas desde Instagram, sueltas o dentro de varios ZIP, asignarles categorías y subirlas optimizadas a WordPress. No necesita Meta API para este flujo. Usa Node.js 20.19 o posterior y el navegador, sin dependencias npm nuevas.
+Herramienta local para elegir fotos guardadas desde Instagram, sueltas o dentro de varios ZIP, asignarles categorías y subir los archivos originales a WordPress tras comprobar su calidad. No necesita Meta API para este flujo. Usa Node.js 20.19 o posterior y el navegador, sin dependencias npm nuevas.
 
 ## Preparación de WordPress
 
@@ -23,11 +23,11 @@ Pulsa **Quitar imagen** en las fotos que quieras descartar: desaparecen de la ta
 
 Los ZIP se abren en el navegador y no se suben enteros a WordPress. Solo se extraen JPG, PNG y WebP; se omiten los otros archivos y se rechazan ZIP cifrados, dañados o con rutas peligrosas. Límites por tanda: hasta 20 ZIP, 150 imágenes y 250 MB de imágenes descomprimidas; cada ZIP puede ocupar hasta 120 MB y cada imagen hasta 30 MB. Recarga la página para empezar una nueva tanda.
 
-Al pulsar **Optimizar y subir**, cada imagen se reduce a un máximo de 1600 píxeles y se convierte a JPEG de calidad 82 %, se guarda una copia local en `data/` y se envía a WordPress. Después se comprueba si aparece en la galería pública de su categoría. El complemento guarda el enlace original de Instagram cuando se indica. Usa únicamente imágenes que tengas permiso para republicar.
+Al pulsar **Subir originales**, los JPG, PNG y WebP se guardan y se envían a WordPress con sus bytes originales: no se impone una resolución mínima, no se redimensionan, no se convierten y no se recomprimen. Después se comprueba si aparecen en la galería pública de su categoría. El complemento guarda el enlace original de Instagram cuando se indica. La calidad visible será exactamente la que tenga el archivo elegido, por lo que conviene usar el original y no una miniatura de resultados o previsualización. Usa únicamente imágenes que tengas permiso para republicar.
 
 Si una imagen llega a WordPress pero falla la clasificación, la tarjeta muestra su ID de WordPress para recuperarla manualmente. La herramienta no elimina medios ni publicaciones.
 
-El importador calcula una huella del archivo optimizado para evitar subir exactamente la misma imagen dos veces. Si una ya está en WordPress, la interfaz indica su categoría actual.
+El importador calcula una huella del archivo original para evitar subir exactamente la misma imagen dos veces. Si una ya está en WordPress, la interfaz indica su categoría actual.
 
 ## Búsqueda automática opcional
 

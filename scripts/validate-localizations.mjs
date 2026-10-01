@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { translations } from "../src/utils/localizations.js";
+import { fetchDesigns } from "../src/utils/data.js";
 import { reviewedTranslationOverrides } from "../src/utils/reviewed-localization-overrides.js";
 import { existingLocaleCodes, normalizeLocale, supportedLanguages } from "../src/utils/supported-locales.js";
 
@@ -104,6 +105,16 @@ const interpolationTokens = (value) => [...String(value).matchAll(/%\{[^}]+\}|%[
 for (const code of expectedCodes) {
     const pack = translations[code];
     if (!pack) continue;
+    const localizedCategoryTitles = new Set(
+        Object.entries(pack)
+            .filter(([key]) => key.endsWith("Title"))
+            .map(([, value]) => value)
+    );
+    for (const category of fetchDesigns(code)) {
+        if (!localizedCategoryTitles.has(category.title)) {
+            errors.push(`${code} has an unlocalized category title: ${category.name}`);
+        }
+    }
     for (const key of requiredKeys) {
         if (!String(pack[key] ?? "").trim()) {
             errors.push(`${code} is missing ${key}`);
@@ -157,6 +168,6 @@ if (errors.length) {
     process.exitCode = 1;
 } else {
     process.stdout.write(
-        `Validated ${expectedCodes.length} locales, ${requiredKeys.length} keys per locale, metadata and aliases.\n`
+        `Validated ${expectedCodes.length} locales, ${requiredKeys.length} keys per locale, category titles, metadata and aliases.\n`
     );
 }

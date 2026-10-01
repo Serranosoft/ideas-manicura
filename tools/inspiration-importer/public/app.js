@@ -1,4 +1,5 @@
 import { readZipImages, ZIP_LIMITS } from "./zip.mjs";
+import { SUPPORTED_IMAGE_TYPES } from "./image-quality.mjs";
 
 const categories = [
   ["efecto-espejo", "Efecto espejo"], ["efecto-metal", "Efecto metal"],
@@ -53,7 +54,7 @@ function updateSelection() {
   elements.selectedCount.textContent = String(count);
   elements.selectionBar.hidden = count === 0;
   document.querySelector("#ready-summary").textContent = `${readyCount} ${readyCount === 1 ? "lista" : "listas"} para subir${count > readyCount ? ` · ${count - readyCount} sin categoría` : ""}`;
-  elements.importButton.textContent = `Optimizar y subir (${readyCount}) ↑`;
+  elements.importButton.textContent = `Subir originales (${readyCount}) ↑`;
   elements.importButton.disabled = busy || readyCount === 0;
   elements.selectAll.disabled = items.length === 0 || busy;
   elements.clearAll.disabled = items.length === 0 || busy;
@@ -140,7 +141,7 @@ async function addFiles(fileList) {
         } catch (error) {
           problems.push(`${file.name}: ${error.message}`);
         }
-      } else if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+      } else if (!SUPPORTED_IMAGE_TYPES.has(file.type) ||
                  file.size > ZIP_LIMITS.maxImageBytes) {
         problems.push(`${file.name}: solo se admiten JPG, PNG o WebP de hasta 30 MB.`);
       } else if (items.length + added.length >= ZIP_LIMITS.maxImages ||
@@ -365,30 +366,15 @@ elements.bulkCategory.addEventListener("change", () => {
   render();
 });
 
-async function optimizedJpeg(item) {
+async function originalImage(item) {
   let source = item.file;
   if (!source) {
     const response = await fetch(`/api/image?id=${encodeURIComponent(item.id)}`);
-    if (!response.ok) throw new Error("No se pudo obtener la imagen para optimizarla.");
+    if (!response.ok) throw new Error("No se pudo obtener la imagen original.");
     source = await response.blob();
   }
-  const bitmap = await createImageBitmap(source);
-  if (bitmap.width * bitmap.height > 45_000_000) {
-    bitmap.close();
-    throw new Error("La imagen tiene demasiados píxeles para optimizarla con seguridad.");
-  }
-  const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-  const context = canvas.getContext("2d");
-  context.fillStyle = "#fff";
-  context.fillRect(0, 0, canvas.width, canvas.height);
-  context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close();
-  const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.82));
-  if (!blob) throw new Error("No se pudo convertir la imagen a JPEG.");
-  return blob;
+  if (!SUPPORTED_IMAGE_TYPES.has(source.type)) throw new Error("La imagen debe ser JPG, PNG o WebP.");
+  return source;
 }
 
 function itemStatus(item, message, kind = "") {
@@ -413,10 +399,10 @@ elements.importButton.addEventListener("click", async () => {
   let succeeded = 0;
   for (const [index, item] of chosen.entries()) {
     try {
-      itemStatus(item, `Optimizando ${index + 1} de ${chosen.length}…`);
-      const jpeg = await optimizedJpeg(item);
-      itemStatus(item, `Subiendo ${(jpeg.size / 1024).toFixed(0)} KB…`);
-      const headers = { "content-type": "image/jpeg", "x-category": item.category };
+      itemStatus(item, `Preparando original ${index + 1} de ${chosen.length}…`);
+      const original = await originalImage(item);
+      itemStatus(item, `Subiendo original sin recomprimir (${(original.size / 1024).toFixed(0)} KB)…`);
+      const headers = { "content-type": original.type, "x-category": item.category };
       if (item.file) {
         if (item.source) headers["x-source-url"] = item.source;
       } else {
@@ -425,7 +411,7 @@ elements.importButton.addEventListener("click", async () => {
       const result = await api(item.file ? "/api/import-file" : "/api/import", {
         method: "POST",
         headers,
-        body: jpeg,
+        body: original,
       });
       item.uploaded = true;
       item.selected = false;

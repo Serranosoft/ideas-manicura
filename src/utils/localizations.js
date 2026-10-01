@@ -2,6 +2,7 @@ import { supplementalTranslations } from "./supplemental-localizations.js";
 import { additionalTranslations } from "./additional-localizations.js";
 import { reviewedTranslationOverrides } from "./reviewed-localization-overrides.js";
 import { updateTranslations } from "./update-localizations.js";
+import { categoryTranslations } from "./category-localizations.js";
 
 const baseTranslations = {
     es: {
@@ -1187,6 +1188,7 @@ export const translations = Object.fromEntries(
                 ...reviewedValues,
                 ...(supplementalTranslations[locale] || {}),
                 ...(updateTranslations[locale] || updateTranslations.en),
+                ...(categoryTranslations[locale] || {}),
             },
         ];
     })

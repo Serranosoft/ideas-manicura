@@ -1,4 +1,4 @@
-import { translations } from "./localizations";
+import { translations } from "./localizations.js";
 
 export function fetchDesigns(acronym) {
     return [
@@ -8,12 +8,12 @@ export function fetchDesigns(acronym) {
             image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2025/07/unas-efecto-espejo-16_caury2.jpg",
         },
         {
-            title: "Efecto metal",
+            title: translations[acronym]["_metalTitle"],
             name: "Efecto metal",
             image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/08/imgi_68_451491369_17932280528880938_8559504282600656063_n.jpg",
         },
         {
-            title: "Cat eye",
+            title: translations[acronym]["_catEyeTitle"],
             name: "Cat eye",
             image: null,
             coverCategory: "cat-eye",

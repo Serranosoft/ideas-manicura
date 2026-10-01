@@ -79,28 +79,10 @@ export default function Home() {
         }
     }
 
-    const trendingItems = [
-        {
-            id: "trend-1",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-58a94635e61e3234be72.jpg",
-        },
-        {
-            id: "trend-2",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-9721f81a746bfb2d1875.jpg",
-        },
-        {
-            id: "trend-3",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-b4faaa67997369aa646c.jpg",
-        },
-        {
-            id: "trend-4",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-1fae44a2ec0026026866.jpg",
-        },
-        {
-            id: "trend-5",
-            image: "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09/local-26e1f1871ed754b59249.jpg",
-        },
-    ];
+    const trendingItems = rawMedia.slice(0, 5).map((item, index) => ({
+        id: item.id || `trend-${index}`,
+        image: item.url,
+    }));
 
     // Priorizar diseños de Verano y 3D para la sección de Populares
     const summerItems = rawMedia.filter((item) => item.categoria === "verano");

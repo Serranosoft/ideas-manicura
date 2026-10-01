@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { SUPPORTED_IMAGE_TYPES } from "./public/image-quality.mjs";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(root, "public");
@@ -16,7 +17,7 @@ const categorySlugs = new Set([
 ]);
 const foundMedia = new Map();
 const pendingUploads = new Map();
-const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+const MAX_IMAGE_BYTES = 30 * 1024 * 1024;
 
 function parseEnvFile(content) {
     const values = {};
@@ -224,13 +225,12 @@ async function handlePreview(response, id) {
     response.end(image.bytes);
 }
 
-async function uploadAndClassify({ jpeg, category, sourcePermalink = "", mediaId = "" }) {
+async function uploadAndClassify({ image, contentType, category, sourcePermalink = "", mediaId = "" }) {
     if (!categorySlugs.has(category)) throw new Error("Selecciona una categoría válida.");
-    if (jpeg.length < 100 || jpeg[0] !== 0xff || jpeg[1] !== 0xd8) {
-        throw new Error("La imagen optimizada debe ser JPEG.");
-    }
+    if (!SUPPORTED_IMAGE_TYPES.has(contentType)) throw new Error("La imagen debe ser JPG, PNG o WebP.");
+    if (image.length < 100) throw new Error("El archivo de imagen no es válido.");
     await wordpressPreflight(category);
-    const hash = createHash("sha256").update(jpeg).digest("hex");
+    const hash = createHash("sha256").update(image).digest("hex");
     const key = mediaId ? `instagram:${mediaId}` : `local:${hash}`;
     let upload = pendingUploads.get(key);
     if (!upload) {
@@ -242,15 +242,16 @@ async function uploadAndClassify({ jpeg, category, sourcePermalink = "", mediaId
             return { id: duplicate.id, url: duplicate.url, category: duplicate.categoria, visible: true, classified: true, duplicate: true };
         }
         await mkdir(dataDir, { recursive: true });
-        const filename = mediaId ? `instagram-${mediaId}.jpg` : `local-${hash.slice(0, 20)}.jpg`;
-        await writeFile(join(dataDir, filename), jpeg);
+        const extension = contentType === "image/png" ? "png" : contentType === "image/webp" ? "webp" : "jpg";
+        const filename = mediaId ? `instagram-${mediaId}.${extension}` : `local-${hash.slice(0, 20)}.${extension}`;
+        await writeFile(join(dataDir, filename), image);
         upload = await fetchJson(`${wpBase}/wp-json/wp/v2/media`, {
             method: "POST",
             headers: wordpressHeaders({
-                "content-type": "image/jpeg",
+                "content-type": contentType,
                 "content-disposition": `attachment; filename="${filename}"`,
             }),
-            body: jpeg,
+            body: image,
         });
         if (!Number.isInteger(upload.id)) throw new Error("WordPress no devolvió el ID de la imagen subida.");
         pendingUploads.set(key, upload);
@@ -281,8 +282,9 @@ async function handleImport(request, response) {
     const category = String(request.headers["x-category"] || "");
     const item = foundMedia.get(id);
     if (!item) throw new Error("Imagen no encontrada. Repite la búsqueda.");
-    const jpeg = await readBody(request, MAX_IMAGE_BYTES);
-    sendJson(response, 200, await uploadAndClassify({ jpeg, category, sourcePermalink: item.permalink, mediaId: id }));
+    const contentType = String(request.headers["content-type"] || "").split(";", 1)[0].toLowerCase();
+    const image = await readBody(request, MAX_IMAGE_BYTES);
+    sendJson(response, 200, await uploadAndClassify({ image, contentType, category, sourcePermalink: item.permalink, mediaId: id }));
 }
 
 async function handleFileImport(request, response) {
@@ -290,14 +292,16 @@ async function handleFileImport(request, response) {
     const sourceInput = String(request.headers["x-source-url"] || "").trim();
     const sourcePermalink = sourceInput ? instagramPermalink(sourceInput) : "";
     if (sourceInput && !sourcePermalink) throw new Error("El enlace de origen debe ser una URL de Instagram con HTTPS.");
-    const jpeg = await readBody(request, MAX_IMAGE_BYTES);
-    sendJson(response, 200, await uploadAndClassify({ jpeg, category, sourcePermalink }));
+    const contentType = String(request.headers["content-type"] || "").split(";", 1)[0].toLowerCase();
+    const image = await readBody(request, MAX_IMAGE_BYTES);
+    sendJson(response, 200, await uploadAndClassify({ image, contentType, category, sourcePermalink }));
 }
 
 const staticFiles = new Map([
     ["/", ["index.html", "text/html; charset=utf-8"]],
     ["/app.js", ["app.js", "text/javascript; charset=utf-8"]],
     ["/zip.mjs", ["zip.mjs", "text/javascript; charset=utf-8"]],
+    ["/image-quality.mjs", ["image-quality.mjs", "text/javascript; charset=utf-8"]],
     ["/styles.css", ["styles.css", "text/css; charset=utf-8"]],
 ]);
 
