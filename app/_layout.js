@@ -27,6 +27,7 @@ export default function Layout() {
 
     // Gestión de anuncios
     const [adsLoaded, setAdsLoaded] = useState(false);
+    const [consentReady, setConsentReady] = useState(false);
     const [adTrigger, setAdTrigger] = useState(0);
     const [showOpenAd, setShowOpenAd] = useState(true);
     const [privacyOptionsRequired, setPrivacyOptionsRequired] = useState(false);
@@ -306,6 +307,7 @@ export default function Layout() {
                     setPrivacyOptionsRequired={setPrivacyOptionsRequired}
                     setRewardedAdLoaded={setRewardedAdLoaded}
                     setRequestNonPersonalizedAdsOnly={setRequestNonPersonalizedAdsOnly}
+                    onConsentResolved={() => setConsentReady(true)}
                 />
                 <LanguageProvider>
                     <DataContext.Provider value={{
@@ -337,7 +339,7 @@ export default function Layout() {
                             <GestureHandlerRootView style={styles.wrapper}>
                                 <Stack />
                             </GestureHandlerRootView>
-                            <UpdatesModal />
+                            <UpdatesModal consentReady={consentReady} />
                         </AdsContext.Provider>
                     </DataContext.Provider>
                 </LanguageProvider>

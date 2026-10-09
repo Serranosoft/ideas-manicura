@@ -87,20 +87,27 @@ const AdsHandler = forwardRef((props, ref) => {
 
     useEffect(() => {
         async function prepareAds() {
-            if (!adsEnabled) return;
-
-            try {
-                await AdsConsent.requestInfoUpdate();
-                const consentInfo = await AdsConsent.loadAndShowConsentFormIfRequired();
-                updatePrivacyOptionsRequirement(consentInfo);
-            } catch (error) {
-                console.error("Consent gathering failed:", error);
-                const consentInfo = await AdsConsent.getConsentInfo();
-                updatePrivacyOptionsRequirement(consentInfo);
+            if (!adsEnabled) {
+                props.onConsentResolved?.();
+                return;
             }
 
-            await updateAdRequestConsent();
-            setConsentResolved(true);
+            try {
+                try {
+                    await AdsConsent.requestInfoUpdate();
+                    const consentInfo = await AdsConsent.loadAndShowConsentFormIfRequired();
+                    updatePrivacyOptionsRequirement(consentInfo);
+                } catch (error) {
+                    console.error("Consent gathering failed:", error);
+                    const consentInfo = await AdsConsent.getConsentInfo();
+                    updatePrivacyOptionsRequirement(consentInfo);
+                }
+
+                await updateAdRequestConsent();
+                setConsentResolved(true);
+            } finally {
+                props.onConsentResolved?.();
+            }
         }
 
         prepareAds();

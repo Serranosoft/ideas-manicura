@@ -7,7 +7,7 @@ const currentDirectory = dirname(fileURLToPath(import.meta.url));
 const outputPath = resolve(currentDirectory, "../src/utils/update-localizations.js");
 
 const source = {
-    _updateTitle: "🎉 Welcome to the new version!",
+    _updateTitle: "🎃 Welcome to the new version!",
     _updateList1: "📖 Learn new manicure designs with step-by-step guides",
     _updateList2: "🧰 Check the materials and detailed instructions before you start",
     _updateList3: "🎬 Watch an ad to unlock each guide for 24 hours",
@@ -16,7 +16,7 @@ const source = {
 };
 
 const spanish = {
-    _updateTitle: "🎉 ¡Te damos la bienvenida a la nueva versión!",
+    _updateTitle: "🎃 ¡Te damos la bienvenida a la nueva versión!",
     _updateList1: "📖 Aprende nuevos diseños con guías paso a paso",
     _updateList2: "🧰 Consulta los materiales y las instrucciones detalladas antes de empezar",
     _updateList3: "🎬 Desbloquea cada guía durante 24 horas viendo un anuncio",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { router } from 'expo-router';
-import Svg, { Path, Rect } from 'react-native-svg';
+import Svg, { Ellipse, Path, Rect } from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../utils/styles';
 import { useLanguage } from '../utils/LanguageContext';
@@ -36,6 +36,18 @@ function GuideIcon({ active }) {
             <Path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill={active ? `${colors.accent}15` : "none"} />
             <Path d="M9 7h7M9 11h5" />
         </Svg>
+    );
+}
+
+function HalloweenAttentionBadge() {
+    return (
+        <View style={styles.halloweenAttentionBadge} pointerEvents="none">
+            <Svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                <Path d="M7 3.3V1.8c0-.5.4-.9.9-.9h.8" stroke="#FFF0D5" strokeWidth="1.2" strokeLinecap="round" />
+                <Ellipse cx="7" cy="8.1" rx="5.5" ry="4.7" fill="#F58A2A" stroke="#FFF0D5" strokeWidth=".8" />
+                <Path d="m4.6 7.2.9-.8.8.8m1.4 0 .8-.8.9.8M4.8 9.4c1.4 1.1 3 1.1 4.4 0" stroke="#2C1B31" strokeWidth=".9" strokeLinecap="round" strokeLinejoin="round" />
+            </Svg>
+        </View>
     );
 }
 
@@ -75,6 +87,7 @@ export default function BottomNav({ activeTab }) {
             label: guidesLabel,
             icon: GuideIcon,
             pathname: '/guides',
+            halloweenAttention: true,
         },
         {
             key: 'appointments',
@@ -101,8 +114,13 @@ export default function BottomNav({ activeTab }) {
                                 }
                             }}
                         >
-                            <View style={[styles.iconWrapper, isActive && styles.activeIconWrapper]}>
+                            <View style={[
+                                styles.iconWrapper,
+                                tab.halloweenAttention && styles.attentionIconWrapper,
+                                isActive && styles.activeIconWrapper,
+                            ]}>
                                 <IconComponent active={isActive} />
+                                {tab.halloweenAttention && <HalloweenAttentionBadge />}
                             </View>
                             <Text style={[styles.label, isActive ? styles.activeLabel : styles.inactiveLabel]}>
                                 {tab.label}
@@ -139,9 +157,34 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
     },
     iconWrapper: {
+        position: 'relative',
+        width: 30,
+        height: 24,
         marginBottom: 3,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    attentionIconWrapper: {
+        borderRadius: 12,
+        backgroundColor: '#FFF0E2',
+    },
+    halloweenAttentionBadge: {
+        position: 'absolute',
+        top: -7,
+        right: -7,
+        width: 17,
+        height: 17,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 9,
+        borderWidth: 1.5,
+        borderColor: colors.white,
+        backgroundColor: '#2C1B31',
+        elevation: 4,
+        shadowColor: '#2C1B31',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3,
     },
     activeIconWrapper: {
         transform: [{ scale: 1.05 }],

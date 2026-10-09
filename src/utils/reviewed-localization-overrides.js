@@ -425,6 +425,7 @@ export const reviewedTranslationOverrides = {
         _reminderNotificationTitle: "මැණික්‍යුර් හමුවීමේ සිහිකැඳවීම!",
     },
     "my-MM": {
+        _halloweenTitle: "ဟယ်လိုဝင်း",
         _frenchTitle: "ပြင်သစ် လက်သည်းအလှပြင်",
         _feriaTitle: "ပွဲတော်",
         _appointmentsTitle: "ကျွန်ုပ်၏ လက်သည်းအလှပြင် ချိန်းဆိုမှုများ",
@@ -453,6 +454,7 @@ export const reviewedTranslationOverrides = {
         _reminderNotificationTitle: "ការរំលឹកការណាត់ជួបធ្វើក្រចក!",
     },
     "el-GR": {
+        _halloweenTitle: "Χάλοουιν",
         _frenchTitle: "Γαλλικό μανικιούρ",
         _feriaTitle: "Φεστιβάλ",
         _appointmentsTitle: "Τα ραντεβού μου για μανικιούρ",

@@ -3,6 +3,7 @@ import { additionalTranslations } from "./additional-localizations.js";
 import { reviewedTranslationOverrides } from "./reviewed-localization-overrides.js";
 import { updateTranslations } from "./update-localizations.js";
 import { categoryTranslations } from "./category-localizations.js";
+import { guideFilterTranslations } from "./guide-filter-localizations.js";
 
 const baseTranslations = {
     es: {
@@ -1189,6 +1190,7 @@ export const translations = Object.fromEntries(
                 ...(supplementalTranslations[locale] || {}),
                 ...(updateTranslations[locale] || updateTranslations.en),
                 ...(categoryTranslations[locale] || {}),
+                ...(guideFilterTranslations[locale] || {}),
             },
         ];
     })

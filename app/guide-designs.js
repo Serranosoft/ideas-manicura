@@ -129,7 +129,9 @@ export default function GuideDesigns() {
     const { language } = useLanguage();
     const copy = getGuideCopy(language._locale);
     const category = getGuideCategory(categoryId);
-    const categoryTitle = getGuideLabel(category?.title, language._locale);
+    const categoryTitle = categoryId === "halloween"
+        ? language.t("_halloweenTitle")
+        : getGuideLabel(category?.title, language._locale);
     const activeFilter = Array.isArray(filterParam) ? filterParam[0] : filterParam || "all";
     const filteredDesigns = (category?.designs || []).filter((design) => (
         guideMatchesFilter(design, activeFilter)
