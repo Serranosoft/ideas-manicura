@@ -1,4 +1,5 @@
 const WORDPRESS_UPLOADS = "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/09";
+const WORDPRESS_UPLOADS_OCTOBER = "https://mollydigital.manu-scholz.com/wp-content/uploads/2026/10";
 
 const localized = (es, en) => ({ es, en });
 
@@ -8,19 +9,107 @@ const material = (id, es, en, productId) => ({
     ...(productId ? { productId } : {}),
 });
 
-const buildSteps = (prefix, definitions) => definitions.map(([
+const buildSteps = (prefix, definitions, uploadsBase = WORDPRESS_UPLOADS) => definitions.map(([
     imageNumber,
     instructionEs,
     instructionEn,
     toolEs,
     toolEn,
 ]) => ({
-    image: `${WORDPRESS_UPLOADS}/${prefix}-${imageNumber}.jpg`,
+    image: `${uploadsBase}/${prefix}-${imageNumber}.jpg`,
     instruction: localized(instructionEs, instructionEn),
     tool: localized(toolEs, toolEn),
 }));
 
 export const guideCategories = [
+    {
+        id: "halloween",
+        title: localized("Halloween", "Halloween"),
+        cover: `${WORDPRESS_UPLOADS_OCTOBER}/halloween-calabaza-animada-7.jpg`,
+        designs: [
+            {
+                id: "calabaza-animada",
+                title: localized("Calabaza animada", "Animated pumpkin"),
+                cover: `${WORDPRESS_UPLOADS_OCTOBER}/halloween-calabaza-animada-7.jpg`,
+                filters: ["halloween"],
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("colors", "Gel nude, naranja con glitter, blanco, negro y rosa", "Nude, orange glitter, white, black and pink gel", "painting_gel_biutee_12_colores"),
+                    material("brushes", "Pincel liner, pincel fino y dotting tool", "Liner brush, fine detail brush and dotting tool", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
+                steps: buildSteps("halloween-calabaza-animada", [
+                    [1, "Sobre la base nude, dibuja una punta naranja con dos curvas que se unan en el centro.", "Over the nude base, paint an orange tip with two curves meeting in the centre.", "Pincel fino y gel naranja", "Fine brush and orange gel"],
+                    [2, "Cubre la forma naranja con una capa uniforme de glitter y cura.", "Cover the orange shape with an even layer of glitter, then cure.", "Gel naranja con glitter y lámpara", "Orange glitter gel and lamp"],
+                    [3, "Perfila la calabaza en negro y traza dos líneas curvas desde el centro hasta la punta.", "Outline the pumpkin in black and paint two curved lines from the centre to the tip.", "Pincel liner y gel negro", "Liner brush and black gel"],
+                    [4, "Añade un pequeño tallo negro inclinado en la parte superior de la calabaza.", "Add a small angled black stem at the top of the pumpkin.", "Pincel de detalle y gel negro", "Detail brush and black gel"],
+                    [5, "Modela la silueta blanca del fantasma sobre la calabaza, dejando una curva para la cabeza.", "Paint the white ghost silhouette above the pumpkin, shaping a rounded head.", "Pincel fino y gel blanco", "Fine brush and white gel"],
+                    [6, "Completa los brazos del fantasma y coloca dos ojos negros ovalados.", "Complete the ghost's arms and add two oval black eyes.", "Pincel fino, dotting tool y gel negro", "Fine brush, dotting tool and black gel"],
+                    [7, "Dibuja la boca y las mejillas rosas; añade estrellas y puntos blancos, cura y sella.", "Paint the mouth and pink cheeks; add white stars and dots, cure and seal.", "Pincel liner, dotting tool y top coat", "Liner brush, dotting tool and top coat"],
+                ], WORDPRESS_UPLOADS_OCTOBER),
+            },
+            {
+                id: "murcielagos",
+                title: localized("Murciélagos", "Bats"),
+                cover: `${WORDPRESS_UPLOADS_OCTOBER}/halloween-murcielagos-4.jpg`,
+                filters: ["halloween"],
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("colors", "Gel blanco y gel negro", "White gel and black gel", "gel_liner_aimeili_6_colores"),
+                    material("brushes", "Pincel liner fino y dotting tool", "Fine liner brush and dotting tool", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
+                steps: buildSteps("halloween-murcielagos", [
+                    [1, "Aplica y cura una base blanca; coloca dos puntos negros separados para los cuerpos.", "Apply and cure a white base; add two separate black dots for the bodies.", "Dotting tool y gel negro", "Dotting tool and black gel"],
+                    [2, "Desde cada cuerpo, traza dos líneas curvas para marcar la apertura de las alas.", "From each body, draw two curved lines to mark the wingspan.", "Pincel liner fino", "Fine liner brush"],
+                    [3, "Dibuja el borde dentado de las alas y añade dos orejas pequeñas a cada murciélago.", "Draw the scalloped wing edges and add two small ears to each bat.", "Pincel liner fino", "Fine liner brush"],
+                    [4, "Rellena las siluetas en negro, corrige el contorno, cura y sella el diseño.", "Fill the silhouettes in black, refine the outline, cure and seal the design.", "Pincel fino, lámpara y top coat", "Fine brush, lamp and top coat"],
+                ], WORDPRESS_UPLOADS_OCTOBER),
+            },
+            {
+                id: "sangre",
+                title: localized("Efecto sangre", "Blood effect"),
+                cover: `${WORDPRESS_UPLOADS_OCTOBER}/halloween-sangre-6.jpg`,
+                filters: ["halloween"],
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("colors", "Gel nude y gel rojo oscuro", "Nude gel and dark red gel", "painting_gel_biutee_12_colores"),
+                    material("brushes", "Pincel liner y dotting tool", "Liner brush and dotting tool", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
+                steps: buildSteps("halloween-sangre", [
+                    [1, "Prepara la uña y aplica una primera capa fina de gel nude.", "Prep the nail and apply the first thin coat of nude gel.", "Gel nude y pincel del esmalte", "Nude gel and polish brush"],
+                    [2, "Aplica una segunda capa para igualar el color y cura por completo.", "Apply a second coat to even out the colour and cure fully.", "Gel nude y lámpara UV/LED", "Nude gel and UV/LED lamp"],
+                    [3, "Coloca varias gotas de gel rojo a distintas alturas cerca del borde superior.", "Place several drops of red gel at different heights near the upper edge.", "Dotting tool y gel rojo", "Dotting tool and red gel"],
+                    [4, "Une cada gota con el borde de la uña y rellena la franja superior para crear el goteo.", "Join each drop to the nail edge and fill the upper band to create the drip effect.", "Pincel liner y gel rojo", "Liner brush and red gel"],
+                    [5, "Suaviza las uniones y refuerza las gotas para que tengan un volumen uniforme.", "Smooth the joins and reinforce the drops so they have even volume.", "Pincel fino", "Fine detail brush"],
+                    [6, "Deja nivelar el gel, cura el diseño y sella toda la uña con top coat.", "Let the gel self-level, cure the design and seal the whole nail with top coat.", "Lámpara UV/LED y top coat", "UV/LED lamp and top coat"],
+                ], WORDPRESS_UPLOADS_OCTOBER),
+            },
+            {
+                id: "telarana",
+                title: localized("Telaraña brillante", "Glitter spiderweb"),
+                cover: `${WORDPRESS_UPLOADS_OCTOBER}/halloween-telarana-7.jpg`,
+                filters: ["halloween"],
+                materials: [
+                    material("kit", "Base y top coat", "Base coat and top coat", "kit_semipermanente_jodsone_36_piezas"),
+                    material("colors", "Gel nude y gel negro", "Nude gel and black gel", "painting_gel_biutee_12_colores"),
+                    material("glitter", "Gel liner o glitter plateado fino", "Silver liner gel or fine silver glitter", "gel_liner_aimeili_6_colores"),
+                    material("brushes", "Pincel liner extrafino", "Extra-fine liner brush", "pinceles_nail_art_sularpek"),
+                    material("lamp", "Lámpara UV/LED", "UV/LED lamp", "lampara_uv_led_sunuv"),
+                ],
+                steps: buildSteps("halloween-telarana", [
+                    [1, "Sobre la base nude, elige una esquina y traza tres líneas radiales largas.", "Over the nude base, choose one corner and draw three long radial lines.", "Pincel liner y gel negro", "Liner brush and black gel"],
+                    [2, "Añade una cuarta guía hacia el lateral para completar la estructura de la telaraña.", "Add a fourth guide toward the side to complete the web structure.", "Pincel liner fino", "Fine liner brush"],
+                    [3, "Une las primeras guías con arcos cortos y curvados cerca del punto de origen.", "Join the first guides with short curved arcs near the starting point.", "Pincel liner extrafino", "Extra-fine liner brush"],
+                    [4, "Continúa los arcos hacia el centro manteniendo una separación regular.", "Continue the arcs toward the centre, keeping their spacing even.", "Pincel liner extrafino", "Extra-fine liner brush"],
+                    [5, "Completa las uniones hasta el extremo derecho y el borde inferior.", "Complete the joins up to the right edge and lower border.", "Pincel liner extrafino", "Extra-fine liner brush"],
+                    [6, "Repasa las líneas para igualar el grosor y corrige cualquier unión irregular.", "Go over the lines to even out their thickness and refine any uneven joins.", "Pincel liner y gel negro", "Liner brush and black gel"],
+                    [7, "Cubre la telaraña con glitter plateado fino, cura y sella sin invadir la base nude.", "Cover the web with fine silver glitter, cure and seal without flooding the nude base.", "Glitter plateado, lámpara y top coat", "Silver glitter, lamp and top coat"],
+                ], WORDPRESS_UPLOADS_OCTOBER),
+            },
+        ],
+    },
     {
         id: "babyboomer",
         title: localized("Baby Boomer", "Baby Boomer"),
@@ -177,6 +266,9 @@ const guideCopy = {
         guidesTitle: "Guías paso a paso",
         guidesBadge: "APRENDE Y CREA",
         chooseCategory: "Elige una categoría",
+        filterAll: "Todos",
+        filterHalloween: "Halloween",
+        noFilteredGuides: "Todavía no hay tutoriales en este filtro.",
         designsTitle: "Diseños",
         design: "diseño",
         designs: "diseños",
@@ -213,6 +305,9 @@ const guideCopy = {
         guidesTitle: "Step-by-step guides",
         guidesBadge: "LEARN AND CREATE",
         chooseCategory: "Choose a category",
+        filterAll: "All",
+        filterHalloween: "Halloween",
+        noFilteredGuides: "There are no tutorials in this filter yet.",
         designsTitle: "Designs",
         design: "design",
         designs: "designs",
@@ -260,6 +355,12 @@ export function getGuideLabel(value, locale) {
 
 export function getGuideCategory(categoryId) {
     return guideCategories.find((category) => category.id === categoryId);
+}
+
+export function guideMatchesFilter(design, filterId) {
+    return !filterId
+        || filterId === "all"
+        || (Array.isArray(design?.filters) && design.filters.includes(filterId));
 }
 
 export function getGuideDesign(categoryId, designId) {

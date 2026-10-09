@@ -7,7 +7,7 @@ import Header from "../src/layout/header";
 import { AdsContext } from "../src/DataContext";
 import { useLanguage } from "../src/utils/LanguageContext";
 import { colors, ui } from "../src/utils/styles";
-import { getGuideCategory, getGuideCopy, getGuideLabel } from "../src/utils/guides-data";
+import { getGuideCategory, getGuideCopy, getGuideLabel, guideMatchesFilter } from "../src/utils/guides-data";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 function LockIcon({ unlocked = false }) {
@@ -125,11 +125,15 @@ function GuideUnlockModal({ copy, guide, language, message, onCancel, onConfirm,
 }
 
 export default function GuideDesigns() {
-    const { category: categoryId } = useLocalSearchParams();
+    const { category: categoryId, filter: filterParam } = useLocalSearchParams();
     const { language } = useLanguage();
     const copy = getGuideCopy(language._locale);
     const category = getGuideCategory(categoryId);
     const categoryTitle = getGuideLabel(category?.title, language._locale);
+    const activeFilter = Array.isArray(filterParam) ? filterParam[0] : filterParam || "all";
+    const filteredDesigns = (category?.designs || []).filter((design) => (
+        guideMatchesFilter(design, activeFilter)
+    ));
     const {
         guideUnlocksLoaded,
         isGuideUnlocked,
@@ -202,7 +206,7 @@ export default function GuideDesigns() {
 
             <SafeAreaView edges={["bottom"]} style={styles.safeContent}>
                 <FlatList
-                    data={category?.designs || []}
+                    data={filteredDesigns}
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.listContent}
@@ -245,6 +249,11 @@ export default function GuideDesigns() {
                             </View>
                         );
                     }}
+                    ListEmptyComponent={(
+                        <View style={styles.emptyState}>
+                            <Text style={styles.emptyStateText}>{copy.noFilteredGuides}</Text>
+                        </View>
+                    )}
                 />
             </SafeAreaView>
 
@@ -285,6 +294,23 @@ const styles = StyleSheet.create({
     listContent: {
         paddingHorizontal: 12,
         paddingBottom: 30,
+    },
+    emptyState: {
+        marginHorizontal: 8,
+        marginTop: 10,
+        paddingHorizontal: 24,
+        paddingVertical: 32,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: colors.cardBorder,
+        backgroundColor: colors.cardBg,
+    },
+    emptyStateText: {
+        color: colors.textMuted,
+        fontFamily: "ancizar-medium",
+        fontSize: 15,
+        lineHeight: 21,
+        textAlign: "center",
     },
     cardWrapper: {
         flex: 1,

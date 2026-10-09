@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { Stack, router } from "expo-router";
 import { Image } from "expo-image";
@@ -7,7 +7,7 @@ import Header from "../src/layout/header";
 import BottomNav from "../src/layout/BottomNav";
 import { useLanguage } from "../src/utils/LanguageContext";
 import { colors, ui } from "../src/utils/styles";
-import { getGuideCopy, getGuideLabel, guideCategories } from "../src/utils/guides-data";
+import { getGuideCopy, getGuideLabel, guideCategories, guideMatchesFilter } from "../src/utils/guides-data";
 
 function ArrowIcon() {
     return (
@@ -20,6 +20,17 @@ function ArrowIcon() {
 export default function Guides() {
     const { language } = useLanguage();
     const copy = getGuideCopy(language._locale);
+    const [activeFilter, setActiveFilter] = useState("all");
+    const filters = [
+        { id: "all", label: copy.filterAll },
+        { id: "halloween", label: copy.filterHalloween },
+    ];
+    const filteredCategories = guideCategories
+        .map((category) => ({
+            ...category,
+            designs: category.designs.filter((design) => guideMatchesFilter(design, activeFilter)),
+        }))
+        .filter((category) => category.designs.length > 0);
 
     return (
         <View style={styles.container}>
@@ -29,8 +40,28 @@ export default function Guides() {
                 <Text style={ui.h2}>{copy.chooseCategory}</Text>
             </View>
 
+            <View style={styles.filterRow}>
+                {filters.map((filter) => {
+                    const selected = activeFilter === filter.id;
+                    return (
+                        <Pressable
+                            key={filter.id}
+                            accessibilityRole="button"
+                            accessibilityState={{ selected }}
+                            style={[styles.filterChip, selected && styles.filterChipActive]}
+                            onPress={() => setActiveFilter(filter.id)}
+                        >
+                            <Text style={[styles.filterChipText, selected && styles.filterChipTextActive]}>
+                                {filter.label}
+                            </Text>
+                        </Pressable>
+                    );
+                })}
+            </View>
+
             <FlatList
-                data={guideCategories}
+                data={filteredCategories}
+                extraData={activeFilter}
                 numColumns={2}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.listContent}
@@ -43,7 +74,10 @@ export default function Guides() {
                                 style={styles.card}
                                 accessibilityRole="button"
                                 accessibilityLabel={getGuideLabel(item.title, language._locale)}
-                                onPress={() => router.push({ pathname: "/guide-designs", params: { category: item.id } })}
+                                onPress={() => router.push({
+                                    pathname: "/guide-designs",
+                                    params: { category: item.id, filter: activeFilter },
+                                })}
                             >
                                 <Image source={item.cover} style={styles.image} contentFit="cover" transition={500} />
                                 <View style={styles.overlay} />
@@ -62,6 +96,11 @@ export default function Guides() {
                         </View>
                     );
                 }}
+                ListEmptyComponent={(
+                    <View style={styles.emptyState}>
+                        <Text style={styles.emptyStateText}>{copy.noFilteredGuides}</Text>
+                    </View>
+                )}
             />
 
             <BottomNav activeTab="guides" />
@@ -83,6 +122,51 @@ const styles = StyleSheet.create({
     listContent: {
         paddingHorizontal: 12,
         paddingBottom: 24,
+    },
+    filterRow: {
+        flexDirection: "row",
+        gap: 8,
+        paddingHorizontal: 20,
+        paddingBottom: 10,
+    },
+    filterChip: {
+        minHeight: 38,
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 18,
+        borderRadius: 19,
+        borderWidth: 1,
+        borderColor: colors.cardBorder,
+        backgroundColor: colors.cardBg,
+    },
+    filterChipActive: {
+        borderColor: colors.accentDark,
+        backgroundColor: colors.accentDark,
+    },
+    filterChipText: {
+        color: colors.textDark,
+        fontFamily: "ancizar-bold",
+        fontSize: 14,
+    },
+    filterChipTextActive: {
+        color: colors.white,
+    },
+    emptyState: {
+        marginHorizontal: 8,
+        marginTop: 10,
+        paddingHorizontal: 24,
+        paddingVertical: 32,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: colors.cardBorder,
+        backgroundColor: colors.cardBg,
+    },
+    emptyStateText: {
+        color: colors.textMuted,
+        fontFamily: "ancizar-medium",
+        fontSize: 15,
+        lineHeight: 21,
+        textAlign: "center",
     },
     cardWrapper: {
         flex: 1,
